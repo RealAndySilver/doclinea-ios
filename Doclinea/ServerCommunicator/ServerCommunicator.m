@@ -7,8 +7,8 @@
 //
 
 #import "ServerCommunicator.h"
-#define ENDPOINT @"http://192.241.187.135:1414/api_1.0"
-//#define ENDPOINT @"http://192.168.1.100:1414/api_1.0"
+//#define ENDPOINT @"http://192.241.187.135:1414/api_1.0"
+#define ENDPOINT @"http://192.168.1.109:1414/api_1.0"
 
 @implementation ServerCommunicator
 @synthesize tag,delegate;
@@ -56,6 +56,7 @@
     parameter=[parameter stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     parameter=[parameter stringByExpandingTildeInPath];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",ENDPOINT,method]];
+    NSLog(@"URLLL: %@, Parameter: %@", url, parameter);
     NSMutableURLRequest *theRequest;
     theRequest = [NSMutableURLRequest requestWithURL:url];
     [theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];

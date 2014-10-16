@@ -11,6 +11,7 @@
 #import "Doctor.h"
 #import "UIImageView+WebCache.h"
 #import "RatingView.h"
+#import "PicturesViewController.h"
 
 @interface DoctorDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -98,6 +99,18 @@
     pedirCitaButton.backgroundColor = [UIColor colorWithRed:231.0/255.0 green:79.0/255.0 blue:19.0/255.0 alpha:1.0];
     pedirCitaButton.layer.cornerRadius = 5.0;
     [self.scrollView addSubview:pedirCitaButton];
+    
+    //Images button
+    if ([self.doctor.gallery count] > 0 && [self.doctor.gallery[0] isKindOfClass:[NSDictionary class]]) {
+        UIButton *imagesButton = [[UIButton alloc] initWithFrame:CGRectOffset(pedirCitaButton.frame, pedirCitaButton.frame.size.width + 10.0, 0.0)];
+        [imagesButton setTitle:@"Imágenes" forState:UIControlStateNormal];
+        [imagesButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        imagesButton.backgroundColor = [UIColor colorWithRed:34.0/255.0 green:159.0/255.0 blue:225.0/255.0 alpha:1.0];
+        imagesButton.titleLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
+        imagesButton.layer.cornerRadius = 5.0;
+        [imagesButton addTarget:self action:@selector(imagesButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.scrollView addSubview:imagesButton];
+    }
     
     //Rating View
     self.ratingView = [[RatingView alloc] initWithFrame:CGRectMake(20.0, self.doctorImageView.frame.origin.y + self.doctorImageView.frame.size.height + 4.0, self.doctorImageView.frame.size.width, 20.0) selectedImageName:@"blueStar.png" unSelectedImage:@"grayStar.png" minValue:0 maxValue:5 intervalValue:0.5 stepByStep:NO];
@@ -198,11 +211,21 @@
 
 #pragma mark - Actions 
 
+-(void)imagesButtonPressed {
+    [self goToDoctorImagesVC];
+}
+
 - (IBAction)backButtonPressed:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Navigation 
+
+-(void)goToDoctorImagesVC {
+    PicturesViewController *picturesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"Pictures"];
+    picturesVC.picturesArray = self.doctor.gallery;
+    [self.navigationController pushViewController:picturesVC animated:YES];
+}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"MapSegue"]) {

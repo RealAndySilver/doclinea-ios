@@ -11,6 +11,8 @@
 #import "Doctor.h"
 #import "SharedDoctor.h"
 #import "DoctorLocationViewController.h"
+#import "DoctorEducationViewController.h"
+#import "ChangePasswordViewController.h"
 
 @interface DoctorHomePageViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -60,9 +62,12 @@
         //Personal Info
         [self goToDoctorInfoVC];
     } else if (indexPath.row == 1) {
+        //Password
+        [self goToChangePasswordVC];
         
     } else if (indexPath.row == 2) {
-        
+        //Estudios
+        [self goToDoctorEducationVC];
     } else if (indexPath.row == 3) {
         //Consultorio
         [self goToConsultorioVC];
@@ -70,6 +75,17 @@
 }
 
 #pragma mark - Navigation 
+
+-(void)goToChangePasswordVC {
+    ChangePasswordViewController *changePassVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangePassword"];
+    changePassVC.userType = @"doctor";
+    [self.navigationController pushViewController:changePassVC animated:YES];
+}
+
+-(void)goToDoctorEducationVC {
+    DoctorEducationViewController *doctorEducationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DoctorEducation"];
+    [self.navigationController pushViewController:doctorEducationVC animated:YES];
+}
 
 -(void)goToConsultorioVC {
     DoctorLocationViewController *doctorLocationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DoctorLocation"];

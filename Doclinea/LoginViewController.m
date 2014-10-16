@@ -10,6 +10,8 @@
 #import "ServerCommunicator.h"
 #import "MBProgressHUD.h"
 #import "User.h"
+#import "DeviceInfo.h"
+#import "ForgotPassViewController.h"
 
 @interface LoginViewController () <UITextFieldDelegate, ServerCommunicatorDelegate>
 @property (weak, nonatomic) IBOutlet UIView *textfieldsContainer;
@@ -85,13 +87,21 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
     serverCommunicator.delegate = self;
-    NSString *userParameters = [NSString stringWithFormat:@"email=%@&password=%@", self.emailTextfield.text, self.passwordTextfield.text];
+    NSDictionary *deviceInfoDic = @{@"type" : [UIDevice currentDevice].model, @"token" : [DeviceInfo sharedInstance].deviceToken, @"name" : [UIDevice currentDevice].name, @"os" : @"iOS"};
+    NSData *deviceInfoData = [NSJSONSerialization dataWithJSONObject:deviceInfoDic options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *deviceInfoString = [[NSString alloc] initWithData:deviceInfoData encoding:NSUTF8StringEncoding];
+    
+    //Encode user password
+    NSString *encodedPassword = [[self.passwordTextfield.text dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
+    
+    NSString *userParameters = [NSString stringWithFormat:@"email=%@&password=%@&device_info=%@", self.emailTextfield.text, encodedPassword, deviceInfoString];
     [serverCommunicator callServerWithPOSTMethod:@"User/Authenticate" andParameter:userParameters httpMethod:@"POST"];
 }
 
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if ([methodName isEqualToString:@"User/Authenticate"]) {
+        NSLog(@"Respuetaaaa: %@", dictionary);
         if (dictionary) {
             NSLog(@"Resputa correcta del authenticate: %@", dictionary);
             if ([dictionary[@"status"] boolValue]) {
@@ -112,6 +122,7 @@
 -(void)serverError:(NSError *)error {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     NSLog(@"Server errorrr: %@ %@", error, [error localizedDescription]);
+    [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Hubo un error al intentar iniciar sesión. Por favor revisa que estés conectado a internet e intenta de nuevo." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 }
 
 #pragma mark - User Defaults 
@@ -157,6 +168,17 @@
                      animations:^{
                          self.textfieldsContainer.transform = CGAffineTransformMakeTranslation(0.0, 0.0);
                      } completion:nil];
+}
+
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ForgotPasswordSegue"]) {
+        if ([segue.destinationViewController isKindOfClass:[ForgotPassViewController class]]) {
+            ForgotPassViewController *forgotPassVC = (ForgotPassViewController *)segue.destinationViewController;
+            forgotPassVC.userType = @"user";
+        }
+    }
 }
 
 @end

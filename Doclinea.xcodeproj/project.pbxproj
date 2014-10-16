@@ -13,6 +13,10 @@
 		8B4174F519E453C3007CC189 /* DoctorGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B4174F419E453C3007CC189 /* DoctorGalleryCell.m */; };
 		8B4174F919E45F23007CC189 /* NSString+AddOns.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B4174F819E45F23007CC189 /* NSString+AddOns.m */; };
 		8B4174FC19E46A79007CC189 /* GalleryPicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B4174FB19E46A79007CC189 /* GalleryPicDetailViewController.m */; };
+		8B5A7CFA19EFFC710094E426 /* ForgotPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A7CF919EFFC710094E426 /* ForgotPassViewController.m */; };
+		8B5A7CFD19F01E4B0094E426 /* NewPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A7CFC19F01E4B0094E426 /* NewPasswordView.m */; };
+		8B5A7D0019F063F00094E426 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A7CFF19F063F00094E426 /* ChangePasswordViewController.m */; };
+		8B5A7D0319F06A240094E426 /* SharedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A7D0219F06A240094E426 /* SharedUser.m */; };
 		8B5CC50019DC389E0001B0D1 /* Doctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CC4FF19DC389E0001B0D1 /* Doctor.m */; };
 		8B5CC50319DC41910001B0D1 /* DoctorsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CC50219DC41910001B0D1 /* DoctorsListViewController.m */; };
 		8B5CC50719DC42550001B0D1 /* DoctorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CC50619DC42550001B0D1 /* DoctorCell.m */; };
@@ -36,6 +40,8 @@
 		8B5CC54119DC5A780001B0D1 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CC53019DC5A780001B0D1 /* UIImageView+WebCache.m */; };
 		8B5CC54219DC5A780001B0D1 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CC53219DC5A780001B0D1 /* UIView+WebCacheOperation.m */; };
 		8B5CC54519DC60E70001B0D1 /* DoctorDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CC54419DC60E70001B0D1 /* DoctorDetailsViewController.m */; };
+		8B66B67019E812E400E0C116 /* EducationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B66B66F19E812E400E0C116 /* EducationCell.m */; };
+		8B66B67319E8336000E0C116 /* EducationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B66B67219E8336000E0C116 /* EducationDetailsViewController.m */; };
 		8B6788CC19DEE67200D3AAA5 /* localidades.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B6788CA19DEE67200D3AAA5 /* localidades.json */; };
 		8B6788CD19DEE67200D3AAA5 /* TemplateIcon2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B6788CB19DEE67200D3AAA5 /* TemplateIcon2x.png */; };
 		8B6788D019DEE75600D3AAA5 /* Localidad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6788CF19DEE75600D3AAA5 /* Localidad.m */; };
@@ -44,6 +50,12 @@
 		8B6788DC19DF09DA00D3AAA5 /* DoctorLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6788DB19DF09DA00D3AAA5 /* DoctorLoginViewController.m */; };
 		8B6788DF19DF0EE100D3AAA5 /* CreateDoctorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6788DE19DF0EE100D3AAA5 /* CreateDoctorViewController.m */; };
 		8B6788E219DF414C00D3AAA5 /* DoctorHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6788E119DF414C00D3AAA5 /* DoctorHomePageViewController.m */; };
+		8B71A43319E573BA00420757 /* SearchByLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B71A43219E573BA00420757 /* SearchByLocationViewController.m */; };
+		8B71A43719E58A1500420757 /* DoctorLocationInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B71A43619E58A1500420757 /* DoctorLocationInfoView.m */; };
+		8B71A43A19E5B0E400420757 /* ConsultorioMapDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B71A43919E5B0E400420757 /* ConsultorioMapDetailView.m */; };
+		8B71A43D19E5B97D00420757 /* PicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B71A43C19E5B97D00420757 /* PicturesViewController.m */; };
+		8B71A44019E5BEB300420757 /* PictureDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B71A43F19E5BEB300420757 /* PictureDetailViewController.m */; };
+		8B71A44319E5DA7C00420757 /* DeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B71A44219E5DA7C00420757 /* DeviceInfo.m */; };
 		8B7C248319E2D3090063F8D6 /* DoctorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C248219E2D3090063F8D6 /* DoctorInfoViewController.m */; };
 		8B7C248919E2FAF50063F8D6 /* SharedDoctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C248819E2FAF50063F8D6 /* SharedDoctor.m */; };
 		8B7C248F19E346AE0063F8D6 /* NSArray+NullReplacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C248C19E346AE0063F8D6 /* NSArray+NullReplacement.m */; };
@@ -55,6 +67,10 @@
 		8B8058A919DB1B910071A43D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8058A819DB1B910071A43D /* MBProgressHUD.m */; };
 		8B8058AD19DB236C0071A43D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8058AC19DB236C0071A43D /* User.m */; };
 		8B8058B019DB25E00071A43D /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8058AF19DB25E00071A43D /* HomeScreenViewController.m */; };
+		8BA0DE0519E6DB93007BD6AD /* MyTextfield.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0DE0419E6DB93007BD6AD /* MyTextfield.m */; };
+		8BA0DE0819E70481007BD6AD /* DoctorEducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0DE0719E70481007BD6AD /* DoctorEducationViewController.m */; };
+		8BA0DE0B19E723A0007BD6AD /* Studie.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0DE0A19E723A0007BD6AD /* Studie.m */; };
+		8BA0DE0E19E7299A007BD6AD /* AddStudieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0DE0D19E7299A007BD6AD /* AddStudieView.m */; };
 		8BAF892319D9FB9D0037CEE4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BAF892219D9FB9D0037CEE4 /* main.m */; };
 		8BAF892619D9FB9D0037CEE4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BAF892519D9FB9D0037CEE4 /* AppDelegate.m */; };
 		8BAF892919D9FB9D0037CEE4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BAF892819D9FB9D0037CEE4 /* LoginViewController.m */; };
@@ -88,6 +104,14 @@
 		8B4174F819E45F23007CC189 /* NSString+AddOns.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+AddOns.m"; path = "Categories/NSString+AddOns.m"; sourceTree = "<group>"; };
 		8B4174FA19E46A79007CC189 /* GalleryPicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryPicDetailViewController.h; sourceTree = "<group>"; };
 		8B4174FB19E46A79007CC189 /* GalleryPicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryPicDetailViewController.m; sourceTree = "<group>"; };
+		8B5A7CF819EFFC710094E426 /* ForgotPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPassViewController.h; sourceTree = "<group>"; };
+		8B5A7CF919EFFC710094E426 /* ForgotPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPassViewController.m; sourceTree = "<group>"; };
+		8B5A7CFB19F01E4B0094E426 /* NewPasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewPasswordView.h; path = "Custom VIews/NewPasswordView.h"; sourceTree = "<group>"; };
+		8B5A7CFC19F01E4B0094E426 /* NewPasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewPasswordView.m; path = "Custom VIews/NewPasswordView.m"; sourceTree = "<group>"; };
+		8B5A7CFE19F063F00094E426 /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		8B5A7CFF19F063F00094E426 /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
+		8B5A7D0119F06A240094E426 /* SharedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedUser.h; path = Model/SharedUser.h; sourceTree = "<group>"; };
+		8B5A7D0219F06A240094E426 /* SharedUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharedUser.m; path = Model/SharedUser.m; sourceTree = "<group>"; };
 		8B5CC4FE19DC389E0001B0D1 /* Doctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Doctor.h; path = Model/Doctor.h; sourceTree = "<group>"; };
 		8B5CC4FF19DC389E0001B0D1 /* Doctor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Doctor.m; path = Model/Doctor.m; sourceTree = "<group>"; };
 		8B5CC50119DC41910001B0D1 /* DoctorsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorsListViewController.h; sourceTree = "<group>"; };
@@ -133,6 +157,10 @@
 		8B5CC53219DC5A780001B0D1 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		8B5CC54319DC60E70001B0D1 /* DoctorDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorDetailsViewController.h; sourceTree = "<group>"; };
 		8B5CC54419DC60E70001B0D1 /* DoctorDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorDetailsViewController.m; sourceTree = "<group>"; };
+		8B66B66E19E812E400E0C116 /* EducationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EducationCell.h; path = "Custom Cells/EducationCell.h"; sourceTree = "<group>"; };
+		8B66B66F19E812E400E0C116 /* EducationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EducationCell.m; path = "Custom Cells/EducationCell.m"; sourceTree = "<group>"; };
+		8B66B67119E8336000E0C116 /* EducationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationDetailsViewController.h; sourceTree = "<group>"; };
+		8B66B67219E8336000E0C116 /* EducationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationDetailsViewController.m; sourceTree = "<group>"; };
 		8B6788CA19DEE67200D3AAA5 /* localidades.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = localidades.json; path = "JSON Files/localidades.json"; sourceTree = "<group>"; };
 		8B6788CB19DEE67200D3AAA5 /* TemplateIcon2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TemplateIcon2x.png; path = "JSON Files/TemplateIcon2x.png"; sourceTree = "<group>"; };
 		8B6788CE19DEE75600D3AAA5 /* Localidad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Localidad.h; path = Model/Localidad.h; sourceTree = "<group>"; };
@@ -147,6 +175,18 @@
 		8B6788DE19DF0EE100D3AAA5 /* CreateDoctorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDoctorViewController.m; sourceTree = "<group>"; };
 		8B6788E019DF414C00D3AAA5 /* DoctorHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorHomePageViewController.h; sourceTree = "<group>"; };
 		8B6788E119DF414C00D3AAA5 /* DoctorHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorHomePageViewController.m; sourceTree = "<group>"; };
+		8B71A43119E573BA00420757 /* SearchByLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchByLocationViewController.h; sourceTree = "<group>"; };
+		8B71A43219E573BA00420757 /* SearchByLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchByLocationViewController.m; sourceTree = "<group>"; };
+		8B71A43519E58A1500420757 /* DoctorLocationInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoctorLocationInfoView.h; path = "Custom VIews/DoctorLocationInfoView.h"; sourceTree = "<group>"; };
+		8B71A43619E58A1500420757 /* DoctorLocationInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoctorLocationInfoView.m; path = "Custom VIews/DoctorLocationInfoView.m"; sourceTree = "<group>"; };
+		8B71A43819E5B0E400420757 /* ConsultorioMapDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsultorioMapDetailView.h; path = "Custom VIews/ConsultorioMapDetailView.h"; sourceTree = "<group>"; };
+		8B71A43919E5B0E400420757 /* ConsultorioMapDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsultorioMapDetailView.m; path = "Custom VIews/ConsultorioMapDetailView.m"; sourceTree = "<group>"; };
+		8B71A43B19E5B97D00420757 /* PicturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesViewController.h; sourceTree = "<group>"; };
+		8B71A43C19E5B97D00420757 /* PicturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesViewController.m; sourceTree = "<group>"; };
+		8B71A43E19E5BEB300420757 /* PictureDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureDetailViewController.h; sourceTree = "<group>"; };
+		8B71A43F19E5BEB300420757 /* PictureDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureDetailViewController.m; sourceTree = "<group>"; };
+		8B71A44119E5DA7C00420757 /* DeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceInfo.h; path = Model/DeviceInfo.h; sourceTree = "<group>"; };
+		8B71A44219E5DA7C00420757 /* DeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceInfo.m; path = Model/DeviceInfo.m; sourceTree = "<group>"; };
 		8B7C248119E2D3090063F8D6 /* DoctorInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorInfoViewController.h; sourceTree = "<group>"; };
 		8B7C248219E2D3090063F8D6 /* DoctorInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorInfoViewController.m; sourceTree = "<group>"; };
 		8B7C248719E2FAF50063F8D6 /* SharedDoctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedDoctor.h; path = Model/SharedDoctor.h; sourceTree = "<group>"; };
@@ -167,6 +207,14 @@
 		8B8058AC19DB236C0071A43D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
 		8B8058AE19DB25E00071A43D /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
 		8B8058AF19DB25E00071A43D /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
+		8BA0DE0319E6DB93007BD6AD /* MyTextfield.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTextfield.h; path = "UI Classes/MyTextfield.h"; sourceTree = "<group>"; };
+		8BA0DE0419E6DB93007BD6AD /* MyTextfield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTextfield.m; path = "UI Classes/MyTextfield.m"; sourceTree = "<group>"; };
+		8BA0DE0619E70481007BD6AD /* DoctorEducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorEducationViewController.h; sourceTree = "<group>"; };
+		8BA0DE0719E70481007BD6AD /* DoctorEducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorEducationViewController.m; sourceTree = "<group>"; };
+		8BA0DE0919E723A0007BD6AD /* Studie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Studie.h; path = Model/Studie.h; sourceTree = "<group>"; };
+		8BA0DE0A19E723A0007BD6AD /* Studie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Studie.m; path = Model/Studie.m; sourceTree = "<group>"; };
+		8BA0DE0C19E7299A007BD6AD /* AddStudieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddStudieView.h; path = "Custom VIews/AddStudieView.h"; sourceTree = "<group>"; };
+		8BA0DE0D19E7299A007BD6AD /* AddStudieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddStudieView.m; path = "Custom VIews/AddStudieView.m"; sourceTree = "<group>"; };
 		8BAF891D19D9FB9D0037CEE4 /* Doclinea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doclinea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BAF892119D9FB9D0037CEE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BAF892219D9FB9D0037CEE4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -218,6 +266,8 @@
 				8B5CC50619DC42550001B0D1 /* DoctorCell.m */,
 				8B4174F319E453C3007CC189 /* DoctorGalleryCell.h */,
 				8B4174F419E453C3007CC189 /* DoctorGalleryCell.m */,
+				8B66B66E19E812E400E0C116 /* EducationCell.h */,
+				8B66B66F19E812E400E0C116 /* EducationCell.m */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -308,12 +358,20 @@
 				8B8058A019DAEB9F0071A43D /* CreateAccountViewController.m */,
 				8B8058AE19DB25E00071A43D /* HomeScreenViewController.h */,
 				8B8058AF19DB25E00071A43D /* HomeScreenViewController.m */,
+				8B5A7CFE19F063F00094E426 /* ChangePasswordViewController.h */,
+				8B5A7CFF19F063F00094E426 /* ChangePasswordViewController.m */,
 				8B6788D419DEF22200D3AAA5 /* SearchByNameViewController.h */,
 				8B6788D519DEF22200D3AAA5 /* SearchByNameViewController.m */,
+				8B71A43119E573BA00420757 /* SearchByLocationViewController.h */,
+				8B71A43219E573BA00420757 /* SearchByLocationViewController.m */,
 				8B5CC50119DC41910001B0D1 /* DoctorsListViewController.h */,
 				8B5CC50219DC41910001B0D1 /* DoctorsListViewController.m */,
 				8B5CC54319DC60E70001B0D1 /* DoctorDetailsViewController.h */,
 				8B5CC54419DC60E70001B0D1 /* DoctorDetailsViewController.m */,
+				8B71A43B19E5B97D00420757 /* PicturesViewController.h */,
+				8B71A43C19E5B97D00420757 /* PicturesViewController.m */,
+				8B71A43E19E5BEB300420757 /* PictureDetailViewController.h */,
+				8B71A43F19E5BEB300420757 /* PictureDetailViewController.m */,
 				8B404BA119DDB92700E2ABEB /* MapViewController.h */,
 				8B404BA219DDB92700E2ABEB /* MapViewController.m */,
 				8BE5804019DDCCAE00DDE286 /* MyProfileViewController.h */,
@@ -327,6 +385,8 @@
 			children = (
 				8B6788DA19DF09DA00D3AAA5 /* DoctorLoginViewController.h */,
 				8B6788DB19DF09DA00D3AAA5 /* DoctorLoginViewController.m */,
+				8B5A7CF819EFFC710094E426 /* ForgotPassViewController.h */,
+				8B5A7CF919EFFC710094E426 /* ForgotPassViewController.m */,
 				8B6788DD19DF0EE100D3AAA5 /* CreateDoctorViewController.h */,
 				8B6788DE19DF0EE100D3AAA5 /* CreateDoctorViewController.m */,
 				8B6788E019DF414C00D3AAA5 /* DoctorHomePageViewController.h */,
@@ -339,8 +399,27 @@
 				8B4174F119E451DA007CC189 /* DoctorGalleryViewController.m */,
 				8B4174FA19E46A79007CC189 /* GalleryPicDetailViewController.h */,
 				8B4174FB19E46A79007CC189 /* GalleryPicDetailViewController.m */,
+				8BA0DE0619E70481007BD6AD /* DoctorEducationViewController.h */,
+				8BA0DE0719E70481007BD6AD /* DoctorEducationViewController.m */,
+				8B66B67119E8336000E0C116 /* EducationDetailsViewController.h */,
+				8B66B67219E8336000E0C116 /* EducationDetailsViewController.m */,
 			);
 			name = "Doctor ViewControllers";
+			sourceTree = "<group>";
+		};
+		8B71A43419E589F700420757 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				8B71A43519E58A1500420757 /* DoctorLocationInfoView.h */,
+				8B71A43619E58A1500420757 /* DoctorLocationInfoView.m */,
+				8B71A43819E5B0E400420757 /* ConsultorioMapDetailView.h */,
+				8B71A43919E5B0E400420757 /* ConsultorioMapDetailView.m */,
+				8BA0DE0C19E7299A007BD6AD /* AddStudieView.h */,
+				8BA0DE0D19E7299A007BD6AD /* AddStudieView.m */,
+				8B5A7CFB19F01E4B0094E426 /* NewPasswordView.h */,
+				8B5A7CFC19F01E4B0094E426 /* NewPasswordView.m */,
+			);
+			name = "Custom Views";
 			sourceTree = "<group>";
 		};
 		8B7C248A19E346AE0063F8D6 /* Custom Classes */ = {
@@ -391,12 +470,27 @@
 				8B5CC4FF19DC389E0001B0D1 /* Doctor.m */,
 				8B7C248719E2FAF50063F8D6 /* SharedDoctor.h */,
 				8B7C248819E2FAF50063F8D6 /* SharedDoctor.m */,
+				8B5A7D0119F06A240094E426 /* SharedUser.h */,
+				8B5A7D0219F06A240094E426 /* SharedUser.m */,
 				8B6788CE19DEE75600D3AAA5 /* Localidad.h */,
 				8B6788CF19DEE75600D3AAA5 /* Localidad.m */,
 				8B6788D119DEE86400D3AAA5 /* Localidad+Shared.h */,
 				8B6788D219DEE86400D3AAA5 /* Localidad+Shared.m */,
+				8B71A44119E5DA7C00420757 /* DeviceInfo.h */,
+				8B71A44219E5DA7C00420757 /* DeviceInfo.m */,
+				8BA0DE0919E723A0007BD6AD /* Studie.h */,
+				8BA0DE0A19E723A0007BD6AD /* Studie.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		8BA0DE0219E6DB74007BD6AD /* UI Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8BA0DE0319E6DB93007BD6AD /* MyTextfield.h */,
+				8BA0DE0419E6DB93007BD6AD /* MyTextfield.m */,
+			);
+			name = "UI Classes";
 			sourceTree = "<group>";
 		};
 		8BAF891419D9FB9D0037CEE4 = {
@@ -420,6 +514,8 @@
 		8BAF891F19D9FB9D0037CEE4 /* Doclinea */ = {
 			isa = PBXGroup;
 			children = (
+				8BA0DE0219E6DB74007BD6AD /* UI Classes */,
+				8B71A43419E589F700420757 /* Custom Views */,
 				8B4174F619E45EFB007CC189 /* Categories */,
 				8B7C248A19E346AE0063F8D6 /* Custom Classes */,
 				8B6788C919DEE65B00D3AAA5 /* JSON Files */,
@@ -516,6 +612,7 @@
 				TargetAttributes = {
 					8BAF891C19D9FB9D0037CEE4 = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = 4U39LJL48R;
 					};
 					8BAF893519D9FB9D0037CEE4 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -577,31 +674,45 @@
 				8B8058A119DAEB9F0071A43D /* CreateAccountViewController.m in Sources */,
 				8B5CC54519DC60E70001B0D1 /* DoctorDetailsViewController.m in Sources */,
 				8B6788D019DEE75600D3AAA5 /* Localidad.m in Sources */,
+				8B66B67319E8336000E0C116 /* EducationDetailsViewController.m in Sources */,
 				8B7C249019E346AE0063F8D6 /* NSDictionary+NullReplacement.m in Sources */,
 				8B6788D619DEF22200D3AAA5 /* SearchByNameViewController.m in Sources */,
+				8B71A44019E5BEB300420757 /* PictureDetailViewController.m in Sources */,
 				8B4174EF19E423C0007CC189 /* DoctorLocationViewController.m in Sources */,
 				8B5CC53F19DC5A780001B0D1 /* UIImage+WebP.m in Sources */,
+				8B71A43319E573BA00420757 /* SearchByLocationViewController.m in Sources */,
+				8B5A7CFA19EFFC710094E426 /* ForgotPassViewController.m in Sources */,
 				8B5CC50319DC41910001B0D1 /* DoctorsListViewController.m in Sources */,
 				8B5CC53C19DC5A780001B0D1 /* UIButton+WebCache.m in Sources */,
 				8B5CC53919DC5A780001B0D1 /* SDWebImageDownloaderOperation.m in Sources */,
 				8B4174F919E45F23007CC189 /* NSString+AddOns.m in Sources */,
+				8B5A7CFD19F01E4B0094E426 /* NewPasswordView.m in Sources */,
 				8B5CC50B19DC4A200001B0D1 /* RatingView.m in Sources */,
 				8B7C248F19E346AE0063F8D6 /* NSArray+NullReplacement.m in Sources */,
+				8B5A7D0319F06A240094E426 /* SharedUser.m in Sources */,
 				8B4174FC19E46A79007CC189 /* GalleryPicDetailViewController.m in Sources */,
 				8B5CC53519DC5A780001B0D1 /* SDImageCache.m in Sources */,
+				8B71A43D19E5B97D00420757 /* PicturesViewController.m in Sources */,
 				8B5CC53419DC5A780001B0D1 /* NSData+ImageContentType.m in Sources */,
 				8B8058AD19DB236C0071A43D /* User.m in Sources */,
 				8B6788DF19DF0EE100D3AAA5 /* CreateDoctorViewController.m in Sources */,
 				8B4174F219E451DA007CC189 /* DoctorGalleryViewController.m in Sources */,
 				8B5CC53719DC5A780001B0D1 /* SDWebImageDecoder.m in Sources */,
+				8BA0DE0B19E723A0007BD6AD /* Studie.m in Sources */,
 				8B5CC50019DC389E0001B0D1 /* Doctor.m in Sources */,
 				8B6788E219DF414C00D3AAA5 /* DoctorHomePageViewController.m in Sources */,
 				8B5CC54019DC5A780001B0D1 /* UIImageView+HighlightedWebCache.m in Sources */,
+				8B71A44319E5DA7C00420757 /* DeviceInfo.m in Sources */,
+				8BA0DE0819E70481007BD6AD /* DoctorEducationViewController.m in Sources */,
 				8B8058A919DB1B910071A43D /* MBProgressHUD.m in Sources */,
 				8B5CC53819DC5A780001B0D1 /* SDWebImageDownloader.m in Sources */,
+				8B5A7D0019F063F00094E426 /* ChangePasswordViewController.m in Sources */,
+				8B66B67019E812E400E0C116 /* EducationCell.m in Sources */,
 				8BE5804219DDCCAE00DDE286 /* MyProfileViewController.m in Sources */,
 				8B4174F519E453C3007CC189 /* DoctorGalleryCell.m in Sources */,
 				8B6788DC19DF09DA00D3AAA5 /* DoctorLoginViewController.m in Sources */,
+				8B71A43719E58A1500420757 /* DoctorLocationInfoView.m in Sources */,
+				8BA0DE0E19E7299A007BD6AD /* AddStudieView.m in Sources */,
 				8B5CC53619DC5A780001B0D1 /* SDWebImageCompat.m in Sources */,
 				8B7C248319E2D3090063F8D6 /* DoctorInfoViewController.m in Sources */,
 				8BAF892919D9FB9D0037CEE4 /* LoginViewController.m in Sources */,
@@ -613,9 +724,11 @@
 				8B8058B019DB25E00071A43D /* HomeScreenViewController.m in Sources */,
 				8B5CC53319DC5A780001B0D1 /* MKAnnotationView+WebCache.m in Sources */,
 				8B5CC54119DC5A780001B0D1 /* UIImageView+WebCache.m in Sources */,
+				8B71A43A19E5B0E400420757 /* ConsultorioMapDetailView.m in Sources */,
 				8B5CC54219DC5A780001B0D1 /* UIView+WebCacheOperation.m in Sources */,
 				8B5CC53A19DC5A780001B0D1 /* SDWebImageManager.m in Sources */,
 				8B404BA319DDB92700E2ABEB /* MapViewController.m in Sources */,
+				8BA0DE0519E6DB93007BD6AD /* MyTextfield.m in Sources */,
 				8BAF892619D9FB9D0037CEE4 /* AppDelegate.m in Sources */,
 				8BAF892319D9FB9D0037CEE4 /* main.m in Sources */,
 				8B6788D319DEE86400D3AAA5 /* Localidad+Shared.m in Sources */,
@@ -742,9 +855,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Diego Fernando Vidal Illera (9JA65WT89C)";
 				INFOPLIST_FILE = Doclinea/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "cfa50774-c79d-47e1-8f7b-681b3dac6cc6";
 			};
 			name = Debug;
 		};
@@ -752,7 +868,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Doclinea/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

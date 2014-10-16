@@ -10,6 +10,7 @@
 #import "MBProgressHUD.h"
 #import "ServerCommunicator.h"
 #import "Doctor.h"
+#import "ForgotPassViewController.h"
 
 @interface DoctorLoginViewController () <UITextFieldDelegate, ServerCommunicatorDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailTextfield;
@@ -49,6 +50,10 @@
     }
 }
 
+- (IBAction)forgotPassButtonPressed:(id)sender {
+    
+}
+
 - (IBAction)backButtonPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -59,13 +64,20 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
     serverCommunicator.delegate = self;
-    NSString *parameters = [NSString stringWithFormat:@"email=%@&password=%@", self.emailTextfield.text, self.passwordTextfield.text];
+    
+    //Encode user password
+    NSString *encodedPassword = [[self.passwordTextfield.text dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
+    
+    NSString *parameters = [NSString stringWithFormat:@"email=%@&password=%@", self.emailTextfield.text, encodedPassword];
     [serverCommunicator callServerWithPOSTMethod:@"Doctor/Authenticate" andParameter:parameters httpMethod:@"POST"];
 }
+
+//Doctor/Recover/email del doc
 
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if ([methodName isEqualToString:@"Doctor/Authenticate"]) {
+        NSLog(@"Respuestaaaa: %@", dictionary);
         if (dictionary) {
             NSLog(@"Respuesta correcta del authenticate doctor: %@", dictionary);
             if ([dictionary[@"status"] boolValue]) {
@@ -133,6 +145,17 @@
                      animations:^{
                          self.textfieldsContainer.transform = CGAffineTransformMakeTranslation(0.0, 0.0);
                      } completion:nil];
+}
+
+#pragma mark - Navigation 
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ForgotPasswordSegue"]) {
+        if ([segue.destinationViewController isKindOfClass:[ForgotPassViewController class]]) {
+            ForgotPassViewController *forgotPassVC = (ForgotPassViewController *)segue.destinationViewController;
+            forgotPassVC.userType = @"doctor";
+        }
+    }
 }
 
 @end

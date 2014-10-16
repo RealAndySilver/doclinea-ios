@@ -218,7 +218,10 @@ enum {
     }
     NSString *localidadJSONString = [[NSString alloc] initWithData:localidadData encoding:NSUTF8StringEncoding];
     
-    NSString *doctorParameters = [NSString stringWithFormat:@"name=%@&lastname=%@&email=%@&password=%@&gender=%lu&patient_gender=%lu&address=%@&city=%@&practice_list=%@&phone=%@&localidad=%@", self.nameTextfield.text, self.lastnameTextfield.text, self.emailTextfield.text, self.passwordTextfield.text, (unsigned long)gender, (unsigned long)pacientGender, self.addressTextfield.text, self.cityTextfield.text, self.especialidadTextfield.text, self.phoneTextfield.text, localidadJSONString];
+    //Encode user password
+    NSString *encodedPassword = [[self.passwordTextfield.text dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
+    
+    NSString *doctorParameters = [NSString stringWithFormat:@"name=%@&lastname=%@&email=%@&password=%@&gender=%lu&patient_gender=%lu&address=%@&city=%@&practice_list=%@&phone=%@&localidad=%@", self.nameTextfield.text, self.lastnameTextfield.text, self.emailTextfield.text, encodedPassword, (unsigned long)gender, (unsigned long)pacientGender, self.addressTextfield.text, self.cityTextfield.text, self.especialidadTextfield.text, self.phoneTextfield.text, localidadJSONString];
     
     [serverCommunicator callServerWithPOSTMethod:@"Doctor/Create" andParameter:doctorParameters httpMethod:@"POST"];
 }

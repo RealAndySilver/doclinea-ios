@@ -11,10 +11,11 @@
 #import "MBProgressHUD.h"
 #import "Doctor.h"
 #import "SharedDoctor.h"
+#import "DoctorLocationInfoView.h"
 @import CoreLocation;
 @import MapKit;
 
-@interface DoctorLocationViewController () <ServerCommunicatorDelegate>
+@interface DoctorLocationViewController () <ServerCommunicatorDelegate, DoctorLocationViewDelegate, MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (assign, nonatomic) CLLocationCoordinate2D consultorioCoordintate;
@@ -77,27 +78,34 @@
         
     } else if (longPressGesture.state == UIGestureRecognizerStateEnded) {
         NSLog(@"Terminé de tocar");
+        [self showLocationInfoViewWithLocName:nil address:nil];
     }
-}
-
-- (IBAction)saveButtonPressed:(id)sender {
-    [self saveDoctorLocationInServer];
 }
 
 - (IBAction)backButtonPressed:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - Custom Methods 
+
+-(void)showLocationInfoViewWithLocName:(NSString *)locationName address:(NSString *)locationAddress {
+    DoctorLocationInfoView *locationInfoView = [[DoctorLocationInfoView alloc] initWithFrame:CGRectMake(20.0, self.view.bounds.size.height/2.0 - 105.0, self.view.bounds.size.width - 40.0, 210.0)];
+    locationInfoView.delegate = self;
+    locationInfoView.nameTextfield.text = locationName;
+    locationInfoView.addressTextfield.text = locationAddress;
+    [locationInfoView showInView:self.tabBarController.view];
+}
+
 #pragma mark - Server Communicator 
 
--(void)saveDoctorLocationInServer {
+-(void)saveDoctorLocationInServerWithLocName:(NSString *)locationName address:(NSString *)locationAddress {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
     serverCommunicator.delegate = self;
     
     //Generate JSON for the location object
     NSError *error;
-    NSDictionary *locationDic = @{@"lat": @(self.consultorioCoordintate.latitude), @"lon" : @(self.consultorioCoordintate.longitude)};
+    NSDictionary *locationDic = @{@"lat": @(self.consultorioCoordintate.latitude), @"lon" : @(self.consultorioCoordintate.longitude), @"location_name" : locationName, @"location_address" : locationAddress};
     NSData *locationData = [NSJSONSerialization dataWithJSONObject:locationDic options:NSJSONWritingPrettyPrinted error:&error];
     NSString *locationJSONString = [[NSString alloc] initWithData:locationData encoding:NSUTF8StringEncoding];
     
@@ -116,6 +124,7 @@
                 [[[UIAlertView alloc] initWithTitle:@"Información Actualizada!" message:@"La localización del consultorio se ha actualizado correctamente" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
                 Doctor *doctor = [[Doctor alloc] initWithDoctorInfo:dictionary[@"response"]];
                 [self saveDoctorInUserDefaults:doctor];
+                self.doctor = nil;
             }
         } else {
             NSLog(@"Respueta invalida del update location: %@", dictionary);
@@ -135,6 +144,23 @@
     NSData *encodedData = [NSKeyedArchiver archivedDataWithRootObject:doctor];
     [[NSUserDefaults standardUserDefaults] setObject:encodedData forKey:@"doctor"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+#pragma mark - DoctorLocationViewDelegate
+
+-(void)saveButtonPressedWithLocationName:(NSString *)locationName address:(NSString *)locationAddress {
+    [self saveDoctorLocationInServerWithLocName:locationName address:locationAddress];
+}
+
+#pragma mark - MKMapViewDelegate
+
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    NSLog(@"Seleccioneeeee");
+    if ([self.doctor.locationList[0] isKindOfClass:[NSDictionary class]]) {
+        NSString *locationName = self.doctor.locationList[0][@"location_name"];
+        NSString *locationAddress = self.doctor.locationList[0][@"location_address"];
+        [self showLocationInfoViewWithLocName:locationName address:locationAddress];
+    }
 }
 
 @end

@@ -7,9 +7,10 @@
 //
 
 #import "MapViewController.h"
+#import "ConsultorioMapDetailView.h"
 @import MapKit;
 
-@interface MapViewController ()
+@interface MapViewController () <MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 @end
 
@@ -17,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"Numero de lugares: %lu", [self.placesArray count]);
+    NSLog(@"Numero de lugares: %lu", (unsigned long)[self.placesArray count]);
     [self setupDoctorWorkPlacesInMap];
 }
 
@@ -39,4 +40,17 @@
 - (IBAction)backButtonPressed:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark - MKMpaViewDelegate
+
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    NSString *locationName = self.placesArray[0][@"location_name"];
+    NSString *locationAddress = self.placesArray[0][@"location_address"];
+    
+    ConsultorioMapDetailView *consultorioView = [[ConsultorioMapDetailView alloc] initWithFrame:CGRectMake(20.0, self.view.bounds.size.height/2.0 - 75.0, self.view.bounds.size.width - 40.0, 150.0)];
+    consultorioView.locationLabel.text = locationName;
+    consultorioView.addressLabel.text = locationAddress;
+    [consultorioView showInView:self.view];
+}
+
 @end

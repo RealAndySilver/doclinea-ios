@@ -132,13 +132,24 @@ enum {
         self.localidadTextfield.text = ((Localidad *)self.doctor.localidad).name;
     }
     
-    if ([self.doctor.gender intValue] == 1) {
+    /*if ([self.doctor.gender intValue] == 1) {
         //Male
         [self.doctorImageView sd_setImageWithURL:self.doctor.profilePic placeholderImage:[UIImage imageNamed:@"DoctorMale"]];
     } else {
         //Female
         [self.doctorImageView sd_setImageWithURL:self.doctor.profilePic placeholderImage:[UIImage imageNamed:@"DoctorFemale"]];
-    }
+    }*/
+    dispatch_queue_t ImageQueue = dispatch_queue_create("Image", NULL);
+    dispatch_async(ImageQueue, ^{
+        NSURL *profilePicURL = self.doctor.profilePic;
+        NSData *picData = [NSData dataWithContentsOfURL:profilePicURL];
+        UIImage *profileImage = [UIImage imageWithData:picData];
+        if (profileImage) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.doctorImageView.image = profileImage;
+            });
+        }
+    });
     
     ///////////////////////////////////////////////////////////////////////////
     //Pickers Setup
@@ -233,7 +244,7 @@ enum {
     NSData *imageData = UIImageJPEGRepresentation(photo, 0.5);
     if (imageData) {
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"profilepic.jpg\"\r\n", @"image"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"profile.jpg\"\r\n", @"image"] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:imageData];
         [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];

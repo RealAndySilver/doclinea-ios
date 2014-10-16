@@ -48,5 +48,16 @@
 		<string>OpenSans-Regular.ttf</string>
 		<string>OpenSans-Semibold.ttf</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>doclinea</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>com.iamstudio.Doclinea</string>
+		</dict>
+	</array>
 </dict>
 </plist>

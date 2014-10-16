@@ -18,7 +18,7 @@
 
 @interface HomeScreenViewController () <UIPickerViewDataSource, UIPickerViewDelegate, ServerCommunicatorDelegate>
 @property (strong, nonatomic) UIButton *searchButton;
-@property (strong, nonatomic) UIButton *searchByNameButton;
+@property (strong, nonatomic) IBOutlet UIButton *searchByNameButton;
 @property (weak, nonatomic) IBOutlet UITextField *localidadTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *insuranceTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *citiesTextfield;
@@ -53,21 +53,21 @@ enum {
 -(NSArray *)specialtiesArray {
     if (!_specialtiesArray) {
        // _specialtiesArray = @[@{@"name" : @"Pediatra", @"id" : @1}, @{@"name" : @"Fonoaudiólogo", @"id" : @2}, @{@"name" : @"Ginecólogo", @"id" : @3}, @{@"name" : @"Ortopedista", @"id" : @4}, @{@"name" : @"Odontólogo", @"id" : @5}];
-        _specialtiesArray = @[@"Pediatra", @"Fonoaudiólogo", @"Ginecólogo", @"Ortopedista", @"Odontólogo"];
+        _specialtiesArray = @[@"Todas", @"Pediatra", @"Fonoaudiólogo", @"Ginecólogo", @"Ortopedista", @"Odontólogo"];
     }
     return _specialtiesArray;
 }
 
 -(NSArray *)insurancesNames {
     if (!_insurancesNames) {
-        _insurancesNames = @[@"Sura", @"Colpatria", @"Compensar"];
+        _insurancesNames = @[@"Todas", @"Sura", @"Colpatria", @"Compensar"];
     }
     return _insurancesNames;
 }
 
 -(NSArray *)citiesNames {
     if (!_citiesNames) {
-        _citiesNames = @[@"Bogotá", @"Medellín", @"Cali", @"Baranquilla", @"Pereira", @"Bucaramanga"];
+        _citiesNames = @[@"Todas", @"Bogotá", @"Medellín", @"Cali", @"Baranquilla", @"Pereira", @"Bucaramanga"];
     }
     return _citiesNames;
 }
@@ -101,17 +101,9 @@ enum {
         self.searchButton.titleLabel.font = [UIFont fontWithName:@"OpenSans" size:15.0];
         [self.searchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.searchButton.layer.cornerRadius = 5.0;
-        self.searchButton.backgroundColor = [UIColor colorWithRed:231.0/255.0 green:79.0/255.0 blue:19.0/255.0 alpha:1.0];
+        self.searchButton.backgroundColor = [UIColor colorWithRed:34.0/255.0 green:159.0/255.0 blue:225.0/255.0 alpha:1.0];
         [self.searchButton addTarget:self action:@selector(searchButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.searchButton];
-        
-        self.searchByNameButton = [[UIButton alloc] initWithFrame:CGRectOffset(self.searchButton.frame, 0.0, self.searchButton.frame.size.height + 10.0)];
-        [self.searchByNameButton setTitle:@"Buscar por Nombre" forState:UIControlStateNormal];
-        [self.searchByNameButton setTitleColor:[UIColor colorWithRed:231.0/255.0 green:79.0/255.0 blue:19.0/255.0 alpha:1.0] forState:UIControlStateNormal];
-        self.searchByNameButton.titleLabel.font = [UIFont fontWithName:@"OpenSans" size:15.0];
-        [self.searchByNameButton addTarget:self action:@selector(searchByNameButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:self.searchByNameButton];
-        
         firstTimeLayout = NO;
     }
 }
@@ -167,7 +159,7 @@ enum {
 
 #pragma mark - Actions 
 
--(void)searchByNameButtonPressed {
+-(IBAction)searchByNameButtonPressed {
     //Go to search by name view controller
     SearchByNameViewController *searchByNameVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchByName"];
     searchByNameVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -221,12 +213,12 @@ enum {
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
     serverCommunicator.delegate = self;
     NSString *parameter = [NSString stringWithFormat:@"city=%@&insurance=%@&practice_list=%@&localidad=%@", self.citiesTextfield.text, self.insuranceTextfield.text, self.specialtiesTextfield.text, self.localidadTextfield.text];
-    [serverCommunicator callServerWithPOSTMethod:@"Doctor/GetDoctorsByParams" andParameter:parameter httpMethod:@"POST"];
+    [serverCommunicator callServerWithPOSTMethod:@"Doctor/GetByParams" andParameter:parameter httpMethod:@"POST"];
 }
 
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    if ([methodName isEqualToString:@"Doctor/GetDoctorsByParams"]) {
+    if ([methodName isEqualToString:@"Doctor/GetByParams"]) {
         if (dictionary) {
             NSLog(@"Respuesta valida del get doctors: %@", dictionary);
             if (![dictionary[@"status"] boolValue]) {
@@ -260,7 +252,6 @@ enum {
                      animations:^{
                          self.localidadTextfield.alpha = 1.0;
                          self.searchButton.transform = CGAffineTransformMakeTranslation(0.0, self.searchButton.frame.size.height + 20.0);
-                         self.searchByNameButton.transform = CGAffineTransformMakeTranslation(0.0, self.searchByNameButton.frame.size.height + 20.0);
                      } completion:nil];
 }
 
@@ -272,7 +263,6 @@ enum {
                      animations:^{
                          self.localidadTextfield.alpha = 0.0;
                          self.searchButton.transform = CGAffineTransformMakeTranslation(0.0, 0.0);
-                         self.searchByNameButton.transform = CGAffineTransformMakeTranslation(0.0, 0.0);
                      } completion:nil];
 }
 
@@ -310,17 +300,33 @@ enum {
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (pickerView.tag == specialtiesPicker) {
-        self.specialtiesTextfield.text = self.specialtiesArray[row];
-    } else if (pickerView.tag == citiesPicker) {
-        self.citiesTextfield.text = self.citiesNames[row];
-        if ([self.citiesTextfield.text isEqualToString:@"Bogotá"]) {
-            //Activate the localidad textfield
-            [self activateLocalidadTextfield];
+        if (row == 0) {
+            self.specialtiesTextfield.text = @"";
         } else {
-            [self deactivateLocalidadTextfield];
+            self.specialtiesTextfield.text = self.specialtiesArray[row];
         }
+        
+    } else if (pickerView.tag == citiesPicker) {
+        if (row == 0) {
+            self.citiesTextfield.text = @"";
+            [self deactivateLocalidadTextfield];
+        } else {
+            self.citiesTextfield.text = self.citiesNames[row];
+            if ([self.citiesTextfield.text isEqualToString:@"Bogotá"]) {
+                //Activate the localidad textfield
+                [self activateLocalidadTextfield];
+            } else {
+                [self deactivateLocalidadTextfield];
+            }
+        }
+        
     } else if (pickerView.tag == insurancePicker) {
-        self.insuranceTextfield.text = self.insurancesNames[row];
+        if (row == 0) {
+            self.insuranceTextfield.text = @"";
+        } else {
+            self.insuranceTextfield.text = self.insurancesNames[row];
+        }
+        
     } else if (pickerView.tag == localidadPicker) {
         self.localidadTextfield.text = ((Localidad *)self.localidadesArray[row]).name;
     }

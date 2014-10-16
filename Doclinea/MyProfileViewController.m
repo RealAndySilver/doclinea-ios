@@ -10,6 +10,7 @@
 #import "ServerCommunicator.h"
 #import "MBProgressHUD.h"
 #import "User.h"
+#import "ChangePasswordViewController.h"
 
 @interface MyProfileViewController () <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, ServerCommunicatorDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameTextfield;
@@ -237,6 +238,17 @@ enum {
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+#pragma mark - Navigation 
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ChangePasswordSegue"]) {
+        if ([segue.destinationViewController isKindOfClass:[ChangePasswordViewController class]]) {
+            ChangePasswordViewController *changePassVC = (ChangePasswordViewController *)segue.destinationViewController;
+            changePassVC.userType = @"user";
+        }
+    }
 }
 
 @end

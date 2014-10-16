@@ -60,12 +60,12 @@
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
     serverCommunicator.delegate = self;
     NSString *parameters = [NSString stringWithFormat:@"name=%@&lastname=%@", self.nameTextfield.text, self.lastNameTextfield.text];
-    [serverCommunicator callServerWithPOSTMethod:@"Doctor/GetDoctorsByParams" andParameter:parameters httpMethod:@"POST"];
+    [serverCommunicator callServerWithPOSTMethod:@"Doctor/GetByParams" andParameter:parameters httpMethod:@"POST"];
 }
 
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    if ([methodName isEqualToString:@"Doctor/GetDoctorsByParams"]) {
+    if ([methodName isEqualToString:@"Doctor/GetByParams"]) {
         if (dictionary) {
             NSLog(@"Rspuesta correcta del get doctors: %@", dictionary);
             if ([dictionary[@"status"] boolValue]) {

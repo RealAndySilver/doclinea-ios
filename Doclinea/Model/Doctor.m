@@ -8,6 +8,7 @@
 
 #import "Doctor.h"
 #import "Localidad.h"
+#import "Studie.h"
 
 @interface Doctor()
 @end
@@ -19,7 +20,17 @@
         _identifier = dictionary[@"_id"];
         _address = dictionary[@"address"];
         _city = dictionary[@"city"];
-        _educationList = dictionary[@"education_list"];
+        
+        //Parse Education info
+        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [dictionary[@"education_list"] count]; i++) {
+            NSDictionary *educationDic = dictionary[@"education_list"][i];
+            Studie *studie = [[Studie alloc] initWithStudieInfo:educationDic];
+            [tempArray addObject:studie];
+        }
+        _educationList = tempArray;
+        
+        
         _email = dictionary[@"email"];
         _gallery = dictionary[@"gallery"];
         _gender = dictionary[@"gender"];
@@ -41,7 +52,7 @@
         _localidad = [[Localidad alloc] initWithDictionary:dictionary[@"localidad"]];
         _profilePic = [NSURL URLWithString:dictionary[@"profile_pic"][@"image_url"]];
         
-        NSMutableString *tempPracticeList = [[NSMutableString alloc] init];
+        /*NSMutableString *tempPracticeList = [[NSMutableString alloc] init];
         for (int i = 0; i < [_practiceList count]; i++) {
             NSString *practice = _practiceList[i];
             [tempPracticeList appendString:[NSString stringWithFormat:@"%@ ", practice]];
@@ -90,7 +101,7 @@
                 [tempMemebershipList appendString:[NSString stringWithFormat:@"%@, ", profesionalMembership]];
             }
             _parsedProfesionalMembershipList = tempMemebershipList;
-        }
+        }*/
     }
     return self;
 }

@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "User.h"
 #import "HomeScreenViewController.h"
+#import "DeviceInfo.h"
 
 @interface CreateAccountViewController () <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, ServerCommunicatorDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *insuranceTextfield;
@@ -156,7 +157,16 @@ enum {
     
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
     serverCommunicator.delegate = self;
-    NSString *userParameters = [NSString stringWithFormat:@"name=%@&password=%@&lastname=%@&email=%@&gender=%lu&phone=%@&address=%@&insurance=%@&city=%@", self.nameTextfield.text, self.passwordTextfield.text, self.lastnameTextfield.text, self.emailTextfield.text, (unsigned long)gender, self.phoneTextfield.text, self.adressTextfield.text, self.insuranceTextfield.text, self.cityTextfield.text];
+    
+    //Get device info
+    NSDictionary *deviceInfoDic = @{@"type" : [UIDevice currentDevice].model, @"token" : [DeviceInfo sharedInstance].deviceToken, @"name" : [UIDevice currentDevice].name, @"os" : @"iOS"};
+    NSData *deviceInfoData = [NSJSONSerialization dataWithJSONObject:deviceInfoDic options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *deviceInfoString = [[NSString alloc] initWithData:deviceInfoData encoding:NSUTF8StringEncoding];
+    
+    //Encode user password
+    NSString *encodedPassword = [[self.passwordTextfield.text dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
+    
+    NSString *userParameters = [NSString stringWithFormat:@"name=%@&password=%@&lastname=%@&email=%@&gender=%lu&phone=%@&address=%@&insurance=%@&city=%@&device_info=%@", self.nameTextfield.text, encodedPassword, self.lastnameTextfield.text, self.emailTextfield.text, (unsigned long)gender, self.phoneTextfield.text, self.adressTextfield.text, self.insuranceTextfield.text, self.cityTextfield.text, deviceInfoString];
     [serverCommunicator callServerWithPOSTMethod:@"User/Create" andParameter:userParameters httpMethod:@"POST"];
 }
 

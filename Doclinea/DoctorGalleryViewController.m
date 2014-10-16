@@ -19,6 +19,7 @@
 @import AssetsLibrary;
 
 @interface DoctorGalleryViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ServerCommunicatorDelegate>
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) Doctor *doctor;
 @end
 
@@ -37,6 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doctorUpdatedReceived) name:@"DoctorUpdated" object:nil];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -60,7 +62,9 @@
     //Go To PicDetail ViewController
     GalleryPicDetailViewController *galleryPicVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GalleryPicDetail"];
     galleryPicVC.galleryImage = cell.galleryPicImageView.image;
-    galleryPicVC.imageID = self.doctor.gallery[indexPath.item][@"_id"];
+    galleryPicVC.imageID = self.doctor.gallery[indexPath.item][@"id"];
+    galleryPicVC.doctor = self.doctor;
+    galleryPicVC.imageName = self.doctor.gallery[indexPath.item][@"name"];
     [self.navigationController pushViewController:galleryPicVC animated:YES];
 }
 
@@ -89,6 +93,13 @@
     [serverCommunicator callServerWithPOSTMethod:[NSString stringWithFormat:@"Doctor/AddPicToGallery/%@", self.doctor.identifier] andData:body];
 }
 
+-(void)updateDoctorGalleryInfo {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
+    serverCommunicator.delegate = self;
+    [serverCommunicator callServerWithGETMethod:[NSString stringWithFormat:@"Doctor/GetByID/%@", self.doctor.identifier] andParameter:@""];
+}
+
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if ([methodName isEqualToString:[NSString stringWithFormat:@"Doctor/AddPicToGallery/%@", self.doctor.identifier]]) {
@@ -96,10 +107,26 @@
             NSLog(@"Respuesta correcta del add pic: %@", dictionary);
             if ([dictionary[@"status"] boolValue]) {
                 NSLog(@"Entreeeeeee********************");
-                [[[UIAlertView alloc] initWithTitle:@"Éxito!" message:@"La foto se ha subido con éxito. Por favor vuelve a cargar en unos momentos para ver la información actualizada" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+                //Get the new doctor object
+                [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                [self performSelector:@selector(updateDoctorGalleryInfo) withObject:nil afterDelay:3.0];
+                //[[[UIAlertView alloc] initWithTitle:@"Éxito!" message:@"La foto se ha subido con éxito. Por favor vuelve a cargar en unos momentos para ver la información actualizada" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
             }
         } else {
             NSLog(@"Respuesta incorrecta del add pic: %@", dictionary);
+        }
+    } else if ([methodName isEqualToString:[NSString stringWithFormat:@"Doctor/GetByID/%@", self.doctor.identifier]]) {
+        if (dictionary) {
+            NSLog(@"Respuesta correcta del get doctor: %@", dictionary);
+            if ([dictionary[@"status"] boolValue]) {
+                //Success
+                self.doctor = nil;
+                self.doctor = [[Doctor alloc] initWithDoctorInfo:dictionary[@"response"]];
+                [self saveDoctorInUserDefaults:self.doctor];
+                [self.collectionView reloadData];
+            }
+        } else {
+            NSLog(@"Respuesta incorrecta del get doctor: %@", dictionary);
         }
     }
 }
@@ -112,9 +139,22 @@
 
 #pragma mark - Actions 
 
+- (IBAction)updateButtonPressed:(id)sender {
+    [self updateDoctorGalleryInfo];
+}
+
 - (IBAction)addPicButtonPressed:(id)sender {
     //Choose if the pic will be taken from the camera or the phot library
     [[[UIAlertView alloc] initWithTitle:@"Elegir Imagen" message:@"¿De donde deseas elegir la imagen?" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"Cámara", @"Librería de Fotos", nil] show];
+}
+
+#pragma mark - User Defaults
+
+-(void)saveDoctorInUserDefaults:(Doctor *)doctor {
+    NSLog(@"NOMBRE DEL DOCTOR A GUARDA: %@", doctor.name);
+    NSData *encodedData = [NSKeyedArchiver archivedDataWithRootObject:doctor];
+    [[NSUserDefaults standardUserDefaults] setObject:encodedData forKey:@"doctor"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - Camera Stuff
@@ -159,7 +199,7 @@
         //Generate the random string name for the photo
         NSString *randomString = [NSString generateRandomString:10];
         NSString *photoName = [NSString stringWithFormat:@"%@.jpg", randomString];
-        [self sendPhotoToServer:photo withPhotoName:photoName];
+        [self sendPhotoToServer:photo withPhotoName:[NSString stringWithFormat:@"[gallery]%@", photoName]];
     }
     
     // get the ref url
@@ -181,6 +221,13 @@
     [assetslibrary assetForURL:refURL resultBlock:resultblock failureBlock:nil];*/
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Notification Handlers 
+
+-(void)doctorUpdatedReceived {
+    self.doctor = nil;
+    [self.collectionView reloadData];
 }
 
 @end
