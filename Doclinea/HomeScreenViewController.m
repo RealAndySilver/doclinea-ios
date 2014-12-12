@@ -15,18 +15,26 @@
 #import "SearchByNameViewController.h"
 #import "NSDictionary+NullReplacement.h"
 #import "NSArray+NullReplacement.h"
+#import "FormLists.h"
+#import "Practice.h"
+#import "Insurance.h"
+#import "InsurancesTableViewController.h"
 
-@interface HomeScreenViewController () <UIPickerViewDataSource, UIPickerViewDelegate, ServerCommunicatorDelegate>
+@interface HomeScreenViewController () <UIPickerViewDataSource, UIPickerViewDelegate, ServerCommunicatorDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) UIButton *searchButton;
 @property (strong, nonatomic) IBOutlet UIButton *searchByNameButton;
 @property (weak, nonatomic) IBOutlet UITextField *localidadTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *insuranceTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *citiesTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *specialtiesTextfield;
-@property (strong, nonatomic) NSArray *specialtiesArray;
+//@property (strong, nonatomic) NSArray *specialtiesArray;
 @property (strong, nonatomic) NSArray *citiesNames;
-@property (strong, nonatomic) NSArray *insurancesNames;
+//@property (strong, nonatomic) NSArray *insurancesNames;
 @property (strong, nonatomic) NSArray *localidadesArray;
+@property (strong, nonatomic) NSArray *practicesArray;
+@property (strong, nonatomic) NSArray *insurancesArray;
+@property (strong, nonatomic) NSString *selectedInsurance;
+@property (strong, nonatomic) NSString *selectedInsuranceType;
 @end
 
 @implementation HomeScreenViewController {
@@ -43,6 +51,34 @@ enum {
 
 #pragma mark - Lazy Instantiation
 
+-(NSArray *)practicesArray {
+    if (!_practicesArray) {
+        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+        [tempArray addObject:@"Todas"];
+        for (int i = 0; i < [FormLists sharedInstance].specialtiesArray.count; i++) {
+            Practice *practice = [FormLists sharedInstance].specialtiesArray[i];
+            [tempArray addObject:practice.name];
+        }
+        _practicesArray = tempArray;
+    }
+    return _practicesArray;
+}
+
+-(NSArray *)insurancesArray {
+    if (!_insurancesArray) {
+        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+        [tempArray addObject:@"Todas"];
+        for (int i = 0; i < [FormLists sharedInstance].ensuranceArray.count; i++) {
+            Insurance *insurance = [FormLists sharedInstance].ensuranceArray[i];
+            if (insurance) {
+                [tempArray addObject:insurance.name];
+            }
+        }
+        _insurancesArray = tempArray;
+    }
+    return _insurancesArray;
+}
+
 -(NSArray *)localidadesArray {
     if (!_localidadesArray) {
         _localidadesArray = [[Localidad sharedLocalidad] getLocalidadesArray];
@@ -50,20 +86,20 @@ enum {
     return _localidadesArray;
 }
 
--(NSArray *)specialtiesArray {
+/*-(NSArray *)specialtiesArray {
     if (!_specialtiesArray) {
        // _specialtiesArray = @[@{@"name" : @"Pediatra", @"id" : @1}, @{@"name" : @"Fonoaudiólogo", @"id" : @2}, @{@"name" : @"Ginecólogo", @"id" : @3}, @{@"name" : @"Ortopedista", @"id" : @4}, @{@"name" : @"Odontólogo", @"id" : @5}];
         _specialtiesArray = @[@"Todas", @"Pediatra", @"Fonoaudiólogo", @"Ginecólogo", @"Ortopedista", @"Odontólogo"];
     }
     return _specialtiesArray;
-}
+}*/
 
--(NSArray *)insurancesNames {
+/*-(NSArray *)insurancesNames {
     if (!_insurancesNames) {
         _insurancesNames = @[@"Todas", @"Sura", @"Colpatria", @"Compensar"];
     }
     return _insurancesNames;
-}
+}*/
 
 -(NSArray *)citiesNames {
     if (!_citiesNames) {
@@ -76,6 +112,7 @@ enum {
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insuranceSelectedReceived:) name:@"InsuranceSelected" object:nil];
     firstTimeLayout = YES;
     screenBounds = [UIScreen mainScreen].bounds;
     NSLog(@"SCREEN: %@", NSStringFromCGRect(screenBounds));
@@ -89,7 +126,7 @@ enum {
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)viewDidLayoutSubviews {
@@ -118,6 +155,7 @@ enum {
 -(void)setupUI {
     //Hidde the localidad button
     self.localidadTextfield.alpha = 0.0;
+    self.localidadTextfield.tag = 1;
     
     //Setup picker view for the specialties textfield
     UIPickerView *specialtiesPickerView = [[UIPickerView alloc] init];
@@ -125,6 +163,7 @@ enum {
     specialtiesPickerView.dataSource = self;
     specialtiesPickerView.tag = specialtiesPicker;
     self.specialtiesTextfield.inputView = specialtiesPickerView;
+    self.specialtiesTextfield.tag = 2;
     
     //Setup picker view for the cities textfield
     UIPickerView *citiesPickerView = [[UIPickerView alloc] init];
@@ -132,6 +171,7 @@ enum {
     citiesPickerView.dataSource = self;
     citiesPickerView.tag = citiesPicker;
     self.citiesTextfield.inputView = citiesPickerView;
+    self.citiesTextfield.tag = 3;
     
     //Setup picker view for the insurance textfield
     UIPickerView *insurancePickerView = [[UIPickerView alloc] init];
@@ -139,6 +179,7 @@ enum {
     insurancePickerView.dataSource = self;
     insurancePickerView.tag = insurancePicker;
     self.insuranceTextfield.inputView = insurancePickerView;
+    self.insuranceTextfield.tag = 4;
     
     //Setup the localidad picker
     UIPickerView *localidadPickerView = [[UIPickerView alloc] init];
@@ -187,6 +228,11 @@ enum {
 
 #pragma mark - Navigation 
 
+-(void)goToInsurancesList {
+    InsurancesTableViewController *insurancesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"Insurances"];
+    [self presentViewController:insurancesVC animated:YES completion:nil];
+}
+
 -(void)goToDoctorsListWithDoctors:(NSArray *)doctors {
     DoctorsListViewController *doctorsListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DoctorsList"];
     doctorsListVC.doctors = doctors;
@@ -212,7 +258,24 @@ enum {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
     serverCommunicator.delegate = self;
-    NSString *parameter = [NSString stringWithFormat:@"city=%@&insurance=%@&practice_list=%@&localidad=%@", self.citiesTextfield.text, self.insuranceTextfield.text, self.specialtiesTextfield.text, self.localidadTextfield.text];
+    
+    NSArray *insurancArray;
+    if ([self.selectedInsurance length] > 0) {
+        insurancArray = @[@{@"insurance" : self.selectedInsurance, @"insurance_type" : self.selectedInsuranceType}];
+    } else {
+        insurancArray = @[@{@"insurance" : @"", @"insurance_type" : @""}];
+    }
+    NSData *insuranceData = [NSJSONSerialization dataWithJSONObject:insurancArray options:0 error:nil];
+    NSString *insuranceString = [[NSString alloc] initWithData:insuranceData encoding:NSUTF8StringEncoding];
+    NSLog(@"Insurance sstringggg: %@", insuranceString);
+    
+    NSString *parameter;
+    if ([self.selectedInsurance length] > 0) {
+        parameter = [NSString stringWithFormat:@"city=%@&insurance=%@&practice_list=%@&localidad=%@", self.citiesTextfield.text, insuranceString, self.specialtiesTextfield.text, self.localidadTextfield.text];
+    } else {
+        parameter = [NSString stringWithFormat:@"city=%@&practice_list=%@&localidad=%@", self.citiesTextfield.text, self.specialtiesTextfield.text, self.localidadTextfield.text];
+    }
+    
     [serverCommunicator callServerWithPOSTMethod:@"Doctor/GetByParams" andParameter:parameter httpMethod:@"POST"];
 }
 
@@ -274,11 +337,11 @@ enum {
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if (pickerView.tag == specialtiesPicker) {
-        return [self.specialtiesArray count];
+        return self.practicesArray.count;
     } else if (pickerView.tag == citiesPicker) {
         return [self.citiesNames count];
     } else if (pickerView.tag == insurancePicker) {
-        return [self.insurancesNames count];
+        return [self.insurancesArray count];
     } else if (pickerView.tag == localidadPicker) {
         return [self.localidadesArray count];
     } else return 0;
@@ -286,13 +349,17 @@ enum {
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if (pickerView.tag == specialtiesPicker) {
-        return self.specialtiesArray[row];
+        return self.practicesArray[row];
+        
     } else if (pickerView.tag == citiesPicker) {
         return self.citiesNames[row];
+        
     } else if (pickerView.tag == insurancePicker) {
-        return self.insurancesNames[row];
+        return self.insurancesArray[row];
+        
     } else if (pickerView.tag == localidadPicker) {
         return ((Localidad *)self.localidadesArray[row]).name;
+        
     } else return nil;
 }
 
@@ -303,7 +370,7 @@ enum {
         if (row == 0) {
             self.specialtiesTextfield.text = @"";
         } else {
-            self.specialtiesTextfield.text = self.specialtiesArray[row];
+            self.specialtiesTextfield.text = self.practicesArray[row];
         }
         
     } else if (pickerView.tag == citiesPicker) {
@@ -324,7 +391,7 @@ enum {
         if (row == 0) {
             self.insuranceTextfield.text = @"";
         } else {
-            self.insuranceTextfield.text = self.insurancesNames[row];
+            self.insuranceTextfield.text = self.insurancesArray[row];
         }
         
     } else if (pickerView.tag == localidadPicker) {
@@ -334,12 +401,38 @@ enum {
 
 #pragma mark - Notification Handlers 
 
+-(void)insuranceSelectedReceived:(NSNotification *)notification {
+    NSDictionary *info = [notification userInfo];
+    NSString *insuranceName = info[@"name"];
+    NSString *insuranceType = info[@"type"];
+    self.selectedInsurance = insuranceName;
+    self.selectedInsuranceType = insuranceType;
+    NSLog(@"Recibi la notificacion con nombre: %@ y tipo: %@", insuranceName, insuranceType);
+    if ([self.selectedInsurance length] > 0) {
+        self.insuranceTextfield.text = [NSString stringWithFormat:@"%@ / %@", insuranceName, insuranceType];
+    } else {
+        self.insuranceTextfield.text = @"";
+    }
+}
+
 -(void)keyboardWillShow {
     
 }
 
 -(void)keyboardWillHide {
     
+}
+
+#pragma mark - UITextfieldDelegate
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    NSLog(@"Deberia empezar a editarmeee");
+    if (textField.tag == 4) {
+        //Insurance textfield.
+        [self goToInsurancesList];
+        return NO;
+    }
+    return YES;
 }
 
 @end

@@ -19,6 +19,7 @@
         _city = dictionary[@"city"];
         _completedAppointmenst = dictionary[@"completed_appointments"];
         _email = dictionary[@"email"];
+        _emailVerifified = [dictionary[@"email_confirmation"] boolValue];
         _gender = [dictionary[@"gender"] description];
         _insurance = dictionary[@"insurance"];
         _lastName = dictionary[@"lastname"];
@@ -31,6 +32,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
     //Encode properties, other class variables, etc
+    [encoder encodeObject:@(_emailVerifified) forKey:@"emailVerified"];
     [encoder encodeObject:_identifier forKey:@"identifier"];
     [encoder encodeObject:_activeAppointments forKey:@"activeAppointments"];
     [encoder encodeObject:_address forKey:@"address"];
@@ -49,6 +51,7 @@
 - (id)initWithCoder:(NSCoder *)decoder {
     if((self = [super init])) {
         //decode properties, other class vars
+        _emailVerifified = [[decoder decodeObjectForKey:@"emailVerified"] boolValue];
         _identifier = [decoder decodeObjectForKey:@"identifier"];
         _activeAppointments = [decoder decodeObjectForKey:@"activeAppointments"];
         _address = [decoder decodeObjectForKey:@"address"];

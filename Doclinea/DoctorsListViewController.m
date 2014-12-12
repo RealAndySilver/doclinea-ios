@@ -49,6 +49,7 @@
     }
     cell.doctorAddressLabel.text = doctor.address;
     cell.doctorProfesionLabel.text = doctor.parsedPracticeList;
+    NSLog(@"PARSED PRACTICE LISTTT ***************** %@", doctor.parsedPracticeList);
     if ([doctor.gender intValue] == 1) {
         //Male
         [cell.doctorImageView sd_setImageWithURL:doctor.profilePic placeholderImage:[UIImage imageNamed:@"DoctorMale"]];

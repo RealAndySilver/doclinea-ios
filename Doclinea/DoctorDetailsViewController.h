@@ -10,5 +10,5 @@
 @class Doctor;
 
 @interface DoctorDetailsViewController : UIViewController
-@property (strong, nonatomic) Doctor *doctor;
+@property (weak, nonatomic) Doctor *doctor;
 @end

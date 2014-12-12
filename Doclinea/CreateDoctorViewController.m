@@ -11,6 +11,8 @@
 #import "ServerCommunicator.h"
 #import "MBProgressHUD.h"
 #import "Doctor.h"
+#import "FormLists.h"
+#import "Practice.h"
 
 @interface CreateDoctorViewController () <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, ServerCommunicatorDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameTextfield;
@@ -29,7 +31,7 @@
 //Arrays
 @property (strong, nonatomic) NSArray *citiesNames;
 @property (strong, nonatomic) NSArray *localidadesArray;
-@property (strong, nonatomic) NSArray *specialtiesArray;
+//@property (strong, nonatomic) NSArray *specialtiesArray;
 @property (strong, nonatomic) NSArray *genderNamesarray;
 @property (strong, nonatomic) NSArray *pacientGendersArray;
 @end
@@ -67,17 +69,17 @@ enum {
     return _localidadesArray;
 }
 
--(NSArray *)specialtiesArray {
+/*-(NSArray *)specialtiesArray {
     if (!_specialtiesArray) {
         // _specialtiesArray = @[@{@"name" : @"Pediatra", @"id" : @1}, @{@"name" : @"Fonoaudiólogo", @"id" : @2}, @{@"name" : @"Ginecólogo", @"id" : @3}, @{@"name" : @"Ortopedista", @"id" : @4}, @{@"name" : @"Odontólogo", @"id" : @5}];
         _specialtiesArray = @[@"Pediatra", @"Fonoaudiólogo", @"Ginecólogo", @"Ortopedista", @"Odontólogo"];
     }
     return _specialtiesArray;
-}
+}*/
 
 -(NSArray *)citiesNames {
     if (!_citiesNames) {
-        _citiesNames = @[@"Bogotá", @"Medellín", @"Cali", @"Baranquilla", @"Pereira", @"Bucaramanga"];
+        _citiesNames = @[@"Bogotá", @"Medellín", @"Cali", @"Barranquilla", @"Pereira", @"Bucaramanga"];
     }
     return _citiesNames;
 }
@@ -194,8 +196,8 @@ enum {
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
     serverCommunicator.delegate = self;
     
-    NSUInteger gender;
-    NSUInteger pacientGender;
+    NSUInteger gender = 0;
+    NSUInteger pacientGender = 0;
     if ([self.genderTextfield.text isEqualToString:@"Masculino"]) {
         gender = 1;
     } else if ([self.genderTextfield.text isEqualToString:@"Femenino"]){
@@ -211,7 +213,7 @@ enum {
     }
     
     NSError *error;
-    NSDictionary *localidadDic = @{@"name" : self.localidadTextfield.text, @"lat": @40.0, @"lon" : @50.0};
+    NSDictionary *localidadDic = @{@"name" : self.localidadTextfield.text, @"lat": @0.0, @"lon" : @0.0};
     NSData *localidadData = [NSJSONSerialization dataWithJSONObject:localidadDic options:0 error:&error];
     if (error) {
         NSLog(@"ERROR CON EL VIEJO YEISON: %@", error);
@@ -220,8 +222,13 @@ enum {
     
     //Encode user password
     NSString *encodedPassword = [[self.passwordTextfield.text dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
-    
-    NSString *doctorParameters = [NSString stringWithFormat:@"name=%@&lastname=%@&email=%@&password=%@&gender=%lu&patient_gender=%lu&address=%@&city=%@&practice_list=%@&phone=%@&localidad=%@", self.nameTextfield.text, self.lastnameTextfield.text, self.emailTextfield.text, encodedPassword, (unsigned long)gender, (unsigned long)pacientGender, self.addressTextfield.text, self.cityTextfield.text, self.especialidadTextfield.text, self.phoneTextfield.text, localidadJSONString];
+    NSString *doctorParameters;
+    if (self.localidadTextfield.text > 0) {
+        doctorParameters = [NSString stringWithFormat:@"name=%@&lastname=%@&email=%@&password=%@&gender=%lu&patient_gender=%lu&address=%@&city=%@&practice_list=%@&phone=%@&localidad=%@", self.nameTextfield.text, self.lastnameTextfield.text, self.emailTextfield.text, encodedPassword, (unsigned long)gender, (unsigned long)pacientGender, self.addressTextfield.text, self.cityTextfield.text, self.especialidadTextfield.text, self.phoneTextfield.text, localidadJSONString];
+        
+    } else {
+        doctorParameters = [NSString stringWithFormat:@"name=%@&lastname=%@&email=%@&password=%@&gender=%lu&patient_gender=%lu&address=%@&city=%@&practice_list=%@&phone=%@", self.nameTextfield.text, self.lastnameTextfield.text, self.emailTextfield.text, encodedPassword, (unsigned long)gender, (unsigned long)pacientGender, self.addressTextfield.text, self.cityTextfield.text, self.especialidadTextfield.text, self.phoneTextfield.text];
+    }
     
     [serverCommunicator callServerWithPOSTMethod:@"Doctor/Create" andParameter:doctorParameters httpMethod:@"POST"];
 }
@@ -229,12 +236,14 @@ enum {
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if ([methodName isEqualToString:@"Doctor/Create"]) {
-        if (dictionary) {
+        if ([dictionary[@"status"] boolValue]) {
             NSLog(@"Rspuesta correcta del doctor sign up: %@", dictionary);
-            Doctor *doctor = [[Doctor alloc] initWithDoctorInfo:dictionary[@"response"]];
-            [self saveDoctorInUserDefaults:doctor];
-            [self goToDoctorHomePage];
+            //Doctor *doctor = [[Doctor alloc] initWithDoctorInfo:dictionary[@"response"]];
+            [[[UIAlertView alloc] initWithTitle:@"Éxito!" message:@"La cuenta se ha creado exitosamente. Se ha enviado un correo de confirmación al email asignado" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+            //[self saveDoctorInUserDefaults:doctor];
+            //[self goToDoctorHomePage];
         } else {
+            [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"El correo asignado ya está en uso." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
             NSLog(@"Respuesta incorrecta del doctor sign up: %@", dictionary);
         }
     }
@@ -243,7 +252,7 @@ enum {
 -(void)serverError:(NSError *)error {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     NSLog(@"Error en el serverrr: %@ %@", error, [error localizedDescription]);
-    [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Hubo un error creando el doctor. Por favor revisa que estés conectadoa internet e intenta de nuevo." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Hubo un error creando el doctor. Por favor revisa que estés conectado a internet e intenta de nuevo." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
 #pragma mark - Navigation
@@ -271,28 +280,39 @@ enum {
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if (pickerView.tag == genderPicker) {
         return [self.genderNamesarray count];
+        
     } else if (pickerView.tag == pacientGenderPicker) {
         return [self.pacientGendersArray count];
+        
     } else if (pickerView.tag == especialidadPicker) {
-        return [self.specialtiesArray count];
+        return [FormLists sharedInstance].specialtiesArray.count;
+        
     } else if (pickerView.tag == cityPicker) {
         return [self.citiesNames count];
+        
     } else if (pickerView.tag == localidadPicker) {
         return [self.localidadesArray count];
+        
     } else return 0;
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if (pickerView.tag == genderPicker) {
         return self.genderNamesarray[row];
+        
     } else if (pickerView.tag == pacientGenderPicker) {
         return self.pacientGendersArray[row];
+        
     } else if (pickerView.tag == especialidadPicker) {
-        return self.specialtiesArray[row];
+        Practice *practice = [FormLists sharedInstance].specialtiesArray[row];
+        return practice.name;
+        
     } else if (pickerView.tag == cityPicker) {
         return self.citiesNames[row];
+        
     } else if (pickerView.tag == localidadPicker) {
         return ((Localidad *)self.localidadesArray[row]).name;
+        
     } else return nil;
 }
 
@@ -301,10 +321,14 @@ enum {
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (pickerView.tag == genderPicker) {
         self.genderTextfield.text = self.genderNamesarray[row];
+        
     } else if (pickerView.tag == pacientGenderPicker) {
         self.pacientsGenderTextfield.text = self.pacientGendersArray[row];
+        
     } else if (pickerView.tag == especialidadPicker) {
-        self.especialidadTextfield.text = self.specialtiesArray[row];
+        Practice *practice = [FormLists sharedInstance].specialtiesArray[row];
+        self.especialidadTextfield.text = practice.name;
+        
     } else if (pickerView.tag == cityPicker) {
         self.cityTextfield.text = self.citiesNames[row];
         if ([self.cityTextfield.text isEqualToString:@"Bogotá"]) {
@@ -313,6 +337,7 @@ enum {
             self.localidadTextfield.text = @"";
             self.localidadTextfield.hidden = YES;
         }
+        
     } else if (pickerView.tag == localidadPicker) {
         self.localidadTextfield.text = ((Localidad *)self.localidadesArray[row]).name;
     }

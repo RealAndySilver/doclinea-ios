@@ -177,9 +177,10 @@ enum {
             NSLog(@"Respuesta correcta del sign up: %@", dictionary);
             if ([dictionary[@"status"] boolValue]) {
                 //Success creating the user
-                User *user = [[User alloc] initWithUserDictionary:dictionary[@"response"]];
+                /*User *user = [[User alloc] initWithUserDictionary:dictionary[@"response"]];
                 [self saveUserInUserDefaults:user];
-                [self goToHomeScreen];
+                [self goToHomeScreen];*/
+                [[[UIAlertView alloc] initWithTitle:@"Éxito!" message:@"La cuenta se ha creado exitosamente. Se ha enviado un correo de confirmación al email asignado" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
                 
             } else {
                 NSLog(@"Llego la respuesta pero no se creó el usuario: %@", dictionary);

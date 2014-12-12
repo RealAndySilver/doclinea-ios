@@ -76,7 +76,9 @@
     
     //Doctor main profesion label
     self.doctorProfesionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.doctorNameLabel.frame.origin.x, self.doctorNameLabel.frame.origin.y + self.doctorNameLabel.frame.size.height, self.doctorNameLabel.frame.size.width, 30.0)];
-    self.doctorProfesionLabel.text = self.doctor.practiceList[0];
+    if (self.doctor.practiceList.count > 0) {
+        self.doctorProfesionLabel.text = self.doctor.practiceList[0];
+    }
     self.doctorProfesionLabel.textColor = [UIColor darkGrayColor];
     self.doctorProfesionLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
     self.doctorProfesionLabel.adjustsFontSizeToFitWidth = YES;
@@ -153,9 +155,9 @@
     practiceLabel.text = self.doctor.parsedEducationList;
     practiceLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
     practiceLabel.textColor = [UIColor darkGrayColor];
-    practiceLabel.numberOfLines = 0;
+    //practiceLabel.numberOfLines = 0;
     if ([self.doctor.parsedEducationList length] > 0) {
-        [practiceLabel sizeToFit];
+        //[practiceLabel sizeToFit];
     }
     [self.scrollView addSubview:practiceLabel];
     
@@ -172,7 +174,7 @@
     clinicsListLabel.textColor = [UIColor darkGrayColor];
     clinicsListLabel.numberOfLines = 0;
     if ([self.doctor.parsedHospitalList length] > 0) {
-        [clinicsListLabel sizeToFit];
+        //[clinicsListLabel sizeToFit];
     }
     [self.scrollView addSubview:clinicsListLabel];
     
@@ -188,7 +190,7 @@
     insuranceListLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
     insuranceListLabel.textColor = [UIColor darkGrayColor];
     if ([self.doctor.parsedInsurancesList length] > 0) {
-        [insuranceListLabel sizeToFit];
+        //[insuranceListLabel sizeToFit];
     }
     [self.scrollView addSubview:insuranceListLabel];
     
@@ -204,7 +206,7 @@
     membershipListLabel.tag = 1;
     membershipListLabel.textColor = [UIColor darkGrayColor];
     if ([self.doctor.parsedProfesionalMembershipList length] > 0) {
-        [membershipListLabel sizeToFit];
+        //[membershipListLabel sizeToFit];
     }
     [self.scrollView addSubview:membershipListLabel];
 }

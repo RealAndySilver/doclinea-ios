@@ -9,8 +9,12 @@
 #import "AppDelegate.h"
 #import "DeviceInfo.h"
 #import "NewPasswordView.h"
+#import "ServerCommunicator.h"
+#import "Practice.h"
+#import "FormLists.h"
+#import "FormListsParser.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <ServerCommunicatorDelegate>
 
 @end
 
@@ -21,6 +25,8 @@
     //Register for remote notifications
     [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
    
+    
+    [self getFormListsFromServer];
     return YES;
 }
 
@@ -47,42 +53,49 @@
 }
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    NSLog(@"Entre al handle url: %@", url.absoluteString);
+    
     if (!url) {
         return NO;
     }
-    
-    NSString *urlString = [url absoluteString];
-    NSLog(@"URL: %@", urlString);
-    NSLog(@"*********************************************");
-    NSLog(@"scheme: %@", [url scheme]);
-    NSLog(@"host: %@", [url host]);
-    NSLog(@"port: %@", [url port]);
-    NSLog(@"path: %@", [url path]);
-    NSLog(@"path components: %@", [url pathComponents]);
-    NSLog(@"parameterString: %@", [url parameterString]);
-    NSLog(@"query: %@", [url query]);
-    NSLog(@"fragment: %@", [url fragment]);
-    
-    //NSString *tokenParamString = [url query];
-    //NSString *token = [tokenParamString stringByReplacingOccurrencesOfString:@"token=" withString:@""];
-    //NSLog(@"TOKEN: %@", token);
-    NSDictionary *parametersDic = [self URLQueryParameters:url];
-    NSLog(@"Parametros en el dic: %@", parametersDic);
-    NSString *token = parametersDic[@"token"];
-    NSString *userType = parametersDic[@"type"];
-    NSString *requestType = parametersDic[@"request"];
-    NSLog(@"TOKEN: %@", token);
-    NSLog(@"USER TYPE: %@", userType);
-    NSLog(@"REQUEST TYPE: %@", requestType);
-    
-    //Save strings in user defaults
-    if ([requestType isEqualToString:@"new_password"]) {
-        //The user is recovering the password
-        [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"token"];
-        [[NSUserDefaults standardUserDefaults] setObject:userType forKey:@"userType"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+    if ([url.absoluteString.lowercaseString containsString:@"password_redirect"]) {
+        NSString *urlString = [url absoluteString];
+        NSLog(@"URL: %@", urlString);
+        NSLog(@"*********************************************");
+        NSLog(@"scheme: %@", [url scheme]);
+        NSLog(@"host: %@", [url host]);
+        NSLog(@"port: %@", [url port]);
+        NSLog(@"path: %@", [url path]);
+        NSLog(@"path components: %@", [url pathComponents]);
+        NSLog(@"parameterString: %@", [url parameterString]);
+        NSLog(@"query: %@", [url query]);
+        NSLog(@"fragment: %@", [url fragment]);
         
-        [self performSelector:@selector(showPasswordView) withObject:nil afterDelay:1.0];
+        //NSString *tokenParamString = [url query];
+        //NSString *token = [tokenParamString stringByReplacingOccurrencesOfString:@"token=" withString:@""];
+        //NSLog(@"TOKEN: %@", token);
+        NSDictionary *parametersDic = [self URLQueryParameters:url];
+        NSLog(@"Parametros en el dic: %@", parametersDic);
+        NSString *token = parametersDic[@"token"];
+        NSString *userType = parametersDic[@"type"];
+        NSString *requestType = parametersDic[@"request"];
+        NSLog(@"TOKEN: %@", token);
+        NSLog(@"USER TYPE: %@", userType);
+        NSLog(@"REQUEST TYPE: %@", requestType);
+        
+        //Save strings in user defaults
+        if ([requestType isEqualToString:@"new_password"]) {
+            //The user is recovering the password
+            [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"token"];
+            [[NSUserDefaults standardUserDefaults] setObject:userType forKey:@"userType"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [self performSelector:@selector(showPasswordView) withObject:nil afterDelay:1.0];
+        }
+        
+    } else if ([url.absoluteString.lowercaseString containsString:@"email_verification"]) {
+        NSDictionary *parametersDic = [self URLQueryParameters:url];
+        NSLog(@"Parametros en el dic: %@", parametersDic);
     }
     return YES;
 }
@@ -134,6 +147,44 @@
         }
     }
     return result;
+}
+
+#pragma mark - Server Stuff
+
+-(void)getFormListsFromServer {
+    ServerCommunicator *server = [[ServerCommunicator alloc] init];
+    server.delegate = self;
+    [server callServerWithGETMethod:@"InsuranceCompany/GetAll" andParameter:@""];
+    [server callServerWithGETMethod:@"Practice/GetAll" andParameter:@""];
+}
+
+-(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
+    if ([methodName isEqualToString:@"InsuranceCompany/GetAll"]) {
+        if ([dictionary[@"status"] boolValue]) {
+            NSLog(@"Respuesta correcta del get insurance: %@", dictionary);
+            NSArray *insurancesArray = dictionary[@"response"];
+            [FormLists sharedInstance].ensuranceArray = [[FormListsParser sharedInstance] parsedInsurancesListFromArray:insurancesArray];
+        } else {
+            NSLog(@"Respuesta null del get insurance");
+        }
+        
+    //////////////////////////////////////////////////////////////////////////////////
+    } else if ([methodName isEqualToString:@"Practice/GetAll"]) {
+        if (dictionary) {
+            NSLog(@"Resputa correcta del get practices: %@", dictionary);
+            if ([dictionary[@"status"] boolValue]) {
+                NSArray *practicesArray = dictionary[@"response"];
+                [FormLists sharedInstance].specialtiesArray = [[FormListsParser sharedInstance] parsedPracticesArrayFromArray:practicesArray];
+            }
+            
+        } else {
+            NSLog(@"Respuesta null del get practices");
+        }
+    }
+}
+
+-(void)serverError:(NSError *)error {
+    NSLog(@"Error obteniendo los datos de formulario del servidor: %@", [error localizedDescription]);
 }
 
 @end

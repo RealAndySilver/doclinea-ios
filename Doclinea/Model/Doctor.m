@@ -32,6 +32,7 @@
         
         
         _email = dictionary[@"email"];
+        _emailConfirmed = [dictionary[@"email_confirmation"] boolValue];
         _gallery = dictionary[@"gallery"];
         _gender = dictionary[@"gender"];
         _hospitalList = dictionary[@"hospital_list"];
@@ -52,14 +53,19 @@
         _localidad = [[Localidad alloc] initWithDictionary:dictionary[@"localidad"]];
         _profilePic = [NSURL URLWithString:dictionary[@"profile_pic"][@"image_url"]];
         
-        /*NSMutableString *tempPracticeList = [[NSMutableString alloc] init];
-        for (int i = 0; i < [_practiceList count]; i++) {
-            NSString *practice = _practiceList[i];
-            [tempPracticeList appendString:[NSString stringWithFormat:@"%@ ", practice]];
+        NSMutableString *tempPracticeList = [[NSMutableString alloc] init];
+        if (_practiceList.count == 1) {
+            tempPracticeList = _practiceList.firstObject;
+        } else if (_practiceList.count == 2) {
+            for (int i = 0; i < [_practiceList count]; i++) {
+                NSString *practice = _practiceList[i];
+                [tempPracticeList appendString:[NSString stringWithFormat:@"%@ / ", practice]];
+            }
         }
+        
         _parsedPracticeList = tempPracticeList;
         
-        NSMutableString *tempInsurancesList = [[NSMutableString alloc] init];
+        /*NSMutableString *tempInsurancesList = [[NSMutableString alloc] init];
         if ([_insuranceList count] == 1) {
             _parsedInsurancesList = [_insuranceList firstObject];
         } else if ([_insuranceList count] > 1) {
@@ -68,20 +74,21 @@
                 [tempInsurancesList appendString:[NSString stringWithFormat:@"%@, ", insurance]];
             }
             _parsedInsurancesList = tempInsurancesList;
-        }
+        }*/
         
         NSMutableString *tempEducationList = [[NSMutableString alloc] init];
         if ([_educationList count] == 1) {
-            _parsedEducationList = [_educationList firstObject];
+            Studie *studie = _educationList.firstObject;
+            _parsedEducationList = studie.degree;
         } else if ([_educationList count] > 1) {
             for (int i = 0; i < [_educationList count]; i++) {
-                NSString *educaton = _educationList[i];
-                [tempEducationList appendString:[NSString stringWithFormat:@"%@, ", educaton]];
+                Studie *studie = _educationList[i];
+                [tempEducationList appendString:[NSString stringWithFormat:@"%@ / ", studie.degree]];
             }
             _parsedEducationList = tempEducationList;
         }
         
-        NSMutableString *tempHospitalList = [[NSMutableString alloc] init];
+        /*NSMutableString *tempHospitalList = [[NSMutableString alloc] init];
         if ([_hospitalList count] == 1) {
             _parsedHospitalList = [_hospitalList firstObject];
         } else if ([_hospitalList count] > 1) {
@@ -109,6 +116,7 @@
 #pragma mark - NSCoding Protocol 
 //Methods use to store this class in NSUserDefaults
 -(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:@(_emailConfirmed) forKey:@"emailConfirmed"];
     [aCoder encodeObject:_identifier forKey:@"identifier"];
     [aCoder encodeObject:_address forKey:@"address"];
     [aCoder encodeObject:_city forKey:@"city"];
@@ -141,6 +149,7 @@
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super init]) {
+        _emailConfirmed = [[aDecoder decodeObjectForKey:@"emailConfirmed"] boolValue];
         _identifier = [aDecoder decodeObjectForKey:@"identifier"];
         _address = [aDecoder decodeObjectForKey:@"address"];
         _city = [aDecoder decodeObjectForKey:@"city"];

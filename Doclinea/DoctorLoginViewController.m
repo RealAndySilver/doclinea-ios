@@ -12,10 +12,11 @@
 #import "Doctor.h"
 #import "ForgotPassViewController.h"
 
-@interface DoctorLoginViewController () <UITextFieldDelegate, ServerCommunicatorDelegate>
+@interface DoctorLoginViewController () <UITextFieldDelegate, ServerCommunicatorDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
 @property (weak, nonatomic) IBOutlet UIView *textfieldsContainer;
+@property (strong, nonatomic) NSString *encodedEmail;
 @end
 
 @implementation DoctorLoginViewController
@@ -60,6 +61,17 @@
 
 #pragma mark - Server Stuff 
 
+-(void)sendVerificationAgain {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
+    serverCommunicator.delegate = self;
+    
+    self.encodedEmail = [[self.emailTextfield.text dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
+    NSString *parameters = [NSString stringWithFormat:@"email=%@", self.emailTextfield.text];
+    
+    [serverCommunicator callServerWithPOSTMethod:[NSString stringWithFormat:@"Account/SendEmailVerification/%@/%@", @"doctor", self.encodedEmail] andParameter:parameters httpMethod:@"POST"];
+}
+
 -(void)loginDoctorInServer {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
@@ -87,11 +99,29 @@
                 [self goToDoctorHomePage];
                 
             } else {
-                //User not found
-                [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Error en los datos" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+                if ([dictionary[@"error_id"] intValue] == 0) {
+                    //Usuario no encontrado
+                    [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Usuario no encontrado" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+                } else if ([dictionary[@"error_id"] intValue] == 1) {
+                    //Cuenta no confirmada
+                    [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Tu cuenta no ha sido confirmada. ¿Quieres que te reenviémos el correo de confirmación?" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"Reenviar", nil] show];
+                }
             }
         } else {
             NSLog(@"Repuesta incorrecta del authenticate doctor: %@", dictionary);
+        }
+    } else if ([methodName isEqualToString:[NSString stringWithFormat:@"Account/SendEmailVerification/%@/%@", @"doctor", self.encodedEmail]]) {
+        if (dictionary) {
+            NSLog(@"Respuesta correcta del send verification again: %@", dictionary);
+            if ([dictionary[@"status"] boolValue]) {
+                //Email verification sent successfully
+                [[[UIAlertView alloc] initWithTitle:@"Éxito!" message:@"El correo de verificación se ha enviado correctamente" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+            } else {
+                //Email not send, there was an error
+                [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Hubo un error reenviando el correo de verificación" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+            }
+        } else {
+            NSLog(@"Reespuesta incorrecta del sendverification: %@", dictionary);
         }
     }
 }
@@ -155,6 +185,14 @@
             ForgotPassViewController *forgotPassVC = (ForgotPassViewController *)segue.destinationViewController;
             forgotPassVC.userType = @"doctor";
         }
+    }
+}
+
+#pragma mark - UIAlertViewDelegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self sendVerificationAgain];
     }
 }
 

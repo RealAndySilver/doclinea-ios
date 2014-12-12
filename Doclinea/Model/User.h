@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSString *city;
 @property (strong, nonatomic) NSArray *completedAppointmenst;
 @property (strong, nonatomic) NSString *email;
+@property (assign, nonatomic) BOOL emailVerifified;
 @property (strong, nonatomic) NSString *gender;
 @property (strong, nonatomic) NSString *insurance;
 @property (strong, nonatomic) NSString *lastName;

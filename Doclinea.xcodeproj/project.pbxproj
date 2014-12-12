@@ -40,6 +40,14 @@
 		8B5CC54119DC5A780001B0D1 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CC53019DC5A780001B0D1 /* UIImageView+WebCache.m */; };
 		8B5CC54219DC5A780001B0D1 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CC53219DC5A780001B0D1 /* UIView+WebCacheOperation.m */; };
 		8B5CC54519DC60E70001B0D1 /* DoctorDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CC54419DC60E70001B0D1 /* DoctorDetailsViewController.m */; };
+		8B5CDE931A39D24E00C8DCFB /* FormLists.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CDE921A39D24E00C8DCFB /* FormLists.m */; };
+		8B5CDE961A39D6E800C8DCFB /* Practice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CDE951A39D6E800C8DCFB /* Practice.m */; };
+		8B5CDE991A39D7BD00C8DCFB /* Reason.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CDE981A39D7BD00C8DCFB /* Reason.m */; };
+		8B5CDE9C1A39DAD700C8DCFB /* FormListsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CDE9B1A39DAD700C8DCFB /* FormListsParser.m */; };
+		8B5CDE9F1A39F7D700C8DCFB /* Insurance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CDE9E1A39F7D700C8DCFB /* Insurance.m */; };
+		8B5CDEA21A39FC6400C8DCFB /* PracticeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CDEA11A39FC6400C8DCFB /* PracticeListViewController.m */; };
+		8B5CDEA51A3A031C00C8DCFB /* PracticeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CDEA41A3A031C00C8DCFB /* PracticeListCell.m */; };
+		8B5CDEA71A3A085500C8DCFB /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5CDEA61A3A085500C8DCFB /* Checkmark.png */; };
 		8B66B67019E812E400E0C116 /* EducationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B66B66F19E812E400E0C116 /* EducationCell.m */; };
 		8B66B67319E8336000E0C116 /* EducationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B66B67219E8336000E0C116 /* EducationDetailsViewController.m */; };
 		8B6788CC19DEE67200D3AAA5 /* localidades.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B6788CA19DEE67200D3AAA5 /* localidades.json */; };
@@ -67,6 +75,9 @@
 		8B8058A919DB1B910071A43D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8058A819DB1B910071A43D /* MBProgressHUD.m */; };
 		8B8058AD19DB236C0071A43D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8058AC19DB236C0071A43D /* User.m */; };
 		8B8058B019DB25E00071A43D /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8058AF19DB25E00071A43D /* HomeScreenViewController.m */; };
+		8B93CA251A3B4820002DC144 /* InsuranceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B93CA241A3B4820002DC144 /* InsuranceType.m */; };
+		8B93CA281A3B4FB6002DC144 /* InsurancesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B93CA271A3B4FB6002DC144 /* InsurancesTableViewController.m */; };
+		8B93CA2B1A3B581D002DC144 /* InsuranceTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B93CA2A1A3B581D002DC144 /* InsuranceTypeView.m */; };
 		8BA0DE0519E6DB93007BD6AD /* MyTextfield.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0DE0419E6DB93007BD6AD /* MyTextfield.m */; };
 		8BA0DE0819E70481007BD6AD /* DoctorEducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0DE0719E70481007BD6AD /* DoctorEducationViewController.m */; };
 		8BA0DE0B19E723A0007BD6AD /* Studie.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0DE0A19E723A0007BD6AD /* Studie.m */; };
@@ -157,6 +168,21 @@
 		8B5CC53219DC5A780001B0D1 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		8B5CC54319DC60E70001B0D1 /* DoctorDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorDetailsViewController.h; sourceTree = "<group>"; };
 		8B5CC54419DC60E70001B0D1 /* DoctorDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorDetailsViewController.m; sourceTree = "<group>"; };
+		8B5CDE911A39D24E00C8DCFB /* FormLists.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormLists.h; path = Model/FormLists.h; sourceTree = "<group>"; };
+		8B5CDE921A39D24E00C8DCFB /* FormLists.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormLists.m; path = Model/FormLists.m; sourceTree = "<group>"; };
+		8B5CDE941A39D6E800C8DCFB /* Practice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Practice.h; path = Model/Practice.h; sourceTree = "<group>"; };
+		8B5CDE951A39D6E800C8DCFB /* Practice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Practice.m; path = Model/Practice.m; sourceTree = "<group>"; };
+		8B5CDE971A39D7BD00C8DCFB /* Reason.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reason.h; path = Model/Reason.h; sourceTree = "<group>"; };
+		8B5CDE981A39D7BD00C8DCFB /* Reason.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reason.m; path = Model/Reason.m; sourceTree = "<group>"; };
+		8B5CDE9A1A39DAD700C8DCFB /* FormListsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormListsParser.h; path = Model/FormListsParser.h; sourceTree = "<group>"; };
+		8B5CDE9B1A39DAD700C8DCFB /* FormListsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormListsParser.m; path = Model/FormListsParser.m; sourceTree = "<group>"; };
+		8B5CDE9D1A39F7D700C8DCFB /* Insurance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Insurance.h; path = Model/Insurance.h; sourceTree = "<group>"; };
+		8B5CDE9E1A39F7D700C8DCFB /* Insurance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Insurance.m; path = Model/Insurance.m; sourceTree = "<group>"; };
+		8B5CDEA01A39FC6400C8DCFB /* PracticeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeListViewController.h; sourceTree = "<group>"; };
+		8B5CDEA11A39FC6400C8DCFB /* PracticeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeListViewController.m; sourceTree = "<group>"; };
+		8B5CDEA31A3A031C00C8DCFB /* PracticeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PracticeListCell.h; path = "Custom Cells/PracticeListCell.h"; sourceTree = "<group>"; };
+		8B5CDEA41A3A031C00C8DCFB /* PracticeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PracticeListCell.m; path = "Custom Cells/PracticeListCell.m"; sourceTree = "<group>"; };
+		8B5CDEA61A3A085500C8DCFB /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Checkmark.png; path = Resources/Checkmark.png; sourceTree = "<group>"; };
 		8B66B66E19E812E400E0C116 /* EducationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EducationCell.h; path = "Custom Cells/EducationCell.h"; sourceTree = "<group>"; };
 		8B66B66F19E812E400E0C116 /* EducationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EducationCell.m; path = "Custom Cells/EducationCell.m"; sourceTree = "<group>"; };
 		8B66B67119E8336000E0C116 /* EducationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationDetailsViewController.h; sourceTree = "<group>"; };
@@ -207,6 +233,12 @@
 		8B8058AC19DB236C0071A43D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
 		8B8058AE19DB25E00071A43D /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
 		8B8058AF19DB25E00071A43D /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
+		8B93CA231A3B4820002DC144 /* InsuranceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsuranceType.h; path = Model/InsuranceType.h; sourceTree = "<group>"; };
+		8B93CA241A3B4820002DC144 /* InsuranceType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsuranceType.m; path = Model/InsuranceType.m; sourceTree = "<group>"; };
+		8B93CA261A3B4FB6002DC144 /* InsurancesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsurancesTableViewController.h; sourceTree = "<group>"; };
+		8B93CA271A3B4FB6002DC144 /* InsurancesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsurancesTableViewController.m; sourceTree = "<group>"; };
+		8B93CA291A3B581D002DC144 /* InsuranceTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsuranceTypeView.h; path = "Custom VIews/InsuranceTypeView.h"; sourceTree = "<group>"; };
+		8B93CA2A1A3B581D002DC144 /* InsuranceTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsuranceTypeView.m; path = "Custom VIews/InsuranceTypeView.m"; sourceTree = "<group>"; };
 		8BA0DE0319E6DB93007BD6AD /* MyTextfield.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTextfield.h; path = "UI Classes/MyTextfield.h"; sourceTree = "<group>"; };
 		8BA0DE0419E6DB93007BD6AD /* MyTextfield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTextfield.m; path = "UI Classes/MyTextfield.m"; sourceTree = "<group>"; };
 		8BA0DE0619E70481007BD6AD /* DoctorEducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorEducationViewController.h; sourceTree = "<group>"; };
@@ -268,6 +300,8 @@
 				8B4174F419E453C3007CC189 /* DoctorGalleryCell.m */,
 				8B66B66E19E812E400E0C116 /* EducationCell.h */,
 				8B66B66F19E812E400E0C116 /* EducationCell.m */,
+				8B5CDEA31A3A031C00C8DCFB /* PracticeListCell.h */,
+				8B5CDEA41A3A031C00C8DCFB /* PracticeListCell.m */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -284,6 +318,7 @@
 		8B5CC50E19DC57B00001B0D1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8B5CDEA61A3A085500C8DCFB /* Checkmark.png */,
 				8B5CC50F19DC57BF0001B0D1 /* blueStar.png */,
 				8B5CC50C19DC562F0001B0D1 /* grayStar.png */,
 			);
@@ -358,6 +393,8 @@
 				8B8058A019DAEB9F0071A43D /* CreateAccountViewController.m */,
 				8B8058AE19DB25E00071A43D /* HomeScreenViewController.h */,
 				8B8058AF19DB25E00071A43D /* HomeScreenViewController.m */,
+				8B93CA261A3B4FB6002DC144 /* InsurancesTableViewController.h */,
+				8B93CA271A3B4FB6002DC144 /* InsurancesTableViewController.m */,
 				8B5A7CFE19F063F00094E426 /* ChangePasswordViewController.h */,
 				8B5A7CFF19F063F00094E426 /* ChangePasswordViewController.m */,
 				8B6788D419DEF22200D3AAA5 /* SearchByNameViewController.h */,
@@ -403,6 +440,8 @@
 				8BA0DE0719E70481007BD6AD /* DoctorEducationViewController.m */,
 				8B66B67119E8336000E0C116 /* EducationDetailsViewController.h */,
 				8B66B67219E8336000E0C116 /* EducationDetailsViewController.m */,
+				8B5CDEA01A39FC6400C8DCFB /* PracticeListViewController.h */,
+				8B5CDEA11A39FC6400C8DCFB /* PracticeListViewController.m */,
 			);
 			name = "Doctor ViewControllers";
 			sourceTree = "<group>";
@@ -418,6 +457,8 @@
 				8BA0DE0D19E7299A007BD6AD /* AddStudieView.m */,
 				8B5A7CFB19F01E4B0094E426 /* NewPasswordView.h */,
 				8B5A7CFC19F01E4B0094E426 /* NewPasswordView.m */,
+				8B93CA291A3B581D002DC144 /* InsuranceTypeView.h */,
+				8B93CA2A1A3B581D002DC144 /* InsuranceTypeView.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -480,6 +521,18 @@
 				8B71A44219E5DA7C00420757 /* DeviceInfo.m */,
 				8BA0DE0919E723A0007BD6AD /* Studie.h */,
 				8BA0DE0A19E723A0007BD6AD /* Studie.m */,
+				8B5CDE911A39D24E00C8DCFB /* FormLists.h */,
+				8B5CDE921A39D24E00C8DCFB /* FormLists.m */,
+				8B5CDE9A1A39DAD700C8DCFB /* FormListsParser.h */,
+				8B5CDE9B1A39DAD700C8DCFB /* FormListsParser.m */,
+				8B5CDE941A39D6E800C8DCFB /* Practice.h */,
+				8B5CDE951A39D6E800C8DCFB /* Practice.m */,
+				8B5CDE971A39D7BD00C8DCFB /* Reason.h */,
+				8B5CDE981A39D7BD00C8DCFB /* Reason.m */,
+				8B5CDE9D1A39F7D700C8DCFB /* Insurance.h */,
+				8B5CDE9E1A39F7D700C8DCFB /* Insurance.m */,
+				8B93CA231A3B4820002DC144 /* InsuranceType.h */,
+				8B93CA241A3B4820002DC144 /* InsuranceType.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -653,6 +706,7 @@
 				8B6788CC19DEE67200D3AAA5 /* localidades.json in Resources */,
 				8B5CC50D19DC562F0001B0D1 /* grayStar.png in Resources */,
 				8B80589E19DAE4A10071A43D /* OpenSans-Semibold.ttf in Resources */,
+				8B5CDEA71A3A085500C8DCFB /* Checkmark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,6 +731,7 @@
 				8B66B67319E8336000E0C116 /* EducationDetailsViewController.m in Sources */,
 				8B7C249019E346AE0063F8D6 /* NSDictionary+NullReplacement.m in Sources */,
 				8B6788D619DEF22200D3AAA5 /* SearchByNameViewController.m in Sources */,
+				8B5CDE991A39D7BD00C8DCFB /* Reason.m in Sources */,
 				8B71A44019E5BEB300420757 /* PictureDetailViewController.m in Sources */,
 				8B4174EF19E423C0007CC189 /* DoctorLocationViewController.m in Sources */,
 				8B5CC53F19DC5A780001B0D1 /* UIImage+WebP.m in Sources */,
@@ -686,6 +741,7 @@
 				8B5CC53C19DC5A780001B0D1 /* UIButton+WebCache.m in Sources */,
 				8B5CC53919DC5A780001B0D1 /* SDWebImageDownloaderOperation.m in Sources */,
 				8B4174F919E45F23007CC189 /* NSString+AddOns.m in Sources */,
+				8B5CDE961A39D6E800C8DCFB /* Practice.m in Sources */,
 				8B5A7CFD19F01E4B0094E426 /* NewPasswordView.m in Sources */,
 				8B5CC50B19DC4A200001B0D1 /* RatingView.m in Sources */,
 				8B7C248F19E346AE0063F8D6 /* NSArray+NullReplacement.m in Sources */,
@@ -705,26 +761,34 @@
 				8B71A44319E5DA7C00420757 /* DeviceInfo.m in Sources */,
 				8BA0DE0819E70481007BD6AD /* DoctorEducationViewController.m in Sources */,
 				8B8058A919DB1B910071A43D /* MBProgressHUD.m in Sources */,
+				8B93CA281A3B4FB6002DC144 /* InsurancesTableViewController.m in Sources */,
 				8B5CC53819DC5A780001B0D1 /* SDWebImageDownloader.m in Sources */,
 				8B5A7D0019F063F00094E426 /* ChangePasswordViewController.m in Sources */,
 				8B66B67019E812E400E0C116 /* EducationCell.m in Sources */,
 				8BE5804219DDCCAE00DDE286 /* MyProfileViewController.m in Sources */,
 				8B4174F519E453C3007CC189 /* DoctorGalleryCell.m in Sources */,
+				8B5CDE9C1A39DAD700C8DCFB /* FormListsParser.m in Sources */,
 				8B6788DC19DF09DA00D3AAA5 /* DoctorLoginViewController.m in Sources */,
+				8B5CDEA51A3A031C00C8DCFB /* PracticeListCell.m in Sources */,
 				8B71A43719E58A1500420757 /* DoctorLocationInfoView.m in Sources */,
 				8BA0DE0E19E7299A007BD6AD /* AddStudieView.m in Sources */,
 				8B5CC53619DC5A780001B0D1 /* SDWebImageCompat.m in Sources */,
+				8B5CDE9F1A39F7D700C8DCFB /* Insurance.m in Sources */,
 				8B7C248319E2D3090063F8D6 /* DoctorInfoViewController.m in Sources */,
 				8BAF892919D9FB9D0037CEE4 /* LoginViewController.m in Sources */,
 				8B5CC53D19DC5A780001B0D1 /* UIImage+GIF.m in Sources */,
 				8B5CC53E19DC5A780001B0D1 /* UIImage+MultiFormat.m in Sources */,
 				8B8058A519DB104F0071A43D /* ServerCommunicator.m in Sources */,
+				8B5CDE931A39D24E00C8DCFB /* FormLists.m in Sources */,
 				8B7C248919E2FAF50063F8D6 /* SharedDoctor.m in Sources */,
 				8B5CC53B19DC5A780001B0D1 /* SDWebImagePrefetcher.m in Sources */,
 				8B8058B019DB25E00071A43D /* HomeScreenViewController.m in Sources */,
+				8B93CA2B1A3B581D002DC144 /* InsuranceTypeView.m in Sources */,
+				8B5CDEA21A39FC6400C8DCFB /* PracticeListViewController.m in Sources */,
 				8B5CC53319DC5A780001B0D1 /* MKAnnotationView+WebCache.m in Sources */,
 				8B5CC54119DC5A780001B0D1 /* UIImageView+WebCache.m in Sources */,
 				8B71A43A19E5B0E400420757 /* ConsultorioMapDetailView.m in Sources */,
+				8B93CA251A3B4820002DC144 /* InsuranceType.m in Sources */,
 				8B5CC54219DC5A780001B0D1 /* UIView+WebCacheOperation.m in Sources */,
 				8B5CC53A19DC5A780001B0D1 /* SDWebImageManager.m in Sources */,
 				8B404BA319DDB92700E2ABEB /* MapViewController.m in Sources */,
@@ -860,7 +924,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cfa50774-c79d-47e1-8f7b-681b3dac6cc6";
+				PROVISIONING_PROFILE = "b07aed6f-2081-410f-a1f2-a699449f087d";
 			};
 			name = Debug;
 		};
@@ -873,6 +937,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b07aed6f-2081-410f-a1f2-a699449f087d";
 			};
 			name = Release;
 		};
