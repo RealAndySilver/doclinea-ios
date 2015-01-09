@@ -99,9 +99,10 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
     serverCommunicator.delegate = self;
-    NSDictionary *deviceInfoDic = @{@"type" : [UIDevice currentDevice].model, @"token" : [DeviceInfo sharedInstance].deviceToken, @"name" : [UIDevice currentDevice].name, @"os" : @"iOS"};
+    /*NSDictionary *deviceInfoDic = @{@"type" : [UIDevice currentDevice].model, @"token" : [DeviceInfo sharedInstance].deviceToken, @"name" : [UIDevice currentDevice].name, @"os" : @"iOS"};
     NSData *deviceInfoData = [NSJSONSerialization dataWithJSONObject:deviceInfoDic options:NSJSONWritingPrettyPrinted error:nil];
-    NSString *deviceInfoString = [[NSString alloc] initWithData:deviceInfoData encoding:NSUTF8StringEncoding];
+    NSString *deviceInfoString = [[NSString alloc] initWithData:deviceInfoData encoding:NSUTF8StringEncoding];*/
+    NSString *deviceInfoString = @"";
     
     //Encode user password
     NSString *encodedPassword = [[self.passwordTextfield.text dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];

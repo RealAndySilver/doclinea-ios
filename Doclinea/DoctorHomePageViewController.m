@@ -13,6 +13,7 @@
 #import "DoctorLocationViewController.h"
 #import "DoctorEducationViewController.h"
 #import "ChangePasswordViewController.h"
+#import "DoctorInsurancesViewController.h"
 
 @interface DoctorHomePageViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -25,7 +26,7 @@
 
 -(NSArray *)menuArray {
     if (!_menuArray) {
-        _menuArray = @[@"Datos Personales", @"Contraseña", @"Educación", @"Consultorio"];
+        _menuArray = @[@"Datos Personales", @"Contraseña", @"Educación", @"Consultorio", @"Aseguradoras"];
     }
     return _menuArray;
 }
@@ -71,10 +72,18 @@
     } else if (indexPath.row == 3) {
         //Consultorio
         [self goToConsultorioVC];
+    } else if (indexPath.row == 4) {
+        //Aseguradoras
+        [self goToInsurancesList];
     }
 }
 
 #pragma mark - Navigation 
+
+-(void)goToInsurancesList {
+    DoctorInsurancesViewController *insurancesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DoctorInsurances"];
+    [self.navigationController pushViewController:insurancesVC animated:YES];
+}
 
 -(void)goToChangePasswordVC {
     ChangePasswordViewController *changePassVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangePassword"];
