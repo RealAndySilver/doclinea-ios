@@ -52,7 +52,9 @@
         _overallRating = dictionary[@"overall_rating"];
         _localidad = [[Localidad alloc] initWithDictionary:dictionary[@"localidad"]];
         _profilePic = [NSURL URLWithString:dictionary[@"profile_pic"][@"image_url"]];
-        
+        if ([dictionary[@"location_list"] count] > 0) {
+            _hasParking = [dictionary[@"location_list"][0][@"parking"] boolValue];
+        }
         NSMutableString *tempPracticeList = [[NSMutableString alloc] init];
         if (_practiceList.count == 1) {
             tempPracticeList = _practiceList.firstObject;
@@ -145,10 +147,12 @@
     [aCoder encodeObject:_overallRating forKey:@"overallRating"];
     [aCoder encodeObject:_profilePic forKey:@"profilePic"];
     [aCoder encodeObject:_localidad forKey:@"localidad"];
+    [aCoder encodeObject:@(_hasParking) forKey:@"hasParking"];
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super init]) {
+        _hasParking = [[aDecoder decodeObjectForKey:@"hasParking"] boolValue];
         _emailConfirmed = [[aDecoder decodeObjectForKey:@"emailConfirmed"] boolValue];
         _identifier = [aDecoder decodeObjectForKey:@"identifier"];
         _address = [aDecoder decodeObjectForKey:@"address"];

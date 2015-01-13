@@ -15,10 +15,12 @@
 #import "ServerCommunicator.h"
 #import "EducationCell.h"
 #import "EducationDetailsViewController.h"
+#import "AddMembershipView.h"
 
-@interface DoctorEducationViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, AddStudieViewDelegate, ServerCommunicatorDelegate>
+@interface DoctorEducationViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, AddStudieViewDelegate, ServerCommunicatorDelegate, AddMembershipViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) Doctor *doctor;
+@property (strong, nonatomic) NSMutableArray *membershipsList;
 @property (strong, nonatomic) NSMutableArray *educationList;
 @end
 
@@ -27,6 +29,13 @@
 }
 
 #pragma mark - Lazy Instantiation
+
+-(NSMutableArray *)membershipsList {
+    if (!_membershipsList) {
+        _membershipsList = [NSMutableArray arrayWithArray:self.doctor.profesionalMembership];
+    }
+    return _membershipsList;
+}
 
 -(NSMutableArray *)educationList {
     if (!_educationList) {
@@ -75,16 +84,25 @@
     [addStudieView showInView:self.tabBarController.view];
 }
 
+-(void)showMembershipView {
+    AddMembershipView *membershipView = [[AddMembershipView alloc] initWithFrame:CGRectMake(20.0, self.view.bounds.size.height/2.0 - 100.0, self.view.bounds.size.width - 40.0, 200.0)];
+    membershipView.delegate = self;
+    [membershipView showInView:self.tabBarController.view];
+}
+
 #pragma mark - UITableViewDataSource 
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
 
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSLog(@"Presioné borrar");
-        [self removeStudieAtIndex:indexPath.row];
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+                                            forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            NSLog(@"Presioné borrar");
+            [self removeStudieAtIndex:indexPath.row];
+        }
     }
 }
 
@@ -103,6 +121,8 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return [self.educationList count];
+    } else if (section == 1) {
+        return [self.membershipsList count];
     } else {
         return 0;
     }
@@ -128,6 +148,7 @@
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell2"];
         }
+        cell.textLabel.text = self.membershipsList[indexPath.row];
         return cell;
     }
 }
@@ -178,6 +199,20 @@
     [serverCommunicator callServerWithPOSTMethod:[NSString stringWithFormat:@"Doctor/Update/%@", self.doctor.identifier] andParameter:[NSString stringWithFormat:@"education_list=%@", educationString] httpMethod:@"POST"];
 }
 
+-(void)saveMembershipsInServer {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
+    
+    NSError *error = nil;
+    NSData *membershipData = [NSJSONSerialization dataWithJSONObject:self.membershipsList options:NSJSONWritingPrettyPrinted error:nil];
+    if (error) {
+        NSLog(@"Error creando el JSON oís: %@", [error localizedDescription]);
+    }
+    NSString *membershipString = [[NSString alloc] initWithData:membershipData encoding:NSUTF8StringEncoding];
+    
+    [serverCommunicator callServerWithPOSTMethod:[NSString stringWithFormat:@"Doctor/Update/%@", self.doctor.identifier] andParameter:[NSString stringWithFormat:@"profesional_membership=%@", membershipString] httpMethod:@"POST"];
+}
+
 -(void)saveStudiesInServer {
     removingStudieInServer = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -188,9 +223,9 @@
     for (int i = 0; i < [self.educationList count]; i++) {
         Studie *studie = self.educationList[i];
         NSLog(@"legare al dic %@ %@ %@ %@ %@", studie.instituteName, studie.degree, studie.startYear, studie.endYear, studie.highlights);
-        studie.instituteName = [studie.instituteName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        studie.degree = [studie.degree stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        studie.highlights = [studie.highlights stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        //studie.instituteName = [studie.instituteName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        //studie.degree = [studie.degree stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        //studie.highlights = [studie.highlights stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         NSDictionary *studieDic = [NSDictionary dictionaryWithDictionary:[studie studieAsDictionary]];
         NSLog(@"STUDIE DIC: %@", studieDic);
@@ -222,6 +257,8 @@
                 //Success saving studies
                 self.doctor = nil;
                 self.educationList = nil;
+                self.membershipsList = nil;
+                
                 Doctor *doctor = [[Doctor alloc] initWithDoctorInfo:dictionary[@"response"]];
                 [self saveDoctorInUserDefaults:doctor];
                 if (removingStudieInServer) {
@@ -257,7 +294,16 @@
         [self showAddStudieView];
     } else if (buttonIndex == 2) {
         //Membresías Profesionales
+        [self showMembershipView];
     }
+}
+
+#pragma mark - AddMembershipViewDelegate
+
+-(void)membershipAdded:(NSString *)membershipName {
+    NSLog(@"Me llego la membresia: %@", membershipName);
+    [self.membershipsList addObject:membershipName];
+    [self saveMembershipsInServer];
 }
 
 #pragma mark - AddStudieViewDelegate

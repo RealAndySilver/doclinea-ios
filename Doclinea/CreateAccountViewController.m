@@ -79,6 +79,8 @@ enum {
 #pragma mark - Custom Initialization Stuff
 
 -(void)setupUI {
+    self.insuranceTextfield.hidden = YES;
+    
     for (UITextField *textfield in self.textfields) {
         textfield.delegate = self;
     }
@@ -159,9 +161,10 @@ enum {
     serverCommunicator.delegate = self;
     
     //Get device info
-    NSDictionary *deviceInfoDic = @{@"type" : [UIDevice currentDevice].model, @"token" : [DeviceInfo sharedInstance].deviceToken, @"name" : [UIDevice currentDevice].name, @"os" : @"iOS"};
+    /*NSDictionary *deviceInfoDic = @{@"type" : [UIDevice currentDevice].model, @"token" : [DeviceInfo sharedInstance].deviceToken, @"name" : [UIDevice currentDevice].name, @"os" : @"iOS"};
     NSData *deviceInfoData = [NSJSONSerialization dataWithJSONObject:deviceInfoDic options:NSJSONWritingPrettyPrinted error:nil];
-    NSString *deviceInfoString = [[NSString alloc] initWithData:deviceInfoData encoding:NSUTF8StringEncoding];
+    NSString *deviceInfoString = [[NSString alloc] initWithData:deviceInfoData encoding:NSUTF8StringEncoding];*/
+    NSString *deviceInfoString = @"";
     
     //Encode user password
     NSString *encodedPassword = [[self.passwordTextfield.text dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
@@ -214,7 +217,7 @@ enum {
 }
 
 -(BOOL)formIsCorrect {
-    if ([self.emailTextfield.text length] > 0 && [self.nameTextfield.text length] > 0 && [self.lastnameTextfield.text length] > 0 && [self.genderTextfield.text length] > 0 && [self.phoneTextfield.text length] > 0 && [self.adressTextfield.text length] > 0 && [self.cityTextfield.text length] > 0 && [self.insuranceTextfield.text length] > 0) {
+    if ([self.emailTextfield.text length] > 0 && [self.nameTextfield.text length] > 0 && [self.lastnameTextfield.text length] > 0 && [self.genderTextfield.text length] > 0 && [self.phoneTextfield.text length] > 0 && [self.adressTextfield.text length] > 0 && [self.cityTextfield.text length] > 0) {
         return YES;
     } else {
         return NO;

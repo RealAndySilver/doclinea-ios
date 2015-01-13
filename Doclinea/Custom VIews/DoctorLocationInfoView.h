@@ -10,12 +10,13 @@
 
 @protocol DoctorLocationViewDelegate <NSObject>
 @optional
--(void)saveButtonPressedWithLocationName:(NSString *)locationName address:(NSString *)locationAddress;
+-(void)saveButtonPressedWithLocationName:(NSString *)locationName address:(NSString *)locationAddress parking:(BOOL)hasParking;
 @end
 
 @interface DoctorLocationInfoView : UIView
 @property (strong, nonatomic) UITextField *nameTextfield;
 @property (strong, nonatomic) UITextField *addressTextfield;
+@property (strong, nonatomic) UISwitch *parkingSwitch;
 @property (strong, nonatomic) id <DoctorLocationViewDelegate> delegate;
 -(void)showInView:(UIView *)view;
 @end

@@ -81,8 +81,8 @@
 #pragma mark - Navigation 
 
 -(void)goToInsurancesList {
-    DoctorInsurancesViewController *insurancesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DoctorInsurances"];
-    [self.navigationController pushViewController:insurancesVC animated:YES];
+    DoctorInsurancesViewController *doctorInsurancesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DoctorInsurances"];
+    [self.navigationController pushViewController:doctorInsurancesVC animated:YES];
 }
 
 -(void)goToChangePasswordVC {

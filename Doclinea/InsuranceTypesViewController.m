@@ -9,6 +9,7 @@
 #import "InsuranceTypesViewController.h"
 #import "Insurance.h"
 #import "InsuranceType.h"
+#import "InsuranceTypeCell.h"
 
 @interface InsuranceTypesViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -34,9 +35,9 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InsuranceTypeCell" forIndexPath:indexPath];
+    InsuranceTypeCell *cell = (InsuranceTypeCell *)[tableView dequeueReusableCellWithIdentifier:@"InsuranceTypeCell" forIndexPath:indexPath];
     InsuranceType *insuranceType = self.insurance.typeList[indexPath.row];
-    cell.textLabel.text = insuranceType.name;
+    cell.insuranceTypeLabel.text = insuranceType.name;
     return cell;
 }
 

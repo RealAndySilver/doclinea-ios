@@ -92,8 +92,10 @@
 
 #pragma mark - InsuranceTypeViewDelegate
 
--(void)insuranceTypeViewDidDisappear {
-    [self dismissViewControllerAnimated:YES completion:nil];
+-(void)insuranceTypeViewDidDisappearFromCloseButton:(BOOL)closeButtonPressed {
+    if (!closeButtonPressed) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

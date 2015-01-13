@@ -78,7 +78,7 @@
         
     } else if (longPressGesture.state == UIGestureRecognizerStateEnded) {
         NSLog(@"Terminé de tocar");
-        [self showLocationInfoViewWithLocName:nil address:nil];
+        [self showLocationInfoViewWithLocName:nil address:nil hasParking:NO];
     }
 }
 
@@ -88,24 +88,25 @@
 
 #pragma mark - Custom Methods 
 
--(void)showLocationInfoViewWithLocName:(NSString *)locationName address:(NSString *)locationAddress {
-    DoctorLocationInfoView *locationInfoView = [[DoctorLocationInfoView alloc] initWithFrame:CGRectMake(20.0, self.view.bounds.size.height/2.0 - 105.0, self.view.bounds.size.width - 40.0, 210.0)];
+-(void)showLocationInfoViewWithLocName:(NSString *)locationName address:(NSString *)locationAddress hasParking:(BOOL)hasParking {
+    DoctorLocationInfoView *locationInfoView = [[DoctorLocationInfoView alloc] initWithFrame:CGRectMake(20.0, self.view.bounds.size.height/2.0 - 125.0, self.view.bounds.size.width - 40.0, 250.0)];
     locationInfoView.delegate = self;
     locationInfoView.nameTextfield.text = locationName;
     locationInfoView.addressTextfield.text = locationAddress;
+    locationInfoView.parkingSwitch.on = hasParking;
     [locationInfoView showInView:self.tabBarController.view];
 }
 
 #pragma mark - Server Communicator 
 
--(void)saveDoctorLocationInServerWithLocName:(NSString *)locationName address:(NSString *)locationAddress {
+-(void)saveDoctorLocationInServerWithLocName:(NSString *)locationName address:(NSString *)locationAddress parking:(BOOL)hasParking{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
     serverCommunicator.delegate = self;
     
     //Generate JSON for the location object
     NSError *error;
-    NSDictionary *locationDic = @{@"lat": @(self.consultorioCoordintate.latitude), @"lon" : @(self.consultorioCoordintate.longitude), @"location_name" : locationName, @"location_address" : locationAddress};
+    NSDictionary *locationDic = @{@"lat": @(self.consultorioCoordintate.latitude), @"lon" : @(self.consultorioCoordintate.longitude), @"location_name" : locationName, @"location_address" : locationAddress, @"parking" : @(hasParking)};
     NSData *locationData = [NSJSONSerialization dataWithJSONObject:locationDic options:NSJSONWritingPrettyPrinted error:&error];
     NSString *locationJSONString = [[NSString alloc] initWithData:locationData encoding:NSUTF8StringEncoding];
     
@@ -148,8 +149,8 @@
 
 #pragma mark - DoctorLocationViewDelegate
 
--(void)saveButtonPressedWithLocationName:(NSString *)locationName address:(NSString *)locationAddress {
-    [self saveDoctorLocationInServerWithLocName:locationName address:locationAddress];
+-(void)saveButtonPressedWithLocationName:(NSString *)locationName address:(NSString *)locationAddress parking:(BOOL)hasParking{
+    [self saveDoctorLocationInServerWithLocName:locationName address:locationAddress parking:hasParking];
 }
 
 #pragma mark - MKMapViewDelegate
@@ -159,7 +160,7 @@
     if ([self.doctor.locationList[0] isKindOfClass:[NSDictionary class]]) {
         NSString *locationName = self.doctor.locationList[0][@"location_name"];
         NSString *locationAddress = self.doctor.locationList[0][@"location_address"];
-        [self showLocationInfoViewWithLocName:locationName address:locationAddress];
+        [self showLocationInfoViewWithLocName:locationName address:locationAddress hasParking:self.doctor.hasParking];
     }
 }
 

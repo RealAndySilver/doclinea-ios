@@ -13,6 +13,7 @@
 @interface InsuranceTypeView() <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) UIView *opacityView;
 @property (strong, nonatomic) UITableView *tableView;
+@property (assign, nonatomic) BOOL closeButtonWasPressed;
 @end
 
 @implementation InsuranceTypeView
@@ -30,6 +31,14 @@
         mainLabel.font = [UIFont fontWithName:@"OpenSans" size:15.0];
         mainLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:mainLabel];
+        
+        UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(10.0, 10.0, 30.0, 30.0)];
+        [closeButton setTitle:@"X" forState:UIControlStateNormal];
+        [closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        closeButton.layer.cornerRadius = 4.0;
+        closeButton.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+        [closeButton addTarget:self action:@selector(closeButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:closeButton];
         
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0.0, mainLabel.frame.origin.y + mainLabel.frame.size.height, frame.size.width, 1.0)];
         lineView.backgroundColor = [UIColor orangeColor];
@@ -78,6 +87,11 @@
     [self closeView];
 }
 
+-(void)closeButtonPressed {
+    self.closeButtonWasPressed = YES;
+    [self closeView];
+}
+
 -(void)closeView {
     [UIView animateWithDuration:0.3
                           delay:0.0
@@ -89,7 +103,11 @@
                      } completion:^(BOOL finished) {
                          [self.opacityView removeFromSuperview];
                          [self removeFromSuperview];
-                         [self.delegate insuranceTypeViewDidDisappear];
+                         if (self.closeButtonWasPressed) {
+                             [self.delegate insuranceTypeViewDidDisappearFromCloseButton:YES];
+                         } else {
+                             [self.delegate insuranceTypeViewDidDisappearFromCloseButton:NO];
+                         }
                      }];
 }
 

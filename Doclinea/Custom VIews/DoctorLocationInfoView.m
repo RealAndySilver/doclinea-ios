@@ -52,6 +52,17 @@
         self.addressTextfield.delegate = self;
         [self addSubview:self.addressTextfield];
         
+        //Parqueadero label
+        UILabel *parkingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, self.addressTextfield.frame.origin.y + self.addressTextfield.frame.size.height + 15.0, 150.0, 20.0)];
+        parkingLabel.text = @"Tiene Parqueadero";
+        parkingLabel.textColor = [UIColor lightGrayColor];
+        parkingLabel.font = [UIFont fontWithName:@"OpenSans" size:15.0];
+        [self addSubview:parkingLabel];
+        
+        //Parqueadero switch
+        self.parkingSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(frame.size.width - 100.0, parkingLabel.frame.origin.y - 7.0, 40.0, 30.0)];
+        [self addSubview:self.parkingSwitch];
+        
         //Cancel button
         UIButton *cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(20.0, frame.size.height - 50.0, frame.size.width/2.0 - 40.0, 30.0)];
         [cancelButton setTitle:@"Cancelar" forState:UIControlStateNormal];
@@ -96,7 +107,7 @@
 
 -(void)saveButtonPressed {
     if ([self.nameTextfield.text length] > 0 && [self.addressTextfield.text length] > 0) {
-        [self.delegate saveButtonPressedWithLocationName:self.nameTextfield.text address:self.addressTextfield.text];
+        [self.delegate saveButtonPressedWithLocationName:self.nameTextfield.text address:self.addressTextfield.text parking:self.parkingSwitch.isOn];
         [self closeView];
     } else {
         [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Debes agregar el nombre y la dirección del consultorio" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];

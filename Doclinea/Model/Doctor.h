@@ -30,6 +30,7 @@
 @property (strong, nonatomic) NSArray *practiceList;
 @property (strong, nonatomic) NSArray *profesionalMembership;
 @property (strong, nonatomic) NSArray *reviewList;
+@property (assign, nonatomic) BOOL hasParking;
 @property (strong, nonatomic) Localidad *localidad;
 @property (assign, nonatomic) BOOL status;
 @property (strong, nonatomic) NSString *parsedPracticeList;

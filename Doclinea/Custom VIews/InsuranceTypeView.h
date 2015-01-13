@@ -11,7 +11,7 @@
 
 @protocol InsuranceTypeViewDelegate <NSObject>
 @optional
--(void)insuranceTypeViewDidDisappear;
+-(void)insuranceTypeViewDidDisappearFromCloseButton:(BOOL)closeButtonPressed;
 @end
 
 @interface InsuranceTypeView : UIView
