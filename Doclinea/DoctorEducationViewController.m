@@ -33,6 +33,7 @@
 -(NSMutableArray *)membershipsList {
     if (!_membershipsList) {
         _membershipsList = [NSMutableArray arrayWithArray:self.doctor.profesionalMembership];
+        NSLog(@"CURRENT PROFESIONAL MEMBERSHIP: %@", _membershipsList);
     }
     return _membershipsList;
 }
@@ -47,6 +48,8 @@
 -(Doctor *)doctor {
     if (!_doctor) {
         _doctor = [[SharedDoctor sharedDoctor] getSavedDoctor];
+        NSLog(@"NOMBRE DEL DOC GUARDADO: %@", _doctor.name);
+        NSLog(@"PROFESIONAL_MEMBERSHIOP: %@", _doctor.profesionalMembership);
     }
     return _doctor;
 }
@@ -99,9 +102,15 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
                                             forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
+        //Studies section
         if (editingStyle == UITableViewCellEditingStyleDelete) {
             NSLog(@"Presioné borrar");
             [self removeStudieAtIndex:indexPath.row];
+        }
+    } else if (indexPath.section == 1) {
+        //Profesional memberhip section
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            [self removeMembershipAtIndex:indexPath.row];
         }
     }
 }
@@ -167,6 +176,21 @@
 
 #pragma mark - Server Stuff
 
+-(void)removeMembershipAtIndex:(NSUInteger)index {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
+    serverCommunicator.delegate = self;
+    
+    [self.membershipsList removeObjectAtIndex:index];
+    NSError *error = nil;
+    NSData *membershipData = [NSJSONSerialization dataWithJSONObject:self.membershipsList options:NSJSONWritingPrettyPrinted error:nil];
+    if (error) {
+        NSLog(@"Error creando el JSON oís: %@", [error localizedDescription]);
+    }
+    NSString *membershipString = [[NSString alloc] initWithData:membershipData encoding:NSUTF8StringEncoding];
+    [serverCommunicator callServerWithPOSTMethod:[NSString stringWithFormat:@"Doctor/Update/%@", self.doctor.identifier] andParameter:[NSString stringWithFormat:@"profesional_membership=%@", membershipString] httpMethod:@"POST"];
+}
+
 -(void)removeStudieAtIndex:(NSUInteger)index {
     removingStudieInServer = YES;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -181,9 +205,9 @@
         for (int i = 0; i < [studiesArray count]; i++) {
             Studie *studie = studiesArray[i];
             NSLog(@"legare al dic %@ %@ %@ %@ %@", studie.instituteName, studie.degree, studie.startYear, studie.endYear, studie.highlights);
-            studie.instituteName = [studie.instituteName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            /*studie.instituteName = [studie.instituteName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             studie.degree = [studie.degree stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            studie.highlights = [studie.highlights stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            studie.highlights = [studie.highlights stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];*/
 
             NSDictionary *studieDic = [NSDictionary dictionaryWithDictionary:[studie studieAsDictionary]];
             [educationArray addObject:studieDic];
@@ -202,7 +226,7 @@
 -(void)saveMembershipsInServer {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
-    
+    serverCommunicator.delegate = self;
     NSError *error = nil;
     NSData *membershipData = [NSJSONSerialization dataWithJSONObject:self.membershipsList options:NSJSONWritingPrettyPrinted error:nil];
     if (error) {

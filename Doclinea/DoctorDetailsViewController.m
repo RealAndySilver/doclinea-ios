@@ -211,6 +211,7 @@
     UILabel *membershipListLabel = [[UILabel alloc] initWithFrame:CGRectMake(membershipLabel.frame.origin.x + membershipLabel.frame.size.width, membershipLabel.frame.origin.y, screenBounds.size.width - 20.0 - (membershipLabel.frame.origin.x + membershipLabel.frame.size.width), 30.0)];
     membershipListLabel.text = self.doctor.parsedProfesionalMembershipList;
     membershipListLabel.tag = 1;
+    membershipListLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
     membershipListLabel.textColor = [UIColor darkGrayColor];
     if ([self.doctor.parsedProfesionalMembershipList length] > 0) {
         //[membershipListLabel sizeToFit];

@@ -24,6 +24,11 @@
     [self setupUI];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    //NSLog(@"The insurances: %@", self.doctorInsurancesArray);
+}
+
 -(void)setupUI {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -49,6 +54,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     InsuranceTypesViewController *insurancesTypesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InsuranceTypes"];
     insurancesTypesVC.insurance = [FormLists sharedInstance].ensuranceArray[indexPath.row];
+    insurancesTypesVC.doctorInsurancesArray = self.doctorInsurancesArray;
     [self.navigationController pushViewController:insurancesTypesVC animated:YES];
 }
 

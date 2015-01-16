@@ -67,16 +67,16 @@
         
         _parsedPracticeList = tempPracticeList;
         
-        /*NSMutableString *tempInsurancesList = [[NSMutableString alloc] init];
+        NSMutableString *tempInsurancesList = [[NSMutableString alloc] init];
         if ([_insuranceList count] == 1) {
-            _parsedInsurancesList = [_insuranceList firstObject];
+            _parsedInsurancesList = [NSString stringWithFormat:@"%@ - %@", [_insuranceList firstObject][@"insurance"], [_insuranceList firstObject][@"insurance_type"]];
         } else if ([_insuranceList count] > 1) {
             for (int i = 0; i < [_insuranceList count]; i++) {
-                NSString *insurance = _insuranceList[i];
-                [tempInsurancesList appendString:[NSString stringWithFormat:@"%@, ", insurance]];
+                NSDictionary *insuranceDic = _insuranceList[i];
+                [tempInsurancesList appendString:[NSString stringWithFormat:@"%@ - %@, ", insuranceDic[@"insurance"], insuranceDic[@"insurance_type"]]];
             }
             _parsedInsurancesList = tempInsurancesList;
-        }*/
+        }
         
         NSMutableString *tempEducationList = [[NSMutableString alloc] init];
         if ([_educationList count] == 1) {
@@ -99,7 +99,7 @@
                 [tempHospitalList appendString:[NSString stringWithFormat:@"%@, ", hospital]];
             }
             _parsedHospitalList = tempHospitalList;
-        }
+        }*/
         
         NSMutableString *tempMemebershipList = [[NSMutableString alloc] init];
         if ([_profesionalMembership count] == 1) {
@@ -110,7 +110,7 @@
                 [tempMemebershipList appendString:[NSString stringWithFormat:@"%@, ", profesionalMembership]];
             }
             _parsedProfesionalMembershipList = tempMemebershipList;
-        }*/
+        }
     }
     return self;
 }
@@ -118,6 +118,7 @@
 #pragma mark - NSCoding Protocol 
 //Methods use to store this class in NSUserDefaults
 -(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:_profesionalMembership forKey:@"profesionalMembership"];
     [aCoder encodeObject:@(_emailConfirmed) forKey:@"emailConfirmed"];
     [aCoder encodeObject:_identifier forKey:@"identifier"];
     [aCoder encodeObject:_address forKey:@"address"];
@@ -135,7 +136,7 @@
     [aCoder encodeObject:_patientGender forKey:@"patientGender"];
     [aCoder encodeObject:_paymentList forKey:@"paymentList"];
     [aCoder encodeObject:_phone forKey:@"phone"];
-    [aCoder encodeObject:_practiceList forKey:@"profesionalMembership"];
+    [aCoder encodeObject:_practiceList forKey:@"practiceList"];
     [aCoder encodeObject:_reviewList forKey:@"reviewList"];
     [aCoder encodeObject:@(_status) forKey:@"status"];
     [aCoder encodeObject:_parsedEducationList forKey:@"parsedEducationList"];
@@ -152,6 +153,7 @@
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super init]) {
+        _profesionalMembership = [aDecoder decodeObjectForKey:@"profesionalMembership"];
         _hasParking = [[aDecoder decodeObjectForKey:@"hasParking"] boolValue];
         _emailConfirmed = [[aDecoder decodeObjectForKey:@"emailConfirmed"] boolValue];
         _identifier = [aDecoder decodeObjectForKey:@"identifier"];
@@ -170,7 +172,7 @@
         _patientGender = [aDecoder decodeObjectForKey:@"patientGender"];
         _paymentList = [aDecoder decodeObjectForKey:@"paymentList"];
         _phone = [aDecoder decodeObjectForKey:@"phone"];
-        _practiceList = [aDecoder decodeObjectForKey:@"profesionalMembership"];
+        _practiceList = [aDecoder decodeObjectForKey:@"practiceList"];
         _reviewList = [aDecoder decodeObjectForKey:@"reviewList"];
         _status = [[aDecoder decodeObjectForKey:@"status"] boolValue];
         _parsedEducationList = [aDecoder decodeObjectForKey:@"parsedEducationList"];

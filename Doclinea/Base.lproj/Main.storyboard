@@ -146,6 +146,8 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
         </mutableArray>
         <mutableArray key="OpenSans-Semibold.ttf">
             <string>OpenSans-Semibold</string>
@@ -3178,14 +3180,14 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h6l-6x-FHy">
-                                <rect key="frame" x="517" y="23" width="67" height="33"/>
+                                <rect key="frame" x="551" y="23" width="33" height="33"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.30980392159999998" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="E5e-F4-6nQ"/>
-                                    <constraint firstAttribute="width" constant="67" id="jHG-bS-8q9"/>
+                                    <constraint firstAttribute="width" constant="33" id="jHG-bS-8q9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
-                                <state key="normal" title="Agregar">
+                                <state key="normal" title="+">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -3198,20 +3200,74 @@
                                     <action selector="addInsuranceButtonPressed:" destination="kAv-Kr-4jC" eventType="touchUpInside" id="6w7-qp-UfN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nv6-Zu-xDt">
+                                <rect key="frame" x="510" y="23" width="33" height="33"/>
+                                <color key="backgroundColor" red="0.90588235289999997" green="0.30980392159999998" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="33" id="sZm-tG-6TE"/>
+                                    <constraint firstAttribute="height" constant="33" id="zh4-FB-rLg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                <state key="normal" title="G">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="kAv-Kr-4jC" eventType="touchUpInside" id="OPn-7m-7eK"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ncR-de-bsn">
+                                <rect key="frame" x="0.0" y="65" width="600" height="535"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyInsurancesCell" textLabel="q5f-jt-nk8" style="IBUITableViewCellStyleDefault" id="c3S-v3-omD">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c3S-v3-omD" id="P6v-bo-6Rj">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Compensar - Platino" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="q5f-jt-nk8">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="kAv-Kr-4jC" id="HZ9-Op-pOK"/>
+                                    <outlet property="delegate" destination="kAv-Kr-4jC" id="6JD-3z-4Ng"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="xWC-rQ-ArQ" secondAttribute="centerX" id="0mV-nz-DzF"/>
                             <constraint firstAttribute="trailing" secondItem="h6l-6x-FHy" secondAttribute="trailing" constant="16" id="2ht-8q-LAH"/>
                             <constraint firstItem="NQF-XE-CSu" firstAttribute="leading" secondItem="i4I-aX-2Zu" secondAttribute="leading" constant="16" id="6eq-Wl-ACf"/>
+                            <constraint firstItem="1dw-uB-44c" firstAttribute="top" secondItem="ncR-de-bsn" secondAttribute="bottom" id="DNQ-8j-nkJ"/>
                             <constraint firstAttribute="trailing" secondItem="NQF-XE-CSu" secondAttribute="trailing" constant="16" id="De1-22-uxi"/>
                             <constraint firstItem="37X-7r-OhM" firstAttribute="leading" secondItem="i4I-aX-2Zu" secondAttribute="leading" constant="16" id="Eqe-jd-0yy"/>
                             <constraint firstItem="NQF-XE-CSu" firstAttribute="top" secondItem="i4I-aX-2Zu" secondAttribute="topMargin" constant="64" id="SGF-xE-JzI"/>
                             <constraint firstItem="37X-7r-OhM" firstAttribute="top" secondItem="i4I-aX-2Zu" secondAttribute="top" constant="23" id="UrV-t3-czZ"/>
+                            <constraint firstAttribute="trailing" secondItem="ncR-de-bsn" secondAttribute="trailing" id="XrB-A0-E1O"/>
+                            <constraint firstItem="h6l-6x-FHy" firstAttribute="leading" secondItem="Nv6-Zu-xDt" secondAttribute="trailing" constant="8" id="c5T-lO-x7n"/>
+                            <constraint firstItem="ncR-de-bsn" firstAttribute="top" secondItem="NQF-XE-CSu" secondAttribute="bottom" id="dlY-xs-aJs"/>
+                            <constraint firstItem="ncR-de-bsn" firstAttribute="leading" secondItem="i4I-aX-2Zu" secondAttribute="leading" id="j5D-uw-crP"/>
                             <constraint firstItem="h6l-6x-FHy" firstAttribute="top" secondItem="i4I-aX-2Zu" secondAttribute="top" constant="23" id="lLr-5C-dS1"/>
+                            <constraint firstItem="Nv6-Zu-xDt" firstAttribute="top" secondItem="i4I-aX-2Zu" secondAttribute="topMargin" constant="23" id="lXA-W1-q7e"/>
                             <constraint firstItem="xWC-rQ-ArQ" firstAttribute="top" secondItem="i4I-aX-2Zu" secondAttribute="topMargin" constant="28" id="of1-Og-nfq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="ncR-de-bsn" id="afT-Jw-ehG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qLA-ep-dqY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

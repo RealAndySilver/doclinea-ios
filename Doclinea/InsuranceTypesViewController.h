@@ -11,4 +11,5 @@
 
 @interface InsuranceTypesViewController : UIViewController
 @property (weak, nonatomic) Insurance *insurance;
+@property (weak, nonatomic) NSMutableArray *doctorInsurancesArray;
 @end

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface InsurancesListViewController : UIViewController
-
+@property (weak, nonatomic) NSMutableArray *doctorInsurancesArray;
 @end
