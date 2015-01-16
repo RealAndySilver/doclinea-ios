@@ -269,11 +269,25 @@ enum {
     NSString *insuranceString = [[NSString alloc] initWithData:insuranceData encoding:NSUTF8StringEncoding];
     NSLog(@"Insurance sstringggg: %@", insuranceString);
     
+    //NSDictionary *localidadDic = @{@"name": self.localidadTextfield.text, @"lat" : @4.5, @"lon" : @74.5};
+    NSDictionary *localidadDic = @{@"name" : self.localidadTextfield.text};
+    NSData *localidadData = [NSJSONSerialization dataWithJSONObject:localidadDic options:0 error:nil];
+    NSString *localidadString = [[NSString alloc] initWithData:localidadData encoding:NSUTF8StringEncoding];
+    
     NSString *parameter;
     if ([self.selectedInsurance length] > 0) {
-        parameter = [NSString stringWithFormat:@"city=%@&insurance=%@&practice_list=%@&localidad=%@", self.citiesTextfield.text, insuranceString, self.specialtiesTextfield.text, self.localidadTextfield.text];
+        if ([self.localidadTextfield.text length] > 0) {
+             parameter = [NSString stringWithFormat:@"city=%@&insurance_list=%@&practice_list=%@&localidad=%@", self.citiesTextfield.text,insuranceString, self.specialtiesTextfield.text, localidadString];
+        } else {
+             parameter = [NSString stringWithFormat:@"city=%@&insurance_list=%@&practice_list=%@", self.citiesTextfield.text, insuranceString, self.specialtiesTextfield.text];
+        }
+       
     } else {
-        parameter = [NSString stringWithFormat:@"city=%@&practice_list=%@&localidad=%@", self.citiesTextfield.text, self.specialtiesTextfield.text, self.localidadTextfield.text];
+        if ([self.localidadTextfield.text length] > 0) {
+                parameter = [NSString stringWithFormat:@"city=%@&practice_list=%@&localidad=%@", self.citiesTextfield.text, self.specialtiesTextfield.text, localidadString];
+        } else {
+                parameter = [NSString stringWithFormat:@"city=%@&practice_list=%@", self.citiesTextfield.text, self.specialtiesTextfield.text];
+        }
     }
     
     [serverCommunicator callServerWithPOSTMethod:@"Doctor/GetByParams" andParameter:parameter httpMethod:@"POST"];

@@ -183,7 +183,12 @@
     
     [self.membershipsList removeObjectAtIndex:index];
     NSError *error = nil;
-    NSData *membershipData = [NSJSONSerialization dataWithJSONObject:self.membershipsList options:NSJSONWritingPrettyPrinted error:nil];
+    NSData *membershipData;
+    if (self.membershipsList.count > 0) {
+        membershipData = [NSJSONSerialization dataWithJSONObject:self.membershipsList options:NSJSONWritingPrettyPrinted error:nil];
+    } else {
+        membershipData = [NSJSONSerialization dataWithJSONObject:@[@0] options:NSJSONWritingPrettyPrinted error:nil];
+    }
     if (error) {
         NSLog(@"Error creando el JSON oís: %@", [error localizedDescription]);
     }

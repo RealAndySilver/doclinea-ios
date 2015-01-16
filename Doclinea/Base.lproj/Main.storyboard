@@ -1086,6 +1086,9 @@
                             <constraint firstAttribute="trailing" secondItem="Wt1-Z5-6xi" secondAttribute="trailing" id="rFH-pb-elt"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="Wt1-Z5-6xi" id="g0y-zn-lev"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEh-mZ-c5X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2440,9 +2443,15 @@
                             <constraint firstAttribute="trailing" secondItem="QL0-8b-Nne" secondAttribute="trailing" id="dHj-AF-6fi"/>
                             <constraint firstItem="8Sq-EA-BrD" firstAttribute="top" secondItem="JEg-H1-oeC" secondAttribute="bottom" constant="28" id="hIb-wr-MVo"/>
                             <constraint firstItem="JEg-H1-oeC" firstAttribute="leading" secondItem="caX-pT-0x9" secondAttribute="leading" constant="16" id="nPJ-x1-CAI"/>
+                            <constraint firstItem="JEg-H1-oeC" firstAttribute="top" secondItem="cej-Vs-TDr" secondAttribute="top" id="pyw-rq-9aa"/>
                             <constraint firstAttribute="centerX" secondItem="yCh-ck-c7P" secondAttribute="centerX" id="sRB-af-YBf"/>
                             <constraint firstAttribute="centerY" secondItem="QL0-8b-Nne" secondAttribute="centerY" multiplier="0.75" id="zue-AL-6TL"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="hIb-wr-MVo"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="emailTextfield" destination="OTz-cU-9fA" id="Oi3-dP-Rml"/>

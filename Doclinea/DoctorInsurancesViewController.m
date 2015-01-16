@@ -92,7 +92,12 @@
     serverCommunicator.delegate = self;
     
     //NSArray *insurancesArray = @[@{@"insurance" : @"Colpatria", @"insurance_type": @"Platino"}];
-    NSData *insuranceData = [NSJSONSerialization dataWithJSONObject:self.doctorInsurancesArray options:0 error:nil];
+    NSData *insuranceData;
+    if (self.doctorInsurancesArray.count > 0) {
+        insuranceData = [NSJSONSerialization dataWithJSONObject:self.doctorInsurancesArray options:0 error:nil];
+    } else {
+        insuranceData = [NSJSONSerialization dataWithJSONObject:@[@0] options:0 error:nil];
+    }
     NSString *insuranceString = [[NSString alloc] initWithData:insuranceData encoding:NSUTF8StringEncoding];
     
     [serverCommunicator callServerWithPOSTMethod:[NSString stringWithFormat:@"Doctor/Update/%@", self.doctor.identifier] andParameter:[NSString stringWithFormat:@"insurance_list=%@", insuranceString] httpMethod:@"POST"];
@@ -104,6 +109,10 @@
         if (dictionary) {
             NSLog(@"Recibi el diccionario con la info: %@", dictionary);
             if ([dictionary[@"status"] boolValue]) {
+                self.doctor = nil;
+                Doctor *doctor = [[Doctor alloc] initWithDoctorInfo:dictionary[@"response"]];
+                [self saveDoctorInUserDefaults:doctor];
+                
                 [[[UIAlertView alloc] initWithTitle:@"Éxito!" message:@"Tus aseguradoras se han actualizado correctamente" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
             } else {
                 [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Hubo un error actualizando las aseguradoras. Por favor intenta de nuevo." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
@@ -119,6 +128,14 @@
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Se encontró un error en el servidor. Por favor intenta de nuevo en un momento." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
     NSLog(@"Error en el server: %@", [error localizedDescription]);
+}
+
+#pragma mark - User Defaults
+
+-(void)saveDoctorInUserDefaults:(Doctor *)doctor {
+    NSData *encodedData = [NSKeyedArchiver archivedDataWithRootObject:doctor];
+    [[NSUserDefaults standardUserDefaults] setObject:encodedData forKey:@"doctor"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - Actions

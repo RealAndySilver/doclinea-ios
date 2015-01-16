@@ -291,8 +291,8 @@ enum {
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
     serverCommunicator.delegate = self;
     
-    NSUInteger gender;
-    NSUInteger pacientGender;
+    NSUInteger gender = 0;
+    NSUInteger pacientGender = 0;
     if ([self.genderTextfield.text isEqualToString:@"Masculino"]) {
         gender = 1;
     } else if ([self.genderTextfield.text isEqualToString:@"Femenino"]){
@@ -308,7 +308,7 @@ enum {
     }
     
     NSError *error;
-    NSDictionary *localidadDic = @{@"name" : self.localidadTextfield.text, @"lat": @40.0, @"lon" : @50.0};
+    NSDictionary *localidadDic = @{@"name" : self.localidadTextfield.text};
     NSData *localidadData = [NSJSONSerialization dataWithJSONObject:localidadDic options:0 error:&error];
     NSString *localidadJSONString = [[NSString alloc] initWithData:localidadData encoding:NSUTF8StringEncoding];
     
@@ -320,7 +320,13 @@ enum {
     NSData *practiceData = [NSJSONSerialization dataWithJSONObject:practiceListsArray options:0 error:NULL];
     NSString *practiceJSONString = [[NSString alloc] initWithData:practiceData encoding:NSUTF8StringEncoding];
   
-    NSString *parameters = [NSString stringWithFormat:@"name=%@&lastname=%@&email=%@&gender=%lu&patient_gender=%lu&phone=%@&address=%@&city=%@&localidad=%@&practice_list=%@", self.nameTextfield.text, self.lastNameTextfield.text, self.emailTextfield.text, (unsigned long)gender, (unsigned long)pacientGender, self.phoneTextfield.text, self.addressTextfield.text, self.cityTextfield.text, localidadJSONString, practiceJSONString];
+    NSString *parameters;
+    if ([self.localidadTextfield.text length] > 0) {
+        parameters = [NSString stringWithFormat:@"name=%@&lastname=%@&email=%@&gender=%lu&patient_gender=%lu&phone=%@&address=%@&city=%@&localidad=%@&practice_list=%@", self.nameTextfield.text, self.lastNameTextfield.text, self.emailTextfield.text, (unsigned long)gender, (unsigned long)pacientGender, self.phoneTextfield.text, self.addressTextfield.text, self.cityTextfield.text, localidadJSONString, practiceJSONString];
+    } else {
+        parameters = [NSString stringWithFormat:@"name=%@&lastname=%@&email=%@&gender=%lu&patient_gender=%lu&phone=%@&address=%@&city=%@&practice_list=%@", self.nameTextfield.text, self.lastNameTextfield.text, self.emailTextfield.text, (unsigned long)gender, (unsigned long)pacientGender, self.phoneTextfield.text, self.addressTextfield.text, self.cityTextfield.text, practiceJSONString];
+    }
+    
     [serverCommunicator callServerWithPOSTMethod:[NSString stringWithFormat:@"Doctor/Update/%@", self.doctor.identifier] andParameter:parameters httpMethod:@"POST"];
 }
 

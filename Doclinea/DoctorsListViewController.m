@@ -14,7 +14,7 @@
 #import "DoctorDetailsViewController.h"
 
 @interface DoctorsListViewController () <UITableViewDelegate, UITableViewDataSource>
-
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 @implementation DoctorsListViewController
@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 #pragma mark - Actions

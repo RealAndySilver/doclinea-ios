@@ -53,7 +53,7 @@
 -(void)layoutSubviews {
     [super layoutSubviews];
     CGRect bounds = self.contentView.bounds;
-    self.doctorImageView.frame = CGRectMake(10.0, 10.0, bounds.size.width/4.0, bounds.size.width/3.0);
+    self.doctorImageView.frame = CGRectMake(10.0, 10.0, bounds.size.width/4.0, bounds.size.height - 20.0);
     NSLog(@"FRAME DE LA IMAGEN: %@", NSStringFromCGRect(self.doctorImageView.frame));
     self.doctorNameLabel.frame = CGRectMake(self.doctorImageView.frame.origin.x + self.doctorImageView.frame.size.width + 10.0, self.doctorImageView.frame.origin.y, bounds.size.width - (self.doctorImageView.frame.origin.x + self.doctorImageView.frame.size.width + 10.0) - 10.0, 30.0);
     self.doctorProfesionLabel.frame = CGRectOffset(self.doctorNameLabel.frame, 0.0, 30.0);

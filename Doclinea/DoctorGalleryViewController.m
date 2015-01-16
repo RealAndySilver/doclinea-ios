@@ -144,8 +144,15 @@
 }
 
 - (IBAction)addPicButtonPressed:(id)sender {
-    //Choose if the pic will be taken from the camera or the phot library
-    [[[UIAlertView alloc] initWithTitle:@"Elegir Imagen" message:@"¿De donde deseas elegir la imagen?" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"Cámara", @"Librería de Fotos", nil] show];
+    //Check if the doctor has reached the max photo amount
+    if (self.doctor.gallery.count < 6) {
+        UIAlertView *photosAlert = [[UIAlertView alloc] initWithTitle:@"Elegir Imagen" message:@"¿De donde deseas elegir la imagen?" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"Cámara", @"Librería de Fotos", nil];
+        photosAlert.tag = 1;
+        [photosAlert show];
+    } else {
+        //The doctor reached the max number of photos
+        [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Has alcanzado el número máximo de fotos. Puedes eliminar alguna foto para poder subir una nueva" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+    }
 }
 
 #pragma mark - User Defaults
@@ -181,12 +188,14 @@
 #pragma mark - UIAlertViewDelegate
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
-        //Camara
-        [self presentImagePicker:UIImagePickerControllerSourceTypeCamera];
-    } else if (buttonIndex == 2) {
-        //Libreria de fotos
-        [self presentImagePicker:UIImagePickerControllerSourceTypePhotoLibrary];
+    if (alertView.tag == 1) {
+        if (buttonIndex == 1) {
+            //Camara
+            [self presentImagePicker:UIImagePickerControllerSourceTypeCamera];
+        } else if (buttonIndex == 2) {
+            //Libreria de fotos
+            [self presentImagePicker:UIImagePickerControllerSourceTypePhotoLibrary];
+        }
     }
 }
 
