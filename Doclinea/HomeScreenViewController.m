@@ -19,8 +19,10 @@
 #import "Practice.h"
 #import "Insurance.h"
 #import "InsurancesTableViewController.h"
+#import "InviteView.h"
+#import "User.h"
 
-@interface HomeScreenViewController () <UIPickerViewDataSource, UIPickerViewDelegate, ServerCommunicatorDelegate, UITextFieldDelegate>
+@interface HomeScreenViewController () <UIPickerViewDataSource, UIPickerViewDelegate, ServerCommunicatorDelegate, UITextFieldDelegate, InviteViewDelegate>
 @property (strong, nonatomic) UIButton *searchButton;
 @property (strong, nonatomic) IBOutlet UIButton *searchByNameButton;
 @property (weak, nonatomic) IBOutlet UITextField *localidadTextfield;
@@ -35,6 +37,7 @@
 @property (strong, nonatomic) NSArray *insurancesArray;
 @property (strong, nonatomic) NSString *selectedInsurance;
 @property (strong, nonatomic) NSString *selectedInsuranceType;
+@property (strong, nonatomic) User *user;
 @end
 
 @implementation HomeScreenViewController {
@@ -50,6 +53,16 @@ enum {
 };
 
 #pragma mark - Lazy Instantiation
+
+-(User *)user {
+    if (!_user) {
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]) {
+            NSData *userEncodedData = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+            _user = [NSKeyedUnarchiver unarchiveObjectWithData:userEncodedData];
+        }
+    }
+    return _user;
+}
 
 -(NSArray *)practicesArray {
     if (!_practicesArray) {
@@ -103,7 +116,7 @@ enum {
 
 -(NSArray *)citiesNames {
     if (!_citiesNames) {
-        _citiesNames = @[@"Todas", @"Bogotá", @"Medellín", @"Cali", @"Baranquilla", @"Pereira", @"Bucaramanga"];
+        _citiesNames = @[@"Todas", @"Bogotá", @"Medellín", @"Cali", @"Barranquilla", @"Pereira", @"Bucaramanga"];
     }
     return _citiesNames;
 }
@@ -199,6 +212,11 @@ enum {
 }
 
 #pragma mark - Actions 
+- (IBAction)inviteButtonPressed:(id)sender {
+    //User/Invite
+    //email, message, destination_email
+    [self showInvitationView];
+}
 
 -(IBAction)searchByNameButtonPressed {
     //Go to search by name view controller
@@ -223,7 +241,7 @@ enum {
 }
 
 - (void)searchButtonPressed:(id)sender {
-    [self searchDoctorInServer];
+    [self showInvitationView];
 }
 
 #pragma mark - Navigation 
@@ -253,6 +271,16 @@ enum {
 }
 
 #pragma mark - Server Stuff 
+//User/Invite
+//email, message, destination_email
+
+-(void)sendInvitationWithEmail:(NSString *)email {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
+    serverCommunicator.delegate = self;
+    NSString *parameters = [NSString stringWithFormat:@"email=%@&message=%@&destination_email=%@", self.user.email, @"Hola, te quiero invitar a doclinea", email];
+    [serverCommunicator callServerWithPOSTMethod:@"User/Invite" andParameter:parameters httpMethod:@"POST"];
+}
 
 -(void)searchDoctorInServer {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -309,6 +337,16 @@ enum {
         } else {
             NSLog(@"Rspuesta invalida del get doctors: %@", dictionary);
             [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Hubo un problema realizando la búsqueda. Por favor intenta de nuevo" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+        }
+    } else if ([methodName isEqualToString:@"User/Invite"]) {
+        if (dictionary) {
+            if ([dictionary[@"status"] boolValue]) {
+                NSLog(@"Respuesta correcta del invite: %@", dictionary);
+            } else {
+                NSLog(@"Resputa incorrecta del invite: %@", dictionary);
+            }
+        } else {
+            NSLog(@"Resputa null del invite: %@", dictionary);
         }
     }
 }
@@ -447,6 +485,21 @@ enum {
         return NO;
     }
     return YES;
+}
+
+#pragma mark - Alerts 
+
+-(void)showInvitationView {
+    InviteView *inviteView = [[InviteView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2.0 - 140.0, self.view.bounds.size.height/2.0 - 140.0, 280.0, 280.0)];
+    inviteView.delegate = self;
+    [inviteView showInView:self.view];
+}
+
+#pragma mark - InviteDelegate
+
+-(void)inviteButtonPressedWithEmail:(NSString *)email {
+    NSLog(@"Me llego el email: %@", email);
+    [self sendInvitationWithEmail:email];
 }
 
 @end

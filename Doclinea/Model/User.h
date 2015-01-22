@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserSettings.h"
 
 @interface User : NSObject
 @property (strong, nonatomic) NSString *identifier;
@@ -23,5 +24,7 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *phone;
 @property (strong, nonatomic) NSNumber *verified;
+@property (strong, nonatomic) UserSettings *settings;
+@property (strong, nonatomic) NSDate *birthday;
 -(instancetype)initWithUserDictionary:(NSDictionary *)dictionary;
 @end

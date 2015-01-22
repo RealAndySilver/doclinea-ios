@@ -161,7 +161,7 @@
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
     if ([methodName isEqualToString:@"InsuranceCompany/GetAll"]) {
         if ([dictionary[@"status"] boolValue]) {
-            NSLog(@"Respuesta correcta del get insurance: %@", dictionary);
+            //NSLog(@"Respuesta correcta del get insurance: %@", dictionary);
             NSArray *insurancesArray = dictionary[@"response"];
             [FormLists sharedInstance].ensuranceArray = [[FormListsParser sharedInstance] parsedInsurancesListFromArray:insurancesArray];
         } else {
@@ -171,7 +171,7 @@
     //////////////////////////////////////////////////////////////////////////////////
     } else if ([methodName isEqualToString:@"Practice/GetAll"]) {
         if (dictionary) {
-            NSLog(@"Resputa correcta del get practices: %@", dictionary);
+            //NSLog(@"Resputa correcta del get practices: %@", dictionary);
             if ([dictionary[@"status"] boolValue]) {
                 NSArray *practicesArray = dictionary[@"response"];
                 [FormLists sharedInstance].specialtiesArray = [[FormListsParser sharedInstance] parsedPracticesArrayFromArray:practicesArray];

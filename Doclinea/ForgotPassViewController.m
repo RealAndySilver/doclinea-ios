@@ -54,6 +54,7 @@
         if ([dictionary[@"status"] boolValue]) {
             //Success
             [[[UIAlertView alloc] initWithTitle:@"Éxito!" message:@"Se te ha enviado un correo electrónico con las instrucciones para reestablecer tu contraseña" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+            [self.navigationController popViewControllerAnimated:YES];
         } else {
             //Failure
             [[[UIAlertView alloc] initWithTitle:@"Error" message:@"No se ha encontrado ningún doctor con ese correo electrónico" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];

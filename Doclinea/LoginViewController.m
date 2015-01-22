@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupUI];
+    //[self setupUI];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -44,10 +44,10 @@
 
 #pragma mark - Custom Initialization Stuff 
 
--(void)setupUI {
+/*-(void)setupUI {
     self.emailTextfield.delegate = self;
     self.passwordTextfield.delegate = self;
-}
+}*/
 
 -(void)setupNotifications {
     //Add ourselfs as an observer of the keyboard notifications,
@@ -111,6 +111,8 @@
     [serverCommunicator callServerWithPOSTMethod:@"User/Authenticate" andParameter:userParameters httpMethod:@"POST"];
 }
 
+#pragma mark - ServerCommunicatorDelegate
+
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if ([methodName isEqualToString:@"User/Authenticate"]) {
@@ -118,17 +120,21 @@
         if (dictionary) {
             NSLog(@"Resputa correcta del authenticate: %@", dictionary);
             if ([dictionary[@"status"] boolValue]) {
-                //Successull authenticate
+                //Succesfull authentication...Create the User object and save it in NSUserDefaults
                 User *user = [[User alloc] initWithUserDictionary:dictionary[@"response"]];
                 [self saveUserInUserDefaults:user];
+                
+                //The user can pass to the home screen
                 [self goToHomeScreen];
             
             } else  {
+                //There was an error in the authentication
                 if ([dictionary[@"error_id"] intValue] == 0) {
-                    //Usuario no encontrado
+                    //User not found in the database
                     [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Usuario no encontrado" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+                    
                 } else if ([dictionary[@"error_id"] intValue] == 1) {
-                    //Cuenta no confirmada
+                    //Email account not confirmed...Show an alert and give the option to send again the confirmation email
                     [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Tu cuenta no ha sido confirmada. ¿Quieres que te reenviémos el correo de confirmación?" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"Reenviar", nil] show];
                 }
             }
@@ -154,7 +160,8 @@
 
 -(void)serverError:(NSError *)error {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    NSLog(@"Server errorrr: %@ %@", error, [error localizedDescription]);
+    
+    //Inform the user that there was an error in the server
     [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Hubo un error al intentar iniciar sesión. Por favor revisa que estés conectado a internet e intenta de nuevo." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 }
 
@@ -169,6 +176,7 @@
 }
 
 -(void)saveUserInUserDefaults:(User *)user {
+    //It's necessary to encode our User object as an NSData object to save it in NSUserDefaults
     NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:user];
     [[NSUserDefaults standardUserDefaults] setObject:encodedObject forKey:@"user"];
     [[NSUserDefaults standardUserDefaults] synchronize];

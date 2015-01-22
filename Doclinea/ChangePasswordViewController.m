@@ -92,6 +92,7 @@
             if ([dictionary[@"status"] boolValue]) {
                 //Success
                 [[[UIAlertView alloc] initWithTitle:@"Éxito!" message:@"La contraseña se ha cambiado exitosamente" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+                [self.navigationController popToRootViewControllerAnimated:YES];
             } else {
                 //Failure
                 [[[UIAlertView alloc] initWithTitle:@"Error" message:@"La contraseña actual no coincide con la de tu cuenta" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];

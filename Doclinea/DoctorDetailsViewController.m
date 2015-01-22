@@ -12,6 +12,7 @@
 #import "UIImageView+WebCache.h"
 #import "RatingView.h"
 #import "PicturesViewController.h"
+#import "AvailableAppointmentsViewController.h"
 
 @interface DoctorDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -86,7 +87,9 @@
     
     //Doctor address label
     self.doctorAddressLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.doctorNameLabel.frame.origin.x, self.doctorNameLabel.frame.origin.y + self.doctorNameLabel.frame.size.height + 30.0, self.doctorNameLabel.frame.size.width, 30.0)];
-    self.doctorAddressLabel.text = [NSString stringWithFormat:@"%@, %@", self.doctor.address, self.doctor.city];
+    if (self.doctor.locationList.count > 0) {
+        self.doctorAddressLabel.text = [NSString stringWithFormat:@"%@, %@", self.doctor.locationList[0][@"location_address"], self.doctor.city];
+    }
     self.doctorAddressLabel.textColor = [UIColor darkGrayColor];
     self.doctorAddressLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
     self.doctorAddressLabel.numberOfLines = 0;
@@ -101,17 +104,18 @@
     }
     
     //"Pedir Cita" button
-    /*UIButton *pedirCitaButton = [[UIButton alloc] initWithFrame:CGRectMake(self.doctorNameLabel.frame.origin.x, self.doctorAddressLabel.frame.origin.y + self.doctorAddressLabel.frame.size.height + 10.0, 70.0, 35.0)];
+    UIButton *pedirCitaButton = [[UIButton alloc] initWithFrame:CGRectMake(self.doctorNameLabel.frame.origin.x, self.doctorAddressLabel.frame.origin.y + self.doctorAddressLabel.frame.size.height + 10.0, 70.0, 35.0)];
     [pedirCitaButton setTitle:@"Pedir Cita" forState:UIControlStateNormal];
     pedirCitaButton.titleLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
     [pedirCitaButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     pedirCitaButton.backgroundColor = [UIColor colorWithRed:231.0/255.0 green:79.0/255.0 blue:19.0/255.0 alpha:1.0];
     pedirCitaButton.layer.cornerRadius = 5.0;
-    [self.scrollView addSubview:pedirCitaButton];*/
+    [pedirCitaButton addTarget:self action:@selector(goToCitasVC) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:pedirCitaButton];
     
     //Images button
     if ([self.doctor.gallery count] > 0 && [self.doctor.gallery[0] isKindOfClass:[NSDictionary class]]) {
-        UIButton *imagesButton = [[UIButton alloc] initWithFrame:CGRectMake(self.doctorNameLabel.frame.origin.x, self.doctorAddressLabel.frame.origin.y + self.doctorAddressLabel.frame.size.height + 10.0, 70.0, 35.0)];
+        UIButton *imagesButton = [[UIButton alloc] initWithFrame:CGRectOffset(pedirCitaButton.frame, pedirCitaButton.frame.size.width + 10.0, 0.0)];
         [imagesButton setTitle:@"Imágenes" forState:UIControlStateNormal];
         [imagesButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         imagesButton.backgroundColor = [UIColor colorWithRed:34.0/255.0 green:159.0/255.0 blue:225.0/255.0 alpha:1.0];
@@ -230,6 +234,11 @@
 }
 
 #pragma mark - Navigation 
+
+-(void)goToCitasVC {
+    AvailableAppointmentsViewController *availableAppointmentsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AvailableAppointments"];
+    [self.navigationController pushViewController:availableAppointmentsVC animated:YES];
+}
 
 -(void)goToDoctorImagesVC {
     PicturesViewController *picturesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"Pictures"];

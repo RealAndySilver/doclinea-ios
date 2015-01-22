@@ -12,6 +12,8 @@
 
 -(instancetype)initWithUserDictionary:(NSDictionary *)dictionary {
     if (self = [super init]) {
+        _settings = [[UserSettings alloc] initWithDictionary:dictionary[@"settings"]];
+        
         _identifier = dictionary[@"_id"];
         _activeAppointments = dictionary[@"active_appointments"];
         _address = dictionary[@"address"];
@@ -26,12 +28,25 @@
         _name = dictionary[@"name"];
         _phone = dictionary[@"phone"];
         _verified = dictionary[@"verified"];
+        
+        //Format the date string
+        NSString *dateString = dictionary[@"birthday"];
+        NSArray *tempStrings = [dateString componentsSeparatedByString:@"T"];
+        if (tempStrings.count > 0) {
+            NSLog(@"FIRST STRINGGG: %@", tempStrings[0]);
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"ja_JP"]];
+            _birthday = [dateFormatter dateFromString:tempStrings[0]];
+        }
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
     //Encode properties, other class variables, etc
+    [encoder encodeObject:_birthday forKey:@"birthday"];
+    [encoder encodeObject:_settings forKey:@"settings"];
     [encoder encodeObject:@(_emailVerifified) forKey:@"emailVerified"];
     [encoder encodeObject:_identifier forKey:@"identifier"];
     [encoder encodeObject:_activeAppointments forKey:@"activeAppointments"];
@@ -51,6 +66,8 @@
 - (id)initWithCoder:(NSCoder *)decoder {
     if((self = [super init])) {
         //decode properties, other class vars
+        _birthday = [decoder decodeObjectForKey:@"birthday"];
+        _settings = [decoder decodeObjectForKey:@"settings"];
         _emailVerifified = [[decoder decodeObjectForKey:@"emailVerified"] boolValue];
         _identifier = [decoder decodeObjectForKey:@"identifier"];
         _activeAppointments = [decoder decodeObjectForKey:@"activeAppointments"];

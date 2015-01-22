@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AppointmentCell" rowHeight="153" id="Nyu-Q6-1TO" customClass="AppointmentCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nyu-Q6-1TO" id="fzn-gW-VKa">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Doctor: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p50-io-TvT">
+                        <rect key="frame" x="8" y="8" width="62" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="27b-Na-cew"/>
+                            <constraint firstAttribute="width" constant="62" id="szw-vF-juR"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diego Fernando Vidal " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xds-0e-vpR">
+                        <rect key="frame" x="75" y="9" width="237" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="ufz-Ox-MI7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Especialidad: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIn-k4-euh">
+                        <rect key="frame" x="8" y="34" width="108" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="108" id="wm9-jo-wFD"/>
+                            <constraint firstAttribute="height" constant="21" id="zEa-EV-ajN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Odontología" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRQ-5Y-Jjc">
+                        <rect key="frame" x="124" y="34" width="188" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="KPz-wc-d5B"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calle 126 45 56" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9o-98-3rC">
+                        <rect key="frame" x="63" y="63" width="249" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="FfX-fs-sNA"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lugar:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSV-0A-awe">
+                        <rect key="frame" x="8" y="63" width="47" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Ejc-np-6oq"/>
+                            <constraint firstAttribute="width" constant="47" id="sUA-DC-mpz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hora:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egx-iI-QUt">
+                        <rect key="frame" x="8" y="92" width="47" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Smn-zC-Cy0"/>
+                            <constraint firstAttribute="width" constant="47" id="cQq-kM-Niw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00 AM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="My6-eN-gUC">
+                        <rect key="frame" x="63" y="91" width="249" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="aiP-cp-Niu"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="TRQ-5Y-Jjc" secondAttribute="trailing" constant="8" id="0BS-zZ-R2V"/>
+                    <constraint firstItem="My6-eN-gUC" firstAttribute="leading" secondItem="egx-iI-QUt" secondAttribute="trailing" constant="8" id="3Jh-Os-2nt"/>
+                    <constraint firstItem="xds-0e-vpR" firstAttribute="leading" secondItem="p50-io-TvT" secondAttribute="trailing" constant="5" id="6KM-Wq-gpw"/>
+                    <constraint firstItem="egx-iI-QUt" firstAttribute="top" secondItem="fSV-0A-awe" secondAttribute="bottom" constant="8" id="9qY-CC-deb"/>
+                    <constraint firstItem="egx-iI-QUt" firstAttribute="leading" secondItem="fzn-gW-VKa" secondAttribute="leading" constant="8" id="HL3-dK-RFk"/>
+                    <constraint firstItem="K9o-98-3rC" firstAttribute="trailing" secondItem="fzn-gW-VKa" secondAttribute="trailingMargin" id="HaK-gN-kvL"/>
+                    <constraint firstItem="xds-0e-vpR" firstAttribute="top" secondItem="fzn-gW-VKa" secondAttribute="top" constant="9" id="IFg-AT-0tU"/>
+                    <constraint firstItem="K9o-98-3rC" firstAttribute="leading" secondItem="fSV-0A-awe" secondAttribute="trailing" constant="8" id="Nup-bo-c7O"/>
+                    <constraint firstItem="My6-eN-gUC" firstAttribute="top" secondItem="K9o-98-3rC" secondAttribute="bottom" constant="7" id="OXr-KN-1ih"/>
+                    <constraint firstItem="p50-io-TvT" firstAttribute="leading" secondItem="fzn-gW-VKa" secondAttribute="leading" constant="8" id="QWV-pC-UR6"/>
+                    <constraint firstItem="K9o-98-3rC" firstAttribute="top" secondItem="TRQ-5Y-Jjc" secondAttribute="bottom" constant="8" id="STR-gC-U4a"/>
+                    <constraint firstItem="fSV-0A-awe" firstAttribute="leading" secondItem="fzn-gW-VKa" secondAttribute="leading" constant="8" id="UZb-9c-L0j"/>
+                    <constraint firstItem="TRQ-5Y-Jjc" firstAttribute="top" secondItem="xds-0e-vpR" secondAttribute="bottom" constant="4" id="UsQ-ta-JAE"/>
+                    <constraint firstItem="MIn-k4-euh" firstAttribute="leading" secondItem="fzn-gW-VKa" secondAttribute="leading" constant="8" id="VoP-1v-o86"/>
+                    <constraint firstItem="MIn-k4-euh" firstAttribute="top" secondItem="xds-0e-vpR" secondAttribute="bottom" constant="4" id="WHZ-Bs-ann"/>
+                    <constraint firstItem="TRQ-5Y-Jjc" firstAttribute="leading" secondItem="MIn-k4-euh" secondAttribute="trailing" constant="8" id="hrk-lF-Boc"/>
+                    <constraint firstAttribute="trailing" secondItem="My6-eN-gUC" secondAttribute="trailing" constant="8" id="mD5-fb-FOS"/>
+                    <constraint firstItem="fSV-0A-awe" firstAttribute="top" secondItem="MIn-k4-euh" secondAttribute="bottom" constant="8" id="oTT-2N-mJI"/>
+                    <constraint firstItem="p50-io-TvT" firstAttribute="top" secondItem="fzn-gW-VKa" secondAttribute="top" constant="8" id="wTo-EI-JPL"/>
+                    <constraint firstAttribute="trailing" secondItem="xds-0e-vpR" secondAttribute="trailing" constant="8" id="zLZ-P4-WUP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="586" y="269.5"/>
+        </tableViewCell>
+    </objects>
+</document>

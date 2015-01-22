@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [self.tableView registerClass:[DoctorCell class] forCellReuseIdentifier:@"DoctorsCell"];
 }
 
 #pragma mark - Actions
@@ -40,6 +41,10 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DoctorCell *cell = (DoctorCell *)[tableView dequeueReusableCellWithIdentifier:@"DoctorsCell" forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[DoctorCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DoctorsCell"];
+    }
+    
     Doctor *doctor = self.doctors[indexPath.row];
     if ([doctor.gender intValue] == 1) {
         //Male
@@ -48,7 +53,11 @@
         //Female
         cell.doctorNameLabel.text = [NSString stringWithFormat:@"Dra. %@", doctor.completeName];
     }
-    cell.doctorAddressLabel.text = doctor.address;
+    if (doctor.locationList.count > 0) {
+        cell.doctorAddressLabel.text = doctor.locationList[0][@"location_address"];
+    } else {
+        cell.doctorAddressLabel.text = @"";
+    }
     cell.doctorProfesionLabel.text = doctor.parsedPracticeList;
     NSLog(@"PARSED PRACTICE LISTTT ***************** %@", doctor.parsedPracticeList);
     if ([doctor.gender intValue] == 1) {

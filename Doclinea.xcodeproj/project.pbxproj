@@ -78,6 +78,11 @@
 		8B8312DA1A6012A100E1CBFC /* DoctorInsurancesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8312D91A6012A100E1CBFC /* DoctorInsurancesViewController.m */; };
 		8B8312DD1A60190700E1CBFC /* InsuranceTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8312DC1A60190700E1CBFC /* InsuranceTypeCell.m */; };
 		8B8312E01A603CF300E1CBFC /* AddMembershipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8312DF1A603CF300E1CBFC /* AddMembershipView.m */; };
+		8B85C4E91A6EA3C100190A00 /* ConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B85C4E81A6EA3C100190A00 /* ConfigurationViewController.m */; };
+		8B85C4EC1A6EA86C00190A00 /* UserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B85C4EB1A6EA86C00190A00 /* UserSettings.m */; };
+		8B85C4EE1A6EC74400190A00 /* AppointmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B85C4ED1A6EC74400190A00 /* AppointmentCell.xib */; };
+		8B85C4F11A6EC89700190A00 /* AppointmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B85C4F01A6EC89700190A00 /* AppointmentCell.m */; };
+		8B85C4F41A6EC9DB00190A00 /* AppointmentsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B85C4F31A6EC9DB00190A00 /* AppointmentsListViewController.m */; };
 		8B93CA251A3B4820002DC144 /* InsuranceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B93CA241A3B4820002DC144 /* InsuranceType.m */; };
 		8B93CA281A3B4FB6002DC144 /* InsurancesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B93CA271A3B4FB6002DC144 /* InsurancesTableViewController.m */; };
 		8B93CA2B1A3B581D002DC144 /* InsuranceTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B93CA2A1A3B581D002DC144 /* InsuranceTypeView.m */; };
@@ -87,6 +92,8 @@
 		8BA0DE0E19E7299A007BD6AD /* AddStudieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0DE0D19E7299A007BD6AD /* AddStudieView.m */; };
 		8BA2A03C1A5F19B500ECE899 /* InsurancesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2A03B1A5F19B500ECE899 /* InsurancesListViewController.m */; };
 		8BA2A03F1A5F1F4600ECE899 /* InsuranceTypesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2A03E1A5F1F4600ECE899 /* InsuranceTypesViewController.m */; };
+		8BA2E9E41A71453900A1EDD2 /* AvailableAppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2E9E31A71453900A1EDD2 /* AvailableAppointmentsViewController.m */; };
+		8BA2E9E71A719FBC00A1EDD2 /* InviteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2E9E61A719FBC00A1EDD2 /* InviteView.m */; };
 		8BAF892319D9FB9D0037CEE4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BAF892219D9FB9D0037CEE4 /* main.m */; };
 		8BAF892619D9FB9D0037CEE4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BAF892519D9FB9D0037CEE4 /* AppDelegate.m */; };
 		8BAF892919D9FB9D0037CEE4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BAF892819D9FB9D0037CEE4 /* LoginViewController.m */; };
@@ -244,6 +251,15 @@
 		8B8312DC1A60190700E1CBFC /* InsuranceTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsuranceTypeCell.m; path = "Custom Cells/InsuranceTypeCell.m"; sourceTree = "<group>"; };
 		8B8312DE1A603CF300E1CBFC /* AddMembershipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddMembershipView.h; path = "Custom VIews/AddMembershipView.h"; sourceTree = "<group>"; };
 		8B8312DF1A603CF300E1CBFC /* AddMembershipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddMembershipView.m; path = "Custom VIews/AddMembershipView.m"; sourceTree = "<group>"; };
+		8B85C4E71A6EA3C100190A00 /* ConfigurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationViewController.h; sourceTree = "<group>"; };
+		8B85C4E81A6EA3C100190A00 /* ConfigurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationViewController.m; sourceTree = "<group>"; };
+		8B85C4EA1A6EA86C00190A00 /* UserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserSettings.h; path = Model/UserSettings.h; sourceTree = "<group>"; };
+		8B85C4EB1A6EA86C00190A00 /* UserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserSettings.m; path = Model/UserSettings.m; sourceTree = "<group>"; };
+		8B85C4ED1A6EC74400190A00 /* AppointmentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppointmentCell.xib; path = "Custom Cells/AppointmentCell.xib"; sourceTree = "<group>"; };
+		8B85C4EF1A6EC89700190A00 /* AppointmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppointmentCell.h; path = "Custom Cells/AppointmentCell.h"; sourceTree = "<group>"; };
+		8B85C4F01A6EC89700190A00 /* AppointmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppointmentCell.m; path = "Custom Cells/AppointmentCell.m"; sourceTree = "<group>"; };
+		8B85C4F21A6EC9DB00190A00 /* AppointmentsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentsListViewController.h; sourceTree = "<group>"; };
+		8B85C4F31A6EC9DB00190A00 /* AppointmentsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentsListViewController.m; sourceTree = "<group>"; };
 		8B93CA231A3B4820002DC144 /* InsuranceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsuranceType.h; path = Model/InsuranceType.h; sourceTree = "<group>"; };
 		8B93CA241A3B4820002DC144 /* InsuranceType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsuranceType.m; path = Model/InsuranceType.m; sourceTree = "<group>"; };
 		8B93CA261A3B4FB6002DC144 /* InsurancesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsurancesTableViewController.h; sourceTree = "<group>"; };
@@ -262,6 +278,10 @@
 		8BA2A03B1A5F19B500ECE899 /* InsurancesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsurancesListViewController.m; sourceTree = "<group>"; };
 		8BA2A03D1A5F1F4600ECE899 /* InsuranceTypesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsuranceTypesViewController.h; sourceTree = "<group>"; };
 		8BA2A03E1A5F1F4600ECE899 /* InsuranceTypesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsuranceTypesViewController.m; sourceTree = "<group>"; };
+		8BA2E9E21A71453900A1EDD2 /* AvailableAppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvailableAppointmentsViewController.h; sourceTree = "<group>"; };
+		8BA2E9E31A71453900A1EDD2 /* AvailableAppointmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvailableAppointmentsViewController.m; sourceTree = "<group>"; };
+		8BA2E9E51A719FBC00A1EDD2 /* InviteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteView.h; path = "Custom VIews/InviteView.h"; sourceTree = "<group>"; };
+		8BA2E9E61A719FBC00A1EDD2 /* InviteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InviteView.m; path = "Custom VIews/InviteView.m"; sourceTree = "<group>"; };
 		8BAF891D19D9FB9D0037CEE4 /* Doclinea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doclinea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BAF892119D9FB9D0037CEE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BAF892219D9FB9D0037CEE4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -319,6 +339,9 @@
 				8B5CDEA41A3A031C00C8DCFB /* PracticeListCell.m */,
 				8B8312DB1A60190700E1CBFC /* InsuranceTypeCell.h */,
 				8B8312DC1A60190700E1CBFC /* InsuranceTypeCell.m */,
+				8B85C4ED1A6EC74400190A00 /* AppointmentCell.xib */,
+				8B85C4EF1A6EC89700190A00 /* AppointmentCell.h */,
+				8B85C4F01A6EC89700190A00 /* AppointmentCell.m */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -430,6 +453,12 @@
 				8B404BA219DDB92700E2ABEB /* MapViewController.m */,
 				8BE5804019DDCCAE00DDE286 /* MyProfileViewController.h */,
 				8BE5804119DDCCAE00DDE286 /* MyProfileViewController.m */,
+				8B85C4E71A6EA3C100190A00 /* ConfigurationViewController.h */,
+				8B85C4E81A6EA3C100190A00 /* ConfigurationViewController.m */,
+				8B85C4F21A6EC9DB00190A00 /* AppointmentsListViewController.h */,
+				8B85C4F31A6EC9DB00190A00 /* AppointmentsListViewController.m */,
+				8BA2E9E21A71453900A1EDD2 /* AvailableAppointmentsViewController.h */,
+				8BA2E9E31A71453900A1EDD2 /* AvailableAppointmentsViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -484,6 +513,8 @@
 				8B5A7CFC19F01E4B0094E426 /* NewPasswordView.m */,
 				8B93CA291A3B581D002DC144 /* InsuranceTypeView.h */,
 				8B93CA2A1A3B581D002DC144 /* InsuranceTypeView.m */,
+				8BA2E9E51A719FBC00A1EDD2 /* InviteView.h */,
+				8BA2E9E61A719FBC00A1EDD2 /* InviteView.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -558,6 +589,8 @@
 				8B5CDE9E1A39F7D700C8DCFB /* Insurance.m */,
 				8B93CA231A3B4820002DC144 /* InsuranceType.h */,
 				8B93CA241A3B4820002DC144 /* InsuranceType.m */,
+				8B85C4EA1A6EA86C00190A00 /* UserSettings.h */,
+				8B85C4EB1A6EA86C00190A00 /* UserSettings.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -723,6 +756,7 @@
 			files = (
 				8B5CC51019DC57BF0001B0D1 /* blueStar.png in Resources */,
 				8BAF892C19D9FB9D0037CEE4 /* Main.storyboard in Resources */,
+				8B85C4EE1A6EC74400190A00 /* AppointmentCell.xib in Resources */,
 				8BAF893119D9FB9D0037CEE4 /* LaunchScreen.xib in Resources */,
 				8B80589D19DAE4A10071A43D /* OpenSans-Regular.ttf in Resources */,
 				8BAF892E19D9FB9D0037CEE4 /* Images.xcassets in Resources */,
@@ -775,6 +809,7 @@
 				8B4174FC19E46A79007CC189 /* GalleryPicDetailViewController.m in Sources */,
 				8B5CC53519DC5A780001B0D1 /* SDImageCache.m in Sources */,
 				8B71A43D19E5B97D00420757 /* PicturesViewController.m in Sources */,
+				8B85C4F11A6EC89700190A00 /* AppointmentCell.m in Sources */,
 				8B5CC53419DC5A780001B0D1 /* NSData+ImageContentType.m in Sources */,
 				8B8058AD19DB236C0071A43D /* User.m in Sources */,
 				8B8312DA1A6012A100E1CBFC /* DoctorInsurancesViewController.m in Sources */,
@@ -785,10 +820,12 @@
 				8B5CC50019DC389E0001B0D1 /* Doctor.m in Sources */,
 				8B6788E219DF414C00D3AAA5 /* DoctorHomePageViewController.m in Sources */,
 				8B5CC54019DC5A780001B0D1 /* UIImageView+HighlightedWebCache.m in Sources */,
+				8B85C4F41A6EC9DB00190A00 /* AppointmentsListViewController.m in Sources */,
 				8B71A44319E5DA7C00420757 /* DeviceInfo.m in Sources */,
 				8BA0DE0819E70481007BD6AD /* DoctorEducationViewController.m in Sources */,
 				8B8058A919DB1B910071A43D /* MBProgressHUD.m in Sources */,
 				8B93CA281A3B4FB6002DC144 /* InsurancesTableViewController.m in Sources */,
+				8B85C4E91A6EA3C100190A00 /* ConfigurationViewController.m in Sources */,
 				8B5CC53819DC5A780001B0D1 /* SDWebImageDownloader.m in Sources */,
 				8B5A7D0019F063F00094E426 /* ChangePasswordViewController.m in Sources */,
 				8B66B67019E812E400E0C116 /* EducationCell.m in Sources */,
@@ -803,18 +840,21 @@
 				8B5CC53619DC5A780001B0D1 /* SDWebImageCompat.m in Sources */,
 				8B5CDE9F1A39F7D700C8DCFB /* Insurance.m in Sources */,
 				8B7C248319E2D3090063F8D6 /* DoctorInfoViewController.m in Sources */,
+				8BA2E9E71A719FBC00A1EDD2 /* InviteView.m in Sources */,
 				8BAF892919D9FB9D0037CEE4 /* LoginViewController.m in Sources */,
 				8B5CC53D19DC5A780001B0D1 /* UIImage+GIF.m in Sources */,
 				8B5CC53E19DC5A780001B0D1 /* UIImage+MultiFormat.m in Sources */,
 				8B8058A519DB104F0071A43D /* ServerCommunicator.m in Sources */,
 				8B5CDE931A39D24E00C8DCFB /* FormLists.m in Sources */,
 				8B7C248919E2FAF50063F8D6 /* SharedDoctor.m in Sources */,
+				8BA2E9E41A71453900A1EDD2 /* AvailableAppointmentsViewController.m in Sources */,
 				8B5CC53B19DC5A780001B0D1 /* SDWebImagePrefetcher.m in Sources */,
 				8B8058B019DB25E00071A43D /* HomeScreenViewController.m in Sources */,
 				8B93CA2B1A3B581D002DC144 /* InsuranceTypeView.m in Sources */,
 				8B5CDEA21A39FC6400C8DCFB /* PracticeListViewController.m in Sources */,
 				8B5CC53319DC5A780001B0D1 /* MKAnnotationView+WebCache.m in Sources */,
 				8B5CC54119DC5A780001B0D1 /* UIImageView+WebCache.m in Sources */,
+				8B85C4EC1A6EA86C00190A00 /* UserSettings.m in Sources */,
 				8B71A43A19E5B0E400420757 /* ConsultorioMapDetailView.m in Sources */,
 				8B93CA251A3B4820002DC144 /* InsuranceType.m in Sources */,
 				8B5CC54219DC5A780001B0D1 /* UIView+WebCacheOperation.m in Sources */,

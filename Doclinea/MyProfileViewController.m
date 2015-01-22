@@ -11,8 +11,10 @@
 #import "MBProgressHUD.h"
 #import "User.h"
 #import "ChangePasswordViewController.h"
+#import "ConfigurationViewController.h"
 
-@interface MyProfileViewController () <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, ServerCommunicatorDelegate>
+@interface MyProfileViewController () <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, ServerCommunicatorDelegate, ConfigurationViewControllerDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *birthdayTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextfield;
@@ -20,7 +22,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *addressTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *cityTextfield;
-@property (weak, nonatomic) IBOutlet UITextField *insuranceTextfield;
+@property (assign, nonatomic) NSTimeInterval birthdayTimeStamp;
+//@property (weak, nonatomic) IBOutlet UITextField *insuranceTextfield;
 @property (strong, nonatomic) User *user;
 
 //Arrays
@@ -34,7 +37,7 @@
 enum {
     genderPicker = 1,
     cityPicker,
-    insurancePicker
+    datePicker
 };
 
 #pragma mark - Lazy Instantiation
@@ -48,7 +51,7 @@ enum {
 
 -(NSArray *)citiesNames {
     if (!_citiesNames) {
-        _citiesNames = @[@"Bogotá", @"Medellín", @"Cali", @"Baranquilla", @"Pereira", @"Bucaramanga"];
+        _citiesNames = @[@"Bogotá", @"Medellín", @"Cali", @"Barranquilla", @"Pereira", @"Bucaramanga"];
     }
     return _citiesNames;
 }
@@ -59,9 +62,6 @@ enum {
     }
     return _genderNamesarray;
 }
-
-
-#pragma mark - Lazy Instantiation 
 
 -(User *)user {
     if (!_user) {
@@ -91,12 +91,13 @@ enum {
     self.phoneTextfield.text = self.user.phone;
     self.addressTextfield.text = self.user.address;
     self.cityTextfield.text = self.user.city;
-    self.insuranceTextfield.text = self.user.insurance;
+    //self.insuranceTextfield.text = self.user.insurance;
     if ([self.user.gender intValue] == 1) {
         self.genderTextfield.text = @"Masculino";
     } else {
         self.genderTextfield.text = @"Femenino";
     }
+    self.birthdayTextfield.text = [self getStringFromDate:self.user.birthday];
 }
 
 -(void)setupUI {
@@ -115,18 +116,25 @@ enum {
     self.cityTextfield.inputView = cityPickerView;
     
     //Setup the picker view for the insurance picker
-    UIPickerView *insurancePickerView = [[UIPickerView alloc] init];
+    /*UIPickerView *insurancePickerView = [[UIPickerView alloc] init];
     insurancePickerView.delegate = self;
     insurancePickerView.dataSource = self;
-    insurancePickerView.tag = insurancePicker;
-    self.insuranceTextfield.inputView = insurancePickerView;
+    insurancePickerView.tag = insurancePicker;*/
+    //self.insuranceTextfield.inputView = insurancePickerView;
+    //Setup the date picker view for the birthday textfield
     
+    UIDatePicker *datePickerView = [[UIDatePicker alloc] initWithFrame:CGRectMake(0.0, 50.0, 100.0, 50.0)];
+    datePickerView.tag = datePicker;
+    datePickerView.datePickerMode = UIDatePickerModeDate;
+    [datePickerView addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
+    self.birthdayTextfield.inputView = datePickerView;
+
     //Setup the toolbar for the picker view
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, 44.0)];
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissPickerView)];
     [toolbar setItems:@[doneButton] animated:NO];
     self.genderTextfield.inputAccessoryView = toolbar;
-    self.insuranceTextfield.inputAccessoryView = toolbar;
+    self.birthdayTextfield.inputAccessoryView = toolbar;
     self.cityTextfield.inputAccessoryView = toolbar;
 }
 
@@ -134,7 +142,8 @@ enum {
 
 -(void)dismissPickerView {
     [self.cityTextfield resignFirstResponder];
-    [self.insuranceTextfield resignFirstResponder];
+    [self.birthdayTextfield resignFirstResponder];
+    //[self.insuranceTextfield resignFirstResponder];
     [self.genderTextfield resignFirstResponder];
 }
 
@@ -160,8 +169,9 @@ enum {
     
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
     serverCommunicator.delegate = self;
-    NSString *userParameters = [NSString stringWithFormat:@"name=%@&lastname=%@&email=%@&gender=%lu&phone=%@&address=%@&insurance=%@&city=%@", self.nameTextfield.text, self.lastNameTextfield.text, self.emailTextfield.text, (unsigned long)gender, self.phoneTextfield.text, self.addressTextfield.text, self.insuranceTextfield.text, self.cityTextfield.text];
+    NSString *userParameters = [NSString stringWithFormat:@"name=%@&lastname=%@&email=%@&gender=%lu&phone=%@&address=%@&city=%@&birthday=%@", self.nameTextfield.text, self.lastNameTextfield.text, self.emailTextfield.text, (unsigned long)gender, self.phoneTextfield.text, self.addressTextfield.text, self.cityTextfield.text, @(self.birthdayTimeStamp)];
     [serverCommunicator callServerWithPOSTMethod:[NSString stringWithFormat:@"User/Update/%@", self.user.identifier] andParameter:userParameters httpMethod:@"POST"];
+    NSLog(@"Time stamp enviadoo: %f", self.birthdayTimeStamp);
 }
 
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
@@ -173,6 +183,7 @@ enum {
                 //User updated successfully
                 [self saveUpdatedUserWithDic:dictionary[@"response"]];
                 [[[UIAlertView alloc] initWithTitle:@"Usuario Actualizado" message:@"La información se ha actualizado correctamente." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+                [self.navigationController popViewControllerAnimated:YES];
             }
         } else {
             NSLog(@"Respuesta incorrecta del update user: %@", dictionary);
@@ -184,6 +195,37 @@ enum {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     NSLog(@"Errorrrrr: %@ %@", error, [error localizedDescription]);
     [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Hubo un error actualizando los datos. Revisa que estés conectado a internet e intenta de nuevo." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+}
+
+-(NSString *)getStringFromDate:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    
+    NSString *formattedDateString = [dateFormatter stringFromDate:date];
+    return formattedDateString;
+    //NSLog(@"fecha: %@", formattedDateString);
+    //NSLog(@"Birthday timestamp: %f", self.birthdayTimeStamp);
+    //self.birthdayTextfield.text = formattedDateString;
+}
+
+-(void)dateChanged:(UIDatePicker *)datePicker {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    NSDate *date = datePicker.date;
+    
+    /*NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [gregorian components: NSUIntegerMax fromDate: date];
+    [components setHour: 12];
+    NSDate *newDate = [gregorian dateFromComponents: components];*/
+    
+    self.birthdayTimeStamp = [date timeIntervalSince1970] * 1000;
+    NSString *formattedDateString = [dateFormatter stringFromDate:date];
+    //NSLog(@"fecha: %@", formattedDateString);
+    //NSLog(@"Birthday timestamp: %f", self.birthdayTimeStamp);
+    self.birthdayTextfield.text = formattedDateString;
 }
 
 #pragma mark - User Defaults 
@@ -206,8 +248,6 @@ enum {
         return [self.genderNamesarray count];
     } else if (pickerView.tag == cityPicker) {
         return [self.citiesNames count];
-    } else if (pickerView.tag == insurancePicker) {
-        return [self.insurancesNames count];
     } else return 0;
 }
 
@@ -216,8 +256,6 @@ enum {
         return self.genderNamesarray[row];
     } else if (pickerView.tag == cityPicker) {
         return self.citiesNames[row];
-    } else if (pickerView.tag == insurancePicker) {
-        return self.insurancesNames[row];
     } else return nil;
 }
 
@@ -228,8 +266,8 @@ enum {
         self.genderTextfield.text = self.genderNamesarray[row];
     } else if (pickerView.tag == cityPicker) {
         self.cityTextfield.text = self.citiesNames[row];
-    } else if (pickerView.tag == insurancePicker) {
-        self.insuranceTextfield.text = self.insurancesNames[row];
+    } else if (pickerView.tag == datePicker) {
+        //self.insuranceTextfield.text = self.insurancesNames[row];
     }
 }
 
@@ -248,7 +286,21 @@ enum {
             ChangePasswordViewController *changePassVC = (ChangePasswordViewController *)segue.destinationViewController;
             changePassVC.userType = @"user";
         }
+    } else if ([segue.identifier isEqualToString:@"ConfigurationSegue"]) {
+        if ([segue.destinationViewController isKindOfClass:[ConfigurationViewController class]]) {
+            ConfigurationViewController *configVC = (ConfigurationViewController *)segue.destinationViewController;
+            configVC.delegate = self;
+            configVC.user = self.user;
+        }
     }
+}
+
+#pragma mark - ConfigurationViewControllerDelegate
+
+-(void)userUpdatedInConfigVC {
+    NSLog(@"Recibí el delegateeeee");
+    self.user = nil;
+    [self setupUserInfo];
 }
 
 @end

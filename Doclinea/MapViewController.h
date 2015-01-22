@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MapViewController : UIViewController
-@property (strong, nonatomic) NSArray *placesArray;
+@property (weak, nonatomic) NSArray *placesArray;
 @end
