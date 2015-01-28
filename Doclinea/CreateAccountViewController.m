@@ -197,6 +197,8 @@ enum {
     NSLog(@"Timestamp enviadoooo: %f", self.birthdayTimeStamp);
 }
 
+#pragma mark - ServerCommunicatorDelegate
+
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if ([methodName isEqualToString:@"User/Create"]) {

@@ -61,6 +61,8 @@
     [serverCommunicator callServerWithPOSTMethod:[NSString stringWithFormat:@"User/Update/%@", self.user.identifier] andParameter:userParameters httpMethod:@"POST"];
 }
 
+#pragma mark - ServerCommunicatorDelegate
+
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if ([methodName isEqualToString:[NSString stringWithFormat:@"User/Update/%@", self.user.identifier]]) {

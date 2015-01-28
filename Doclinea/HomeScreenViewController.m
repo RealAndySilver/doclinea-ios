@@ -241,7 +241,7 @@ enum {
 }
 
 - (void)searchButtonPressed:(id)sender {
-    [self showInvitationView];
+    [self searchDoctorInServer];
 }
 
 #pragma mark - Navigation 
@@ -321,6 +321,8 @@ enum {
     [serverCommunicator callServerWithPOSTMethod:@"Doctor/GetByParams" andParameter:parameter httpMethod:@"POST"];
 }
 
+#pragma mark - ServerCommunicatorDelegate
+
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if ([methodName isEqualToString:@"Doctor/GetByParams"]) {
@@ -342,11 +344,14 @@ enum {
         if (dictionary) {
             if ([dictionary[@"status"] boolValue]) {
                 NSLog(@"Respuesta correcta del invite: %@", dictionary);
+                [[[UIAlertView alloc] initWithTitle:@"Éxito!" message:@"Se ha enviado la invitación!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
             } else {
                 NSLog(@"Resputa incorrecta del invite: %@", dictionary);
+                [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Hubo un error enviando la invitación, por favor intenta de nuevo" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil] show];
             }
         } else {
             NSLog(@"Resputa null del invite: %@", dictionary);
+            [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Hubo un error en el servidor al intentar enviar la invitación. Por favor intenta de nuevo" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
         }
     }
 }
@@ -490,7 +495,7 @@ enum {
 #pragma mark - Alerts 
 
 -(void)showInvitationView {
-    InviteView *inviteView = [[InviteView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2.0 - 140.0, self.view.bounds.size.height/2.0 - 140.0, 280.0, 280.0)];
+    InviteView *inviteView = [[InviteView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2.0 - 110.0, self.view.bounds.size.height/2.0 - 110.0, 220.0, 220.0)];
     inviteView.delegate = self;
     [inviteView showInView:self.view];
 }

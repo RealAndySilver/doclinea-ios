@@ -237,6 +237,7 @@
 
 -(void)goToCitasVC {
     AvailableAppointmentsViewController *availableAppointmentsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AvailableAppointments"];
+    availableAppointmentsVC.doctor = self.doctor;
     [self.navigationController pushViewController:availableAppointmentsVC animated:YES];
 }
 

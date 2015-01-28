@@ -58,7 +58,7 @@
         NSMutableString *tempPracticeList = [[NSMutableString alloc] init];
         if (_practiceList.count == 1) {
             tempPracticeList = _practiceList.firstObject;
-        } else if (_practiceList.count == 2) {
+        } else if (_practiceList.count > 1) {
             for (int i = 0; i < [_practiceList count]; i++) {
                 NSString *practice = _practiceList[i];
                 [tempPracticeList appendString:[NSString stringWithFormat:@"%@ / ", practice]];

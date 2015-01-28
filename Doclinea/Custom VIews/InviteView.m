@@ -22,13 +22,21 @@
         self.layer.cornerRadius = 10.0;
         self.backgroundColor = [UIColor whiteColor];
         
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 20.0, frame.size.width - 40.0, 60.0)];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 40.0, frame.size.width - 40.0, 60.0)];
         titleLabel.numberOfLines = 0;
         titleLabel.text = @"Invita a un amigo a usar Doclínea";
-        titleLabel.textColor = [UIColor lightGrayColor];
+        titleLabel.textColor = [UIColor darkGrayColor];
         titleLabel.font = [UIFont fontWithName:@"OpenSans" size:15.0];
         titleLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:titleLabel];
+        
+        UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(10.0, 10.0, 30.0, 30.0)];
+        [closeButton setTitle:@"X" forState:UIControlStateNormal];
+        [closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        closeButton.layer.cornerRadius = 4.0;
+        closeButton.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+        [closeButton addTarget:self action:@selector(closeButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:closeButton];
         
         self.emailTextfield = [[UITextField alloc] initWithFrame:CGRectMake(20.0, titleLabel.frame.origin.y + titleLabel.frame.size.height + 20.0, frame.size.width - 40.0, 30.0)];
         self.emailTextfield.borderStyle = UITextBorderStyleRoundedRect;
@@ -39,7 +47,7 @@
         UIButton *inviteButton = [[UIButton alloc] initWithFrame:CGRectMake(20.0, frame.size.height - 60.0, frame.size.width - 40.0, 40.0)];
         [inviteButton setTitle:@"Enviar" forState:UIControlStateNormal];
         [inviteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        inviteButton.backgroundColor = [UIColor lightGrayColor];
+        inviteButton.backgroundColor = [UIColor colorWithRed:34.0/255.0 green:159.0/255.0 blue:225.0/255.0 alpha:1.0];
         inviteButton.layer.cornerRadius = 4.0;
         [inviteButton addTarget:self action:@selector(inviteButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:inviteButton];
@@ -80,6 +88,10 @@
                          [self.opacityView removeFromSuperview];
                          [self removeFromSuperview];
                      }];
+}
+
+-(void)closeButtonPressed {
+    [self closeView];
 }
 
 -(void)inviteButtonPressed {

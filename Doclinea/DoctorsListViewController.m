@@ -58,7 +58,7 @@
     } else {
         cell.doctorAddressLabel.text = @"";
     }
-    cell.doctorProfesionLabel.text = doctor.parsedPracticeList;
+    cell.doctorProfesionLabel.text = doctor.practiceList[0];
     NSLog(@"PARSED PRACTICE LISTTT ***************** %@", doctor.parsedPracticeList);
     if ([doctor.gender intValue] == 1) {
         //Male

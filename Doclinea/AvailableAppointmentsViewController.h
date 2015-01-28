@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Doctor.h"
 
 @interface AvailableAppointmentsViewController : UIViewController
-
+@property (weak, nonatomic) Doctor *doctor;
 @end

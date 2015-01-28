@@ -11,6 +11,8 @@
 #import "MBProgressHUD.h"
 #import "Doctor.h"
 #import "DoctorsListViewController.h"
+#import "NSArray+NullReplacement.h"
+#import "NSDictionary+NullReplacement.h"
 
 @interface SearchByNameViewController () <ServerCommunicatorDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameTextfield;
@@ -63,13 +65,16 @@
     [serverCommunicator callServerWithPOSTMethod:@"Doctor/GetByParams" andParameter:parameters httpMethod:@"POST"];
 }
 
+#pragma mark - ServerCommunicatorDelegate
+
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if ([methodName isEqualToString:@"Doctor/GetByParams"]) {
         if (dictionary) {
             NSLog(@"Rspuesta correcta del get doctors: %@", dictionary);
             if ([dictionary[@"status"] boolValue]) {
-                [self saveDoctorsUsingArray:dictionary[@"response"]];
+                NSArray *arrayWithoutNulls = [dictionary[@"response"] arrayByReplacingNullsWithBlanks];
+                [self saveDoctorsUsingArray:arrayWithoutNulls];
             } else {
                 [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"No se encontró ningún doctor" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
             }

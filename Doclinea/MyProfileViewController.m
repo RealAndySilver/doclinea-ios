@@ -174,6 +174,8 @@ enum {
     NSLog(@"Time stamp enviadoo: %f", self.birthdayTimeStamp);
 }
 
+#pragma mark - ServerCommunicatorDelegate
+
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if ([methodName isEqualToString:[NSString stringWithFormat:@"User/Update/%@", self.user.identifier]]) {
@@ -196,6 +198,8 @@ enum {
     NSLog(@"Errorrrrr: %@ %@", error, [error localizedDescription]);
     [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Hubo un error actualizando los datos. Revisa que estés conectado a internet e intenta de nuevo." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 }
+
+#pragma mark - Custom Methods
 
 -(NSString *)getStringFromDate:(NSDate *)date {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
