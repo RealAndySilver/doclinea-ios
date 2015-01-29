@@ -159,6 +159,16 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
         </mutableArray>
         <mutableArray key="OpenSans-Semibold.ttf">
             <string>OpenSans-Semibold</string>
@@ -2460,7 +2470,203 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xrQ-WL-Dx3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3922" y="-3734"/>
+            <point key="canvasLocation" x="3978" y="-4068"/>
+        </scene>
+        <!--Appointment Confirmation View Controller-->
+        <scene sceneID="rPu-Lq-rri">
+            <objects>
+                <viewController storyboardIdentifier="AppointmentConfirmation" id="5c8-Ha-za3" customClass="AppointmentConfirmationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="miv-ex-IoS"/>
+                        <viewControllerLayoutGuide type="bottom" id="O55-hS-HxF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MhH-97-s4L">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirmación" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ia-gM-am9">
+                                <rect key="frame" x="199" y="28" width="202" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="202" id="IqS-jN-WLh"/>
+                                    <constraint firstAttribute="height" constant="21" id="XDC-wU-bnf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
+                                <color key="textColor" red="0.13333334029999999" green="0.62352943419999995" blue="0.88235300780000003" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAG-AN-rEQ">
+                                <rect key="frame" x="16" y="23" width="32" height="32"/>
+                                <color key="backgroundColor" red="0.13333334029999999" green="0.62352943419999995" blue="0.88235300780000003" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="rM1-vL-4tJ"/>
+                                    <constraint firstAttribute="height" constant="32" id="zCw-gn-Xoq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                <state key="normal" title="◀︎">
+                                    <color key="titleColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="5c8-Ha-za3" eventType="touchUpInside" id="06e-fA-5OQ"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iVp-RS-V3J">
+                                <rect key="frame" x="16" y="64" width="568" height="1"/>
+                                <color key="backgroundColor" red="0.90588241820000004" green="0.30980393290000002" blue="0.074509806930000005" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="hVl-wI-Znh"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="La cita es para mi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuV-7a-JUG">
+                                <rect key="frame" x="16" y="95" width="137" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="E8H-El-Vrx"/>
+                                    <constraint firstAttribute="width" constant="137" id="gOK-4K-CSJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre Paciente" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0F4-qf-Sty">
+                                <rect key="frame" x="16" y="137" width="133" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Ece-Ac-8sq"/>
+                                    <constraint firstAttribute="width" constant="133" id="pZq-Fx-gU6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eSf-ze-6zj">
+                                <rect key="frame" x="173" y="90" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchChanged:" destination="5c8-Ha-za3" eventType="valueChanged" id="ZCG-KA-jnT"/>
+                                </connections>
+                            </switch>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WeH-SK-wgo">
+                                <rect key="frame" x="16" y="159" width="568" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="iC0-V0-jLM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5c8-Ha-za3" id="RDN-1c-Uor"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Número Telefónico" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nq-GR-OCh">
+                                <rect key="frame" x="16" y="203" width="144" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="144" id="Zgz-UV-Agl"/>
+                                    <constraint firstAttribute="height" constant="21" id="uUx-Ee-1Xo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Razón de la cita" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abR-A0-wbb">
+                                <rect key="frame" x="16" y="269" width="123" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="XTM-fd-VI5"/>
+                                    <constraint firstAttribute="width" constant="123" id="zHn-Zq-eT2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5qC-lX-cSW">
+                                <rect key="frame" x="16" y="225" width="568" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8PB-0w-TsY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5c8-Ha-za3" id="eTd-K0-w33"/>
+                                </connections>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U6c-j5-e84">
+                                <rect key="frame" x="16" y="298" width="568" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="kX3-yn-OMa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5c8-Ha-za3" id="t2v-86-f7p"/>
+                                </connections>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Kp-Wr-Vr6">
+                                <rect key="frame" x="253" y="381" width="95" height="40"/>
+                                <color key="backgroundColor" red="0.13333334028720856" green="0.62352943420410156" blue="0.88235300779342651" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="95" id="BxJ-d8-0KF"/>
+                                    <constraint firstAttribute="height" constant="40" id="avm-fF-2QT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                <state key="normal" title="Pedir Cita">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="takeAppointmentButtonPressed:" destination="5c8-Ha-za3" eventType="touchUpInside" id="Xnt-wl-qDc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="iVp-RS-V3J" secondAttribute="trailing" constant="16" id="2JB-YG-YsT"/>
+                            <constraint firstItem="abR-A0-wbb" firstAttribute="top" secondItem="5qC-lX-cSW" secondAttribute="bottom" constant="14" id="79F-Bl-1XO"/>
+                            <constraint firstItem="QuV-7a-JUG" firstAttribute="top" secondItem="iVp-RS-V3J" secondAttribute="bottom" constant="30" id="E16-ct-1qg"/>
+                            <constraint firstItem="4Kp-Wr-Vr6" firstAttribute="top" secondItem="U6c-j5-e84" secondAttribute="bottom" constant="23" id="KJV-yF-dMJ"/>
+                            <constraint firstAttribute="centerX" secondItem="2ia-gM-am9" secondAttribute="centerX" id="LCb-cQ-7sK"/>
+                            <constraint firstItem="2ia-gM-am9" firstAttribute="top" secondItem="MhH-97-s4L" secondAttribute="topMargin" constant="28" id="MD9-rB-h7E"/>
+                            <constraint firstItem="0F4-qf-Sty" firstAttribute="top" secondItem="QuV-7a-JUG" secondAttribute="bottom" constant="21" id="MpX-hy-Lh0"/>
+                            <constraint firstItem="iVp-RS-V3J" firstAttribute="top" secondItem="MhH-97-s4L" secondAttribute="top" constant="64" id="Rmo-zX-8VA"/>
+                            <constraint firstAttribute="trailing" secondItem="U6c-j5-e84" secondAttribute="trailing" constant="16" id="T4R-QA-kUM"/>
+                            <constraint firstItem="5qC-lX-cSW" firstAttribute="top" secondItem="9nq-GR-OCh" secondAttribute="bottom" constant="1" id="WWB-pz-mfa"/>
+                            <constraint firstItem="5qC-lX-cSW" firstAttribute="top" secondItem="9nq-GR-OCh" secondAttribute="bottom" constant="1" id="Wyl-Up-VWJ"/>
+                            <constraint firstItem="9nq-GR-OCh" firstAttribute="top" secondItem="WeH-SK-wgo" secondAttribute="bottom" constant="14" id="X5d-tB-dh2"/>
+                            <constraint firstItem="iVp-RS-V3J" firstAttribute="leading" secondItem="MhH-97-s4L" secondAttribute="leading" constant="16" id="Xel-Ww-vuf"/>
+                            <constraint firstItem="U6c-j5-e84" firstAttribute="leading" secondItem="MhH-97-s4L" secondAttribute="leading" constant="16" id="Z7y-Xn-FII"/>
+                            <constraint firstItem="fAG-AN-rEQ" firstAttribute="top" secondItem="miv-ex-IoS" secondAttribute="bottom" constant="3" id="Z9n-GO-DHN"/>
+                            <constraint firstItem="5qC-lX-cSW" firstAttribute="leading" secondItem="MhH-97-s4L" secondAttribute="leading" constant="16" id="ac9-fQ-b7l"/>
+                            <constraint firstItem="fAG-AN-rEQ" firstAttribute="leading" secondItem="MhH-97-s4L" secondAttribute="leading" constant="16" id="brT-si-7oY"/>
+                            <constraint firstItem="U6c-j5-e84" firstAttribute="top" secondItem="abR-A0-wbb" secondAttribute="bottom" constant="8" id="dsq-4U-MrU"/>
+                            <constraint firstItem="9nq-GR-OCh" firstAttribute="leading" secondItem="MhH-97-s4L" secondAttribute="leading" constant="16" id="faD-6p-Hce"/>
+                            <constraint firstAttribute="trailing" secondItem="5qC-lX-cSW" secondAttribute="trailing" constant="16" id="gCb-gc-dKL"/>
+                            <constraint firstItem="eSf-ze-6zj" firstAttribute="top" secondItem="iVp-RS-V3J" secondAttribute="bottom" constant="25" id="gfm-Hb-tTO"/>
+                            <constraint firstItem="abR-A0-wbb" firstAttribute="leading" secondItem="MhH-97-s4L" secondAttribute="leading" constant="16" id="jpn-ED-U7c"/>
+                            <constraint firstItem="eSf-ze-6zj" firstAttribute="leading" secondItem="QuV-7a-JUG" secondAttribute="trailing" constant="20" id="mPs-Pa-96H"/>
+                            <constraint firstItem="QuV-7a-JUG" firstAttribute="leading" secondItem="MhH-97-s4L" secondAttribute="leading" constant="16" id="rh8-yg-87H"/>
+                            <constraint firstItem="WeH-SK-wgo" firstAttribute="top" secondItem="0F4-qf-Sty" secondAttribute="bottom" constant="1" id="tWU-bR-WPh"/>
+                            <constraint firstItem="WeH-SK-wgo" firstAttribute="trailing" secondItem="MhH-97-s4L" secondAttribute="trailingMargin" id="tlx-zU-s1O"/>
+                            <constraint firstItem="WeH-SK-wgo" firstAttribute="leading" secondItem="MhH-97-s4L" secondAttribute="leadingMargin" id="uOP-WA-zVn"/>
+                            <constraint firstAttribute="centerX" secondItem="4Kp-Wr-Vr6" secondAttribute="centerX" id="v4E-Hb-ZJg"/>
+                            <constraint firstItem="0F4-qf-Sty" firstAttribute="leading" secondItem="MhH-97-s4L" secondAttribute="leading" constant="16" id="w2K-SV-SFE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="isForMeSwitch" destination="eSf-ze-6zj" id="Tby-ew-wtu"/>
+                        <outlet property="pacientNameTextfield" destination="WeH-SK-wgo" id="Ct7-zp-QNs"/>
+                        <outlet property="pacientNumberTextfield" destination="5qC-lX-cSW" id="zpT-mE-0cU"/>
+                        <outlet property="reasonTextView" destination="U6c-j5-e84" id="ofv-6h-pjR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sg3-Ny-YVn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4641" y="-4068"/>
         </scene>
         <!--Doctor Details View Controller-->
         <scene sceneID="kLh-V3-aYz">

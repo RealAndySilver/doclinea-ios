@@ -48,6 +48,7 @@
 		8B5CDEA21A39FC6400C8DCFB /* PracticeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CDEA11A39FC6400C8DCFB /* PracticeListViewController.m */; };
 		8B5CDEA51A3A031C00C8DCFB /* PracticeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CDEA41A3A031C00C8DCFB /* PracticeListCell.m */; };
 		8B5CDEA71A3A085500C8DCFB /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5CDEA61A3A085500C8DCFB /* Checkmark.png */; };
+		8B6560971A7AC8400074B62C /* AppointmentConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6560961A7AC8400074B62C /* AppointmentConfirmationViewController.m */; };
 		8B66B67019E812E400E0C116 /* EducationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B66B66F19E812E400E0C116 /* EducationCell.m */; };
 		8B66B67319E8336000E0C116 /* EducationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B66B67219E8336000E0C116 /* EducationDetailsViewController.m */; };
 		8B6788CC19DEE67200D3AAA5 /* localidades.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B6788CA19DEE67200D3AAA5 /* localidades.json */; };
@@ -199,6 +200,8 @@
 		8B5CDEA31A3A031C00C8DCFB /* PracticeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PracticeListCell.h; path = "Custom Cells/PracticeListCell.h"; sourceTree = "<group>"; };
 		8B5CDEA41A3A031C00C8DCFB /* PracticeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PracticeListCell.m; path = "Custom Cells/PracticeListCell.m"; sourceTree = "<group>"; };
 		8B5CDEA61A3A085500C8DCFB /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Checkmark.png; path = Resources/Checkmark.png; sourceTree = "<group>"; };
+		8B6560951A7AC8400074B62C /* AppointmentConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentConfirmationViewController.h; sourceTree = "<group>"; };
+		8B6560961A7AC8400074B62C /* AppointmentConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentConfirmationViewController.m; sourceTree = "<group>"; };
 		8B66B66E19E812E400E0C116 /* EducationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EducationCell.h; path = "Custom Cells/EducationCell.h"; sourceTree = "<group>"; };
 		8B66B66F19E812E400E0C116 /* EducationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EducationCell.m; path = "Custom Cells/EducationCell.m"; sourceTree = "<group>"; };
 		8B66B67119E8336000E0C116 /* EducationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationDetailsViewController.h; sourceTree = "<group>"; };
@@ -473,6 +476,8 @@
 				8B85C4F31A6EC9DB00190A00 /* AppointmentsListViewController.m */,
 				8BA2E9E21A71453900A1EDD2 /* AvailableAppointmentsViewController.h */,
 				8BA2E9E31A71453900A1EDD2 /* AvailableAppointmentsViewController.m */,
+				8B6560951A7AC8400074B62C /* AppointmentConfirmationViewController.h */,
+				8B6560961A7AC8400074B62C /* AppointmentConfirmationViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -803,6 +808,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B5CC50719DC42550001B0D1 /* DoctorCell.m in Sources */,
+				8B6560971A7AC8400074B62C /* AppointmentConfirmationViewController.m in Sources */,
 				8B8058A119DAEB9F0071A43D /* CreateAccountViewController.m in Sources */,
 				8B5CC54519DC60E70001B0D1 /* DoctorDetailsViewController.m in Sources */,
 				8B6788D019DEE75600D3AAA5 /* Localidad.m in Sources */,

@@ -13,8 +13,9 @@
 #import "Appointment.h"
 #import "AppointmentsParser.h"
 #import "AvailableAppointmentCell.h"
+#import "AppointmentConfirmationViewController.h"
 
-@interface AvailableAppointmentsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, ServerCommunicatorDelegate>
+@interface AvailableAppointmentsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, ServerCommunicatorDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet MyTextfield *monthTextfield;
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -120,10 +121,26 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     AvailableAppointmentCell *cell = (AvailableAppointmentCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"AvailableAppointmentCell" forIndexPath:indexPath];
     
-    Appointment *appointment = self.parsedAppointmentsArray[self.currentMonth][@"daysWithAppointments"][self.currentDay][@"appointments"][indexPath.row];
+    Appointment *appointment = self.parsedAppointmentsArray[self.currentMonth][@"daysWithAppointments"][self.currentDay][@"appointments"][indexPath.item];
     NSLog(@"HOurrrrr: %@", appointment.startDate);
     cell.appointmentHourLabel.text = appointment.startHour;
     return cell;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    Appointment *selectedAppointment = self.parsedAppointmentsArray[self.currentMonth][@"daysWithAppointments"][self.currentDay][@"appointments"][indexPath.item];
+    NSLog(@"Selected appintment: %@", selectedAppointment.info);
+    [self goToConfirmationVCWithAppointment:selectedAppointment];
+}
+
+#pragma mark - Navigation 
+
+-(void)goToConfirmationVCWithAppointment:(Appointment *)appointment {
+    AppointmentConfirmationViewController *confirmationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AppointmentConfirmation"];
+    confirmationVC.appointment = appointment;
+    [self.navigationController pushViewController:confirmationVC animated:YES];
 }
 
 #pragma mark - Server Stuff
@@ -132,18 +149,22 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
     serverCommunicator.delegate = self;
-    [serverCommunicator callServerWithGETMethod:[NSString stringWithFormat:@"Appointment/GetAllForDoctor/%@", self.doctor.identifier] andParameter:@""];
+    [serverCommunicator callServerWithGETMethod:[NSString stringWithFormat:@"Appointment/GetAvailableForDoctor/%@", self.doctor.identifier] andParameter:@""];
 }
 
 #pragma mark - ServerCommunicatorDelegate
 
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    if ([methodName isEqualToString:[NSString stringWithFormat:@"Appointment/GetAllForDoctor/%@", self.doctor.identifier]]) {
+    if ([methodName isEqualToString:[NSString stringWithFormat:@"Appointment/GetAvailableForDoctor/%@", self.doctor.identifier]]) {
         if (dictionary) {
             if ([dictionary[@"status"] boolValue]) {
                 NSLog(@"Respuesta correcta del get appointments: %@", dictionary);
-                [self parseAppointmentsFromArray:dictionary[@"response"]];
+                if ([dictionary[@"response"] count] > 0 && [dictionary[@"response"] isKindOfClass:[NSArray class]]) {
+                    [self parseAppointmentsFromArray:dictionary[@"response"]];
+                } else {
+                    [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"El doctor no tiene citas disponibles en este momento." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+                }
             } else {
                 NSLog(@"Respuesta incorrecta del get appointments: %@", dictionary);
             }
@@ -204,6 +225,13 @@
     self.monthTextfield.text = [NSString stringWithFormat:@"Mes: %@", self.parsedAppointmentsArray[self.currentMonth][@"month"]];
     [self updateUI];
     [self.collectionView reloadData];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    //No appointments alert
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
