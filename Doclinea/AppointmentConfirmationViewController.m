@@ -124,8 +124,6 @@
         pacientIsUser = NO;
     }
     
-    
-    
     NSString *parameters = [NSString stringWithFormat:@"user_id=%@&user_name=%@&patient_phone=%@&patient_name=%@&patient_is_user=%@&status=%@&reason=%@", self.user.identifier, self.user.name, self.pacientNumberTextfield.text, pacientName, @(pacientIsUser), @"taken", self.reasonTextView.text];
     [serverCommunicator callServerWithPOSTMethod:[NSString stringWithFormat:@"Appointment/Take/%@", self.appointment.identifier] andParameter:parameters httpMethod:@"POST"];
     NSLog(@"PARAMETROOOO: %@", parameters);

@@ -21,6 +21,7 @@
 #import "InsurancesTableViewController.h"
 #import "InviteView.h"
 #import "User.h"
+#import "AppointmentsListViewController.h"
 
 @interface HomeScreenViewController () <UIPickerViewDataSource, UIPickerViewDelegate, ServerCommunicatorDelegate, UITextFieldDelegate, InviteViewDelegate>
 @property (strong, nonatomic) UIButton *searchButton;
@@ -505,6 +506,17 @@ enum {
 -(void)inviteButtonPressedWithEmail:(NSString *)email {
     NSLog(@"Me llego el email: %@", email);
     [self sendInvitationWithEmail:email];
+}
+
+#pragma mark - Segues 
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"MyAppointmentsSegue"]) {
+        if ([segue.destinationViewController isKindOfClass:[AppointmentsListViewController class]]) {
+            AppointmentsListViewController *appointmentsListVC = (AppointmentsListViewController *)segue.destinationViewController;
+            appointmentsListVC.user = self.user;
+        }
+    }
 }
 
 @end

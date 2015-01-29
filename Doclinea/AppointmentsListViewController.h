@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface AppointmentsListViewController : UIViewController
-
+@property (weak, nonatomic) User *user;
 @end
