@@ -11,9 +11,10 @@
 #import "MBProgressHUD.h"
 #import "User.h"
 #import "ChangePasswordViewController.h"
-#import "ConfigurationViewController.h"
+//#import "ConfigurationViewController.h"
+#import "MoreOptionsViewController.h"
 
-@interface MyProfileViewController () <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, ServerCommunicatorDelegate, ConfigurationViewControllerDelegate>
+@interface MyProfileViewController () <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, ServerCommunicatorDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *birthdayTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTextfield;
@@ -79,6 +80,7 @@ enum {
     [super viewDidLoad];
     [self setupUserInfo];
     [self setupUI];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userUpdatedReceived) name:@"UserUpdatedInConfig" object:nil];
 }
 
 #pragma mark - Custom Initialization Stuff
@@ -285,7 +287,7 @@ enum {
 #pragma mark - Navigation 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ChangePasswordSegue"]) {
+    /*if ([segue.identifier isEqualToString:@"ChangePasswordSegue"]) {
         if ([segue.destinationViewController isKindOfClass:[ChangePasswordViewController class]]) {
             ChangePasswordViewController *changePassVC = (ChangePasswordViewController *)segue.destinationViewController;
             changePassVC.userType = @"user";
@@ -296,15 +298,29 @@ enum {
             configVC.delegate = self;
             configVC.user = self.user;
         }
+    }*/
+    if ([segue.identifier isEqualToString:@"MoreOptionsSegue"]) {
+        if ([segue.destinationViewController isKindOfClass:[MoreOptionsViewController class]]) {
+            MoreOptionsViewController *optionsVC = (MoreOptionsViewController *)segue.destinationViewController;
+            optionsVC.user = self.user;
+        }
     }
 }
 
-#pragma mark - ConfigurationViewControllerDelegate
+#pragma mark - Notifications 
+
+-(void)userUpdatedReceived {
+    NSLog(@"Me llegooooooooooo");
+    self.user = nil;
+    [self setupUserInfo];
+}
+
+/*#pragma mark - ConfigurationViewControllerDelegate
 
 -(void)userUpdatedInConfigVC {
     NSLog(@"Recibí el delegateeeee");
     self.user = nil;
     [self setupUserInfo];
-}
+}*/
 
 @end

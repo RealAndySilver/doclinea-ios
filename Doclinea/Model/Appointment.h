@@ -16,10 +16,12 @@
 @property (strong, nonatomic) NSDate *startDate;
 @property (strong, nonatomic) NSDate *endDate;
 @property (strong, nonatomic) NSString *doctorID;
+@property (strong, nonatomic) NSString *doctorName;
 @property (strong, nonatomic) NSArray *locations;
 @property (strong, nonatomic) NSString *status;
 @property (strong, nonatomic) NSString *info;
 @property (strong, nonatomic) NSString *startHour;
+@property (strong, nonatomic) NSString *reason;
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

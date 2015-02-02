@@ -91,6 +91,8 @@
 		8B93CA251A3B4820002DC144 /* InsuranceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B93CA241A3B4820002DC144 /* InsuranceType.m */; };
 		8B93CA281A3B4FB6002DC144 /* InsurancesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B93CA271A3B4FB6002DC144 /* InsurancesTableViewController.m */; };
 		8B93CA2B1A3B581D002DC144 /* InsuranceTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B93CA2A1A3B581D002DC144 /* InsuranceTypeView.m */; };
+		8B9928911A7FAE1100FC2421 /* MoreOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9928901A7FAE1100FC2421 /* MoreOptionsViewController.m */; };
+		8B9928941A7FC77C00FC2421 /* FavouriteDoctorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9928931A7FC77C00FC2421 /* FavouriteDoctorsViewController.m */; };
 		8BA0DE0519E6DB93007BD6AD /* MyTextfield.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0DE0419E6DB93007BD6AD /* MyTextfield.m */; };
 		8BA0DE0819E70481007BD6AD /* DoctorEducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0DE0719E70481007BD6AD /* DoctorEducationViewController.m */; };
 		8BA0DE0B19E723A0007BD6AD /* Studie.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0DE0A19E723A0007BD6AD /* Studie.m */; };
@@ -281,6 +283,10 @@
 		8B93CA271A3B4FB6002DC144 /* InsurancesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsurancesTableViewController.m; sourceTree = "<group>"; };
 		8B93CA291A3B581D002DC144 /* InsuranceTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsuranceTypeView.h; path = "Custom VIews/InsuranceTypeView.h"; sourceTree = "<group>"; };
 		8B93CA2A1A3B581D002DC144 /* InsuranceTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsuranceTypeView.m; path = "Custom VIews/InsuranceTypeView.m"; sourceTree = "<group>"; };
+		8B99288F1A7FAE1100FC2421 /* MoreOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreOptionsViewController.h; sourceTree = "<group>"; };
+		8B9928901A7FAE1100FC2421 /* MoreOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreOptionsViewController.m; sourceTree = "<group>"; };
+		8B9928921A7FC77C00FC2421 /* FavouriteDoctorsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouriteDoctorsViewController.h; sourceTree = "<group>"; };
+		8B9928931A7FC77C00FC2421 /* FavouriteDoctorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteDoctorsViewController.m; sourceTree = "<group>"; };
 		8BA0DE0319E6DB93007BD6AD /* MyTextfield.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTextfield.h; path = "UI Classes/MyTextfield.h"; sourceTree = "<group>"; };
 		8BA0DE0419E6DB93007BD6AD /* MyTextfield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTextfield.m; path = "UI Classes/MyTextfield.m"; sourceTree = "<group>"; };
 		8BA0DE0619E70481007BD6AD /* DoctorEducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorEducationViewController.h; sourceTree = "<group>"; };
@@ -470,8 +476,12 @@
 				8B404BA219DDB92700E2ABEB /* MapViewController.m */,
 				8BE5804019DDCCAE00DDE286 /* MyProfileViewController.h */,
 				8BE5804119DDCCAE00DDE286 /* MyProfileViewController.m */,
+				8B99288F1A7FAE1100FC2421 /* MoreOptionsViewController.h */,
+				8B9928901A7FAE1100FC2421 /* MoreOptionsViewController.m */,
 				8B85C4E71A6EA3C100190A00 /* ConfigurationViewController.h */,
 				8B85C4E81A6EA3C100190A00 /* ConfigurationViewController.m */,
+				8B9928921A7FC77C00FC2421 /* FavouriteDoctorsViewController.h */,
+				8B9928931A7FC77C00FC2421 /* FavouriteDoctorsViewController.m */,
 				8B85C4F21A6EC9DB00190A00 /* AppointmentsListViewController.h */,
 				8B85C4F31A6EC9DB00190A00 /* AppointmentsListViewController.m */,
 				8BA2E9E21A71453900A1EDD2 /* AvailableAppointmentsViewController.h */,
@@ -841,6 +851,7 @@
 				8B5CC53419DC5A780001B0D1 /* NSData+ImageContentType.m in Sources */,
 				8B8058AD19DB236C0071A43D /* User.m in Sources */,
 				8B8312DA1A6012A100E1CBFC /* DoctorInsurancesViewController.m in Sources */,
+				8B9928911A7FAE1100FC2421 /* MoreOptionsViewController.m in Sources */,
 				8B6788DF19DF0EE100D3AAA5 /* CreateDoctorViewController.m in Sources */,
 				8B4174F219E451DA007CC189 /* DoctorGalleryViewController.m in Sources */,
 				8B5CC53719DC5A780001B0D1 /* SDWebImageDecoder.m in Sources */,
@@ -850,6 +861,7 @@
 				8B5CC54019DC5A780001B0D1 /* UIImageView+HighlightedWebCache.m in Sources */,
 				8B85C4F41A6EC9DB00190A00 /* AppointmentsListViewController.m in Sources */,
 				8B71A44319E5DA7C00420757 /* DeviceInfo.m in Sources */,
+				8B9928941A7FC77C00FC2421 /* FavouriteDoctorsViewController.m in Sources */,
 				8BA0DE0819E70481007BD6AD /* DoctorEducationViewController.m in Sources */,
 				8B8058A919DB1B910071A43D /* MBProgressHUD.m in Sources */,
 				8B93CA281A3B4FB6002DC144 /* InsurancesTableViewController.m in Sources */,

@@ -15,6 +15,8 @@
         _identifier = dictionary[@"_id"];
         _appointmentLength = dictionary[@"appointment_length"];
         _doctorID = dictionary[@"doctor_id"];
+        _doctorName = dictionary[@"doctor_name"];
+        _reason = dictionary[@"reason"];
         
         //Parse locations
         if ([dictionary[@"location"] isKindOfClass:[NSArray class]] && [dictionary[@"location"] count] > 0) {

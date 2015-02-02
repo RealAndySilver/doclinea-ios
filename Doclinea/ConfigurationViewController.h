@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
-@protocol ConfigurationViewControllerDelegate <NSObject>
+/*@protocol ConfigurationViewControllerDelegate <NSObject>
 @optional
 -(void)userUpdatedInConfigVC;
-@end
+@end*/
 
 @interface ConfigurationViewController : UIViewController
 @property (weak, nonatomic) User *user;
-@property (strong, nonatomic) id <ConfigurationViewControllerDelegate> delegate;
+//@property (strong, nonatomic) id <ConfigurationViewControllerDelegate> delegate;
 @end

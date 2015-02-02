@@ -70,9 +70,10 @@
             if ([dictionary[@"status"] boolValue]) {
                 NSLog(@"Actualización exitosa: %@", dictionary);
                 [self saveUpdatedUserWithDic:dictionary[@"response"]];
-                [self.delegate userUpdatedInConfigVC];
+                //[self.delegate userUpdatedInConfigVC];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"UserUpdatedInConfig" object:nil];
                 [[[UIAlertView alloc] initWithTitle:@"Éxito!" message:@"Configuración actualizada correctamente." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
-                [self.navigationController popViewControllerAnimated:YES];
+                [self.navigationController popToRootViewControllerAnimated:YES];
                 
             } else {
                 NSLog(@"No se pudo actualizar, algo pasó: %@", dictionary);

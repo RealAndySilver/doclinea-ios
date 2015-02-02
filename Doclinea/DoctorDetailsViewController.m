@@ -13,8 +13,11 @@
 #import "RatingView.h"
 #import "PicturesViewController.h"
 #import "AvailableAppointmentsViewController.h"
+#import "ServerCommunicator.h"
+#import "User.h"
+#import "MBProgressHUD.h"
 
-@interface DoctorDetailsViewController ()
+@interface DoctorDetailsViewController () <UIAlertViewDelegate, ServerCommunicatorDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UILabel *patientGenderLAbel;
 @property (strong, nonatomic) UIImageView *doctorImageView;
@@ -23,11 +26,26 @@
 @property (strong, nonatomic) UILabel *doctorAddressLabel;
 @property (strong, nonatomic) RatingView *ratingView;
 @property (strong, nonatomic) UILabel *educationLabel;
+@property (strong, nonatomic) User *user;
 @end
 
 @implementation DoctorDetailsViewController {
     CGRect screenBounds;
 }
+
+#pragma mark - Lazy Instantiation 
+
+-(User *)user {
+    if (!_user) {
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]) {
+            NSData *userEncodedData = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+            _user = [NSKeyedUnarchiver unarchiveObjectWithData:userEncodedData];
+        }
+    }
+    return _user;
+}
+
+#pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -224,6 +242,9 @@
 }
 
 #pragma mark - Actions 
+- (IBAction)favDoctorButtonPressed:(id)sender {
+    [[[UIAlertView alloc] initWithTitle:nil message:@"¿Deseas agregar este doctor a tus favoritos?" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"Agregar", nil] show];
+}
 
 -(void)imagesButtonPressed {
     [self goToDoctorImagesVC];
@@ -253,6 +274,51 @@
             MapViewController *mapVC = (MapViewController *)segue.destinationViewController;
             mapVC.placesArray = self.doctor.locationList;
         }
+    }
+}
+
+#pragma mark - Server Stuff 
+
+-(void)addDocToFavInServer {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
+    serverCommunicator.delegate = self;
+    [serverCommunicator callServerWithPOSTMethod:[NSString stringWithFormat:@"User/Fav/%@", self.user.identifier] andParameter:[NSString stringWithFormat:@"doctor_id=%@", self.doctor.identifier] httpMethod:@"POST"];
+}
+
+#pragma mark - ServerCommunicatorDelegate
+
+-(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    if ([methodName isEqualToString:[NSString stringWithFormat:@"User/Fav/%@", self.user.identifier]]) {
+        if (dictionary) {
+            if ([dictionary[@"status"] boolValue]) {
+                NSLog(@"Resputa correcta del doctor fav: %@", dictionary);
+                [[[UIAlertView alloc] initWithTitle:@"Éxito!" message:@"Se ha agregado el doctor a tus favoritos." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+            } else {
+                NSLog(@"Respuesta incorrecta del doctor fav: %@", dictionary);
+                [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"No fue posible agregar el doctor a tus favoritos" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+            }
+            
+        } else {
+            NSLog(@"Respuesta null del doctor fav: %@", dictionary);
+            [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Ocurrió un error en el servidor al intentar agregar el doctor a tus favoritos. Por favor intenta de nuevo en un momento" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+        }
+    }
+}
+
+-(void)serverError:(NSError *)error {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Hay un error en el servidor, por favor intenta de nuevo en un momento." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    //Add to fav alert
+    if (buttonIndex == 1) {
+        //Add doctor
+        [self addDocToFavInServer];
     }
 }
 

@@ -14,4 +14,7 @@
     
 }
 
+- (IBAction)cancelAppointmentCell:(id)sender {
+    [self.delegate cancelAppointmentPressedInCell:self];
+}
 @end
