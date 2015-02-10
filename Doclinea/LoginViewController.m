@@ -26,7 +26,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //[self setupUI];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -43,11 +42,6 @@
 }
 
 #pragma mark - Custom Initialization Stuff 
-
-/*-(void)setupUI {
-    self.emailTextfield.delegate = self;
-    self.passwordTextfield.delegate = self;
-}*/
 
 -(void)setupNotifications {
     //Add ourselfs as an observer of the keyboard notifications,

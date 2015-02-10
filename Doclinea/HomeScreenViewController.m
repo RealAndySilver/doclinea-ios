@@ -214,8 +214,6 @@ enum {
 
 #pragma mark - Actions 
 - (IBAction)inviteButtonPressed:(id)sender {
-    //User/Invite
-    //email, message, destination_email
     [self showInvitationView];
 }
 
@@ -326,6 +324,9 @@ enum {
 
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
+    ///////////////////////////////////////////////////////////////////////////////////
+    //Handle GetByParams response
     if ([methodName isEqualToString:@"Doctor/GetByParams"]) {
         if (dictionary) {
             NSLog(@"Respuesta valida del get doctors: %@", dictionary);
@@ -341,6 +342,9 @@ enum {
             NSLog(@"Rspuesta invalida del get doctors: %@", dictionary);
             [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Hubo un problema realizando la búsqueda. Por favor intenta de nuevo" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
         }
+        
+    ///////////////////////////////////////////////////////////////////
+    //Invite Response
     } else if ([methodName isEqualToString:@"User/Invite"]) {
         if (dictionary) {
             if ([dictionary[@"status"] boolValue]) {

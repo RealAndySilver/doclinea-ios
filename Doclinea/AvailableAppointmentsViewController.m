@@ -140,6 +140,7 @@
 -(void)goToConfirmationVCWithAppointment:(Appointment *)appointment {
     AppointmentConfirmationViewController *confirmationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AppointmentConfirmation"];
     confirmationVC.appointment = appointment;
+    confirmationVC.doctor = self.doctor;
     [self.navigationController pushViewController:confirmationVC animated:YES];
 }
 
@@ -222,6 +223,7 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     self.currentMonth = row;
+    self.currentDay = 0;
     self.monthTextfield.text = [NSString stringWithFormat:@"Mes: %@", self.parsedAppointmentsArray[self.currentMonth][@"month"]];
     [self updateUI];
     [self.collectionView reloadData];

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Appointment.h"
+#import "Doctor.h"
 
 @interface AppointmentConfirmationViewController : UIViewController
 @property (weak, nonatomic) Appointment *appointment;
+@property (weak, nonatomic) Doctor *doctor;
 @end

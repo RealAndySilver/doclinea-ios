@@ -10,12 +10,15 @@
 #import "ServerCommunicator.h"
 #import "User.h"
 #import "MBProgressHUD.h"
+#import "InsuranceConfirmationViewController.h"
 
-@interface AppointmentConfirmationViewController() <UITextFieldDelegate, ServerCommunicatorDelegate, UIAlertViewDelegate>
+@interface AppointmentConfirmationViewController() <UITextFieldDelegate, ServerCommunicatorDelegate, UIAlertViewDelegate, InsuranceConfirmationDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *insuranceTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *pacientNameTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *pacientNumberTextfield;
 @property (weak, nonatomic) IBOutlet UITextView *reasonTextView;
 @property (weak, nonatomic) IBOutlet UISwitch *isForMeSwitch;
+@property (assign, nonatomic) NSUInteger selectedInsuranceIndex;
 @property (strong, nonatomic) User *user;
 @end
 
@@ -76,6 +79,7 @@
     BOOL patientNameIsCorrect = NO;
     BOOL patientNumberIsCorrect = NO;
     BOOL appointmentReasonIsCorrect = NO;
+    BOOL insuranceIsCorrect = NO;
     
     if (self.isForMeSwitch.isOn) {
         patientNameIsCorrect = YES;
@@ -97,7 +101,13 @@
         appointmentReasonIsCorrect = NO;
     }
     
-    if (patientNumberIsCorrect && patientNameIsCorrect && appointmentReasonIsCorrect) {
+    if ([self.insuranceTextfield.text length] > 0) {
+        insuranceIsCorrect = YES;
+    } else {
+        insuranceIsCorrect = NO;
+    }
+    
+    if (patientNumberIsCorrect && patientNameIsCorrect && appointmentReasonIsCorrect && insuranceIsCorrect) {
         return YES;
     } else {
         return NO;
@@ -105,8 +115,6 @@
 }
 
 #pragma mark - ServerCommunicatorDelegate
-//Appointment/Take/id del appointment ->  user_id userName Paien phone patientn name patien_is_user status = taken reason
-//Appointment/GetForUser/user_id
 
 -(void)takeAppointmentInServer {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -124,7 +132,17 @@
         pacientIsUser = NO;
     }
     
-    NSString *parameters = [NSString stringWithFormat:@"user_id=%@&user_name=%@&patient_phone=%@&patient_name=%@&patient_is_user=%@&status=%@&reason=%@", self.user.identifier, self.user.name, self.pacientNumberTextfield.text, pacientName, @(pacientIsUser), @"taken", self.reasonTextView.text];
+    NSDictionary *selectedInsuranceDic;
+    if (self.selectedInsuranceIndex == 0) {
+        //User selected "Pagaré cita particular"
+        selectedInsuranceDic = @{@"insurance" : @"", @"insurance_type" : @""};
+    } else {
+        //User selected insurance
+        selectedInsuranceDic = @{@"insurance" : self.doctor.insuranceList[self.selectedInsuranceIndex - 1][@"insurance"], @"insurance_type" : self.doctor.insuranceList[self.selectedInsuranceIndex - 1][@"insurance_type"]};
+    }
+    NSLog(@"Selecte insurance: %@", selectedInsuranceDic);
+    
+    NSString *parameters = [NSString stringWithFormat:@"user_id=%@&user_name=%@&patient_phone=%@&patient_name=%@&patient_is_user=%@&status=%@&reason=%@&insurance=%@", self.user.identifier, self.user.name, self.pacientNumberTextfield.text, pacientName, @(pacientIsUser), @"taken", self.reasonTextView.text, selectedInsuranceDic];
     [serverCommunicator callServerWithPOSTMethod:[NSString stringWithFormat:@"Appointment/Take/%@", self.appointment.identifier] andParameter:parameters httpMethod:@"POST"];
     NSLog(@"PARAMETROOOO: %@", parameters);
 }
@@ -157,7 +175,25 @@
     [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Hubo un error en el servidor. Por favor intenta de nuevo en un momento" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 }
 
+#pragma mark - Navigation
+
+-(void)goToInsuranceConfirmation {
+    InsuranceConfirmationViewController *insuranceConfirmVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InsuranceConfirmation"];
+    insuranceConfirmVC.doctor = self.doctor;
+    insuranceConfirmVC.delegate = self;
+    [self.navigationController pushViewController:insuranceConfirmVC animated:YES];
+}
+
 #pragma mark - UITextfieldDelegate
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (textField.tag == 1) {
+        //Insurance textfield
+        [self goToInsuranceConfirmation];
+        return NO;
+    }
+    return YES;
+}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
@@ -170,6 +206,19 @@
     if (alertView.tag == 1) {
         //Success alert
         [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+
+#pragma mark - InsuranceConfirmationDelegate 
+
+-(void)insuranceSelectedAtIndex:(NSUInteger)index {
+    NSLog(@"Me llegó el index: %i", index);
+    self.selectedInsuranceIndex = index;
+    if (index == 0) {
+        //User selected "Pagaré cita particular"
+        self.insuranceTextfield.text = @"Pagaré cita particular";
+    } else {
+        self.insuranceTextfield.text = [NSString stringWithFormat:@"%@ - %@", self.doctor.insuranceList[index - 1][@"insurance"], self.doctor.insuranceList[index - 1][@"insurance_type"]];
     }
 }
 

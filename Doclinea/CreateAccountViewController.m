@@ -43,13 +43,6 @@ enum {
 
 #pragma mark - Lazy Instantiation 
 
-/*-(NSArray *)insurancesNames {
-    if (!_insurancesNames) {
-        _insurancesNames = @[@"Sura", @"Colpatria", @"Compensar"];
-    }
-    return _insurancesNames;
-}*/
-
 -(NSArray *)citiesNames {
     if (!_citiesNames) {
         _citiesNames = @[@"Bogotá", @"Medellín", @"Cali", @"Barranquilla", @"Pereira", @"Bucaramanga"];
@@ -103,13 +96,6 @@ enum {
     datePickerView.datePickerMode = UIDatePickerModeDate;
     [datePickerView addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     self.birthdayTextfield.inputView = datePickerView;
-    
-    //Set up the insurance picker view for the insurance textfield
-    /*UIPickerView *insurancePickerView = [[UIPickerView alloc] init];
-    insurancePickerView.delegate = self;
-    insurancePickerView.dataSource = self;
-    insurancePickerView.tag = insurancePicker;
-    self.insuranceTextfield.inputView = insurancePickerView;*/
     
     //Create a toolbar to dismiss the pickers
     UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, 44.0)];
