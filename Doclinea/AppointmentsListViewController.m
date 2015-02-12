@@ -12,6 +12,7 @@
 #import "MBProgressHUD.h"
 #import "Appointment.h"
 #import "Location.h"
+#import "UIImageView+WebCache.h"
 
 @interface AppointmentsListViewController () <UITableViewDataSource, UITableViewDelegate, ServerCommunicatorDelegate, AppointmentCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -46,7 +47,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.rowHeight = 200.0;
+    self.tableView.rowHeight = 240.0;
     [self getAppointmentsInServer];
 }
 
@@ -76,6 +77,7 @@
     Appointment *appointment = self.takenAppointmentsArray[indexPath.row];
     cell.doctorNameLabel.text = appointment.doctorName;
     cell.reasonLabel.text = appointment.reason;
+    [cell.doctorImageView sd_setImageWithURL:[NSURL URLWithString:appointment.imageURL]];
     if (appointment.locations.count > 0) {
         cell.locationNameLabel.text = ((Location *)appointment.locations[0]).locationName;
         cell.locationAddressLabel.text = ((Location *)appointment.locations[0]).locationAddress;

@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSString *info;
 @property (strong, nonatomic) NSString *startHour;
 @property (strong, nonatomic) NSString *reason;
+@property (strong, nonatomic) NSString *imageURL;
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

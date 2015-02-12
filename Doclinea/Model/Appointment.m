@@ -17,7 +17,7 @@
         _doctorID = dictionary[@"doctor_id"];
         _doctorName = dictionary[@"doctor_name"];
         _reason = dictionary[@"reason"];
-        
+        _imageURL = dictionary[@"doctor_image"];
         //Parse locations
         if ([dictionary[@"location"] isKindOfClass:[NSArray class]] && [dictionary[@"location"] count] > 0) {
             NSMutableArray *tempLocationsArray = [[NSMutableArray alloc] init];
@@ -48,7 +48,7 @@
         NSInteger minute = [components minute];
         NSLog(@"start hour: %i", hour);
         NSLog(@"start minutes: %i", minute);
-        _startHour = [NSString stringWithFormat:@"%i:%i", hour, minute];
+        _startHour = [NSString stringWithFormat:@"%i:%02i", hour, minute];
         //NSLog(@"Start date: %@", _startDate);
         //NSLog(@"End date: %@", _endDate);
         
