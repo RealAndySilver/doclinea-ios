@@ -8,11 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8B404BA319DDB92700E2ABEB /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B404BA219DDB92700E2ABEB /* MapViewController.m */; };
-		8B4174EF19E423C0007CC189 /* DoctorLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B4174EE19E423C0007CC189 /* DoctorLocationViewController.m */; };
-		8B4174F219E451DA007CC189 /* DoctorGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B4174F119E451DA007CC189 /* DoctorGalleryViewController.m */; };
 		8B4174F519E453C3007CC189 /* DoctorGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B4174F419E453C3007CC189 /* DoctorGalleryCell.m */; };
 		8B4174F919E45F23007CC189 /* NSString+AddOns.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B4174F819E45F23007CC189 /* NSString+AddOns.m */; };
-		8B4174FC19E46A79007CC189 /* GalleryPicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B4174FB19E46A79007CC189 /* GalleryPicDetailViewController.m */; };
 		8B5A7CFA19EFFC710094E426 /* ForgotPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A7CF919EFFC710094E426 /* ForgotPassViewController.m */; };
 		8B5A7CFD19F01E4B0094E426 /* NewPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A7CFC19F01E4B0094E426 /* NewPasswordView.m */; };
 		8B5A7D0019F063F00094E426 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A7CFF19F063F00094E426 /* ChangePasswordViewController.m */; };
@@ -45,28 +42,22 @@
 		8B5CDE991A39D7BD00C8DCFB /* Reason.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CDE981A39D7BD00C8DCFB /* Reason.m */; };
 		8B5CDE9C1A39DAD700C8DCFB /* FormListsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CDE9B1A39DAD700C8DCFB /* FormListsParser.m */; };
 		8B5CDE9F1A39F7D700C8DCFB /* Insurance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CDE9E1A39F7D700C8DCFB /* Insurance.m */; };
-		8B5CDEA21A39FC6400C8DCFB /* PracticeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CDEA11A39FC6400C8DCFB /* PracticeListViewController.m */; };
 		8B5CDEA51A3A031C00C8DCFB /* PracticeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CDEA41A3A031C00C8DCFB /* PracticeListCell.m */; };
 		8B5CDEA71A3A085500C8DCFB /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5CDEA61A3A085500C8DCFB /* Checkmark.png */; };
 		8B6560971A7AC8400074B62C /* AppointmentConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6560961A7AC8400074B62C /* AppointmentConfirmationViewController.m */; };
 		8B657C211A8A4FF600B1F38E /* InsuranceConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B657C201A8A4FF600B1F38E /* InsuranceConfirmationViewController.m */; };
 		8B66B67019E812E400E0C116 /* EducationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B66B66F19E812E400E0C116 /* EducationCell.m */; };
-		8B66B67319E8336000E0C116 /* EducationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B66B67219E8336000E0C116 /* EducationDetailsViewController.m */; };
 		8B6788CC19DEE67200D3AAA5 /* localidades.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B6788CA19DEE67200D3AAA5 /* localidades.json */; };
 		8B6788CD19DEE67200D3AAA5 /* TemplateIcon2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B6788CB19DEE67200D3AAA5 /* TemplateIcon2x.png */; };
 		8B6788D019DEE75600D3AAA5 /* Localidad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6788CF19DEE75600D3AAA5 /* Localidad.m */; };
 		8B6788D319DEE86400D3AAA5 /* Localidad+Shared.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6788D219DEE86400D3AAA5 /* Localidad+Shared.m */; };
 		8B6788D619DEF22200D3AAA5 /* SearchByNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6788D519DEF22200D3AAA5 /* SearchByNameViewController.m */; };
-		8B6788DC19DF09DA00D3AAA5 /* DoctorLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6788DB19DF09DA00D3AAA5 /* DoctorLoginViewController.m */; };
-		8B6788DF19DF0EE100D3AAA5 /* CreateDoctorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6788DE19DF0EE100D3AAA5 /* CreateDoctorViewController.m */; };
-		8B6788E219DF414C00D3AAA5 /* DoctorHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6788E119DF414C00D3AAA5 /* DoctorHomePageViewController.m */; };
 		8B71A43319E573BA00420757 /* SearchByLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B71A43219E573BA00420757 /* SearchByLocationViewController.m */; };
 		8B71A43719E58A1500420757 /* DoctorLocationInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B71A43619E58A1500420757 /* DoctorLocationInfoView.m */; };
 		8B71A43A19E5B0E400420757 /* ConsultorioMapDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B71A43919E5B0E400420757 /* ConsultorioMapDetailView.m */; };
 		8B71A43D19E5B97D00420757 /* PicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B71A43C19E5B97D00420757 /* PicturesViewController.m */; };
 		8B71A44019E5BEB300420757 /* PictureDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B71A43F19E5BEB300420757 /* PictureDetailViewController.m */; };
 		8B71A44319E5DA7C00420757 /* DeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B71A44219E5DA7C00420757 /* DeviceInfo.m */; };
-		8B7C248319E2D3090063F8D6 /* DoctorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C248219E2D3090063F8D6 /* DoctorInfoViewController.m */; };
 		8B7C248919E2FAF50063F8D6 /* SharedDoctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C248819E2FAF50063F8D6 /* SharedDoctor.m */; };
 		8B7C248F19E346AE0063F8D6 /* NSArray+NullReplacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C248C19E346AE0063F8D6 /* NSArray+NullReplacement.m */; };
 		8B7C249019E346AE0063F8D6 /* NSDictionary+NullReplacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C248E19E346AE0063F8D6 /* NSDictionary+NullReplacement.m */; };
@@ -81,7 +72,6 @@
 		8B805A3E1A79175E003A7958 /* Appointment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B805A3D1A79175E003A7958 /* Appointment.m */; };
 		8B805A411A793704003A7958 /* AppointmentsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B805A401A793704003A7958 /* AppointmentsParser.m */; };
 		8B805A441A797F12003A7958 /* AvailableAppointmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B805A431A797F12003A7958 /* AvailableAppointmentCell.m */; };
-		8B8312DA1A6012A100E1CBFC /* DoctorInsurancesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8312D91A6012A100E1CBFC /* DoctorInsurancesViewController.m */; };
 		8B8312DD1A60190700E1CBFC /* InsuranceTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8312DC1A60190700E1CBFC /* InsuranceTypeCell.m */; };
 		8B8312E01A603CF300E1CBFC /* AddMembershipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8312DF1A603CF300E1CBFC /* AddMembershipView.m */; };
 		8B85C4E91A6EA3C100190A00 /* ConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B85C4E81A6EA3C100190A00 /* ConfigurationViewController.m */; };
@@ -95,11 +85,8 @@
 		8B9928911A7FAE1100FC2421 /* MoreOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9928901A7FAE1100FC2421 /* MoreOptionsViewController.m */; };
 		8B9928941A7FC77C00FC2421 /* FavouriteDoctorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9928931A7FC77C00FC2421 /* FavouriteDoctorsViewController.m */; };
 		8BA0DE0519E6DB93007BD6AD /* MyTextfield.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0DE0419E6DB93007BD6AD /* MyTextfield.m */; };
-		8BA0DE0819E70481007BD6AD /* DoctorEducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0DE0719E70481007BD6AD /* DoctorEducationViewController.m */; };
 		8BA0DE0B19E723A0007BD6AD /* Studie.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0DE0A19E723A0007BD6AD /* Studie.m */; };
 		8BA0DE0E19E7299A007BD6AD /* AddStudieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0DE0D19E7299A007BD6AD /* AddStudieView.m */; };
-		8BA2A03C1A5F19B500ECE899 /* InsurancesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2A03B1A5F19B500ECE899 /* InsurancesListViewController.m */; };
-		8BA2A03F1A5F1F4600ECE899 /* InsuranceTypesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2A03E1A5F1F4600ECE899 /* InsuranceTypesViewController.m */; };
 		8BA2E9E41A71453900A1EDD2 /* AvailableAppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2E9E31A71453900A1EDD2 /* AvailableAppointmentsViewController.m */; };
 		8BA2E9E71A719FBC00A1EDD2 /* InviteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2E9E61A719FBC00A1EDD2 /* InviteView.m */; };
 		8BAF892319D9FB9D0037CEE4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BAF892219D9FB9D0037CEE4 /* main.m */; };
@@ -125,16 +112,10 @@
 /* Begin PBXFileReference section */
 		8B404BA119DDB92700E2ABEB /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		8B404BA219DDB92700E2ABEB /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		8B4174ED19E423C0007CC189 /* DoctorLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorLocationViewController.h; sourceTree = "<group>"; };
-		8B4174EE19E423C0007CC189 /* DoctorLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorLocationViewController.m; sourceTree = "<group>"; };
-		8B4174F019E451DA007CC189 /* DoctorGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorGalleryViewController.h; sourceTree = "<group>"; };
-		8B4174F119E451DA007CC189 /* DoctorGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorGalleryViewController.m; sourceTree = "<group>"; };
 		8B4174F319E453C3007CC189 /* DoctorGalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoctorGalleryCell.h; path = "Custom Cells/DoctorGalleryCell.h"; sourceTree = "<group>"; };
 		8B4174F419E453C3007CC189 /* DoctorGalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoctorGalleryCell.m; path = "Custom Cells/DoctorGalleryCell.m"; sourceTree = "<group>"; };
 		8B4174F719E45F23007CC189 /* NSString+AddOns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+AddOns.h"; path = "Categories/NSString+AddOns.h"; sourceTree = "<group>"; };
 		8B4174F819E45F23007CC189 /* NSString+AddOns.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+AddOns.m"; path = "Categories/NSString+AddOns.m"; sourceTree = "<group>"; };
-		8B4174FA19E46A79007CC189 /* GalleryPicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryPicDetailViewController.h; sourceTree = "<group>"; };
-		8B4174FB19E46A79007CC189 /* GalleryPicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryPicDetailViewController.m; sourceTree = "<group>"; };
 		8B5A7CF819EFFC710094E426 /* ForgotPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPassViewController.h; sourceTree = "<group>"; };
 		8B5A7CF919EFFC710094E426 /* ForgotPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPassViewController.m; sourceTree = "<group>"; };
 		8B5A7CFB19F01E4B0094E426 /* NewPasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewPasswordView.h; path = "Custom VIews/NewPasswordView.h"; sourceTree = "<group>"; };
@@ -198,8 +179,6 @@
 		8B5CDE9B1A39DAD700C8DCFB /* FormListsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormListsParser.m; path = Model/FormListsParser.m; sourceTree = "<group>"; };
 		8B5CDE9D1A39F7D700C8DCFB /* Insurance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Insurance.h; path = Model/Insurance.h; sourceTree = "<group>"; };
 		8B5CDE9E1A39F7D700C8DCFB /* Insurance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Insurance.m; path = Model/Insurance.m; sourceTree = "<group>"; };
-		8B5CDEA01A39FC6400C8DCFB /* PracticeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeListViewController.h; sourceTree = "<group>"; };
-		8B5CDEA11A39FC6400C8DCFB /* PracticeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeListViewController.m; sourceTree = "<group>"; };
 		8B5CDEA31A3A031C00C8DCFB /* PracticeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PracticeListCell.h; path = "Custom Cells/PracticeListCell.h"; sourceTree = "<group>"; };
 		8B5CDEA41A3A031C00C8DCFB /* PracticeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PracticeListCell.m; path = "Custom Cells/PracticeListCell.m"; sourceTree = "<group>"; };
 		8B5CDEA61A3A085500C8DCFB /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Checkmark.png; path = Resources/Checkmark.png; sourceTree = "<group>"; };
@@ -209,8 +188,6 @@
 		8B657C201A8A4FF600B1F38E /* InsuranceConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsuranceConfirmationViewController.m; sourceTree = "<group>"; };
 		8B66B66E19E812E400E0C116 /* EducationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EducationCell.h; path = "Custom Cells/EducationCell.h"; sourceTree = "<group>"; };
 		8B66B66F19E812E400E0C116 /* EducationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EducationCell.m; path = "Custom Cells/EducationCell.m"; sourceTree = "<group>"; };
-		8B66B67119E8336000E0C116 /* EducationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationDetailsViewController.h; sourceTree = "<group>"; };
-		8B66B67219E8336000E0C116 /* EducationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationDetailsViewController.m; sourceTree = "<group>"; };
 		8B6788CA19DEE67200D3AAA5 /* localidades.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = localidades.json; path = "JSON Files/localidades.json"; sourceTree = "<group>"; };
 		8B6788CB19DEE67200D3AAA5 /* TemplateIcon2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TemplateIcon2x.png; path = "JSON Files/TemplateIcon2x.png"; sourceTree = "<group>"; };
 		8B6788CE19DEE75600D3AAA5 /* Localidad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Localidad.h; path = Model/Localidad.h; sourceTree = "<group>"; };
@@ -219,12 +196,6 @@
 		8B6788D219DEE86400D3AAA5 /* Localidad+Shared.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Localidad+Shared.m"; path = "Model/Localidad+Shared.m"; sourceTree = "<group>"; };
 		8B6788D419DEF22200D3AAA5 /* SearchByNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchByNameViewController.h; sourceTree = "<group>"; };
 		8B6788D519DEF22200D3AAA5 /* SearchByNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchByNameViewController.m; sourceTree = "<group>"; };
-		8B6788DA19DF09DA00D3AAA5 /* DoctorLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorLoginViewController.h; sourceTree = "<group>"; };
-		8B6788DB19DF09DA00D3AAA5 /* DoctorLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorLoginViewController.m; sourceTree = "<group>"; };
-		8B6788DD19DF0EE100D3AAA5 /* CreateDoctorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDoctorViewController.h; sourceTree = "<group>"; };
-		8B6788DE19DF0EE100D3AAA5 /* CreateDoctorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDoctorViewController.m; sourceTree = "<group>"; };
-		8B6788E019DF414C00D3AAA5 /* DoctorHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorHomePageViewController.h; sourceTree = "<group>"; };
-		8B6788E119DF414C00D3AAA5 /* DoctorHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorHomePageViewController.m; sourceTree = "<group>"; };
 		8B71A43119E573BA00420757 /* SearchByLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchByLocationViewController.h; sourceTree = "<group>"; };
 		8B71A43219E573BA00420757 /* SearchByLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchByLocationViewController.m; sourceTree = "<group>"; };
 		8B71A43519E58A1500420757 /* DoctorLocationInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoctorLocationInfoView.h; path = "Custom VIews/DoctorLocationInfoView.h"; sourceTree = "<group>"; };
@@ -237,8 +208,6 @@
 		8B71A43F19E5BEB300420757 /* PictureDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureDetailViewController.m; sourceTree = "<group>"; };
 		8B71A44119E5DA7C00420757 /* DeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceInfo.h; path = Model/DeviceInfo.h; sourceTree = "<group>"; };
 		8B71A44219E5DA7C00420757 /* DeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceInfo.m; path = Model/DeviceInfo.m; sourceTree = "<group>"; };
-		8B7C248119E2D3090063F8D6 /* DoctorInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorInfoViewController.h; sourceTree = "<group>"; };
-		8B7C248219E2D3090063F8D6 /* DoctorInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorInfoViewController.m; sourceTree = "<group>"; };
 		8B7C248719E2FAF50063F8D6 /* SharedDoctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedDoctor.h; path = Model/SharedDoctor.h; sourceTree = "<group>"; };
 		8B7C248819E2FAF50063F8D6 /* SharedDoctor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharedDoctor.m; path = Model/SharedDoctor.m; sourceTree = "<group>"; };
 		8B7C248B19E346AE0063F8D6 /* NSArray+NullReplacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+NullReplacement.h"; sourceTree = "<group>"; };
@@ -265,8 +234,6 @@
 		8B805A401A793704003A7958 /* AppointmentsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppointmentsParser.m; path = Model/AppointmentsParser.m; sourceTree = "<group>"; };
 		8B805A421A797F12003A7958 /* AvailableAppointmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AvailableAppointmentCell.h; path = "Custom Cells/AvailableAppointmentCell.h"; sourceTree = "<group>"; };
 		8B805A431A797F12003A7958 /* AvailableAppointmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvailableAppointmentCell.m; path = "Custom Cells/AvailableAppointmentCell.m"; sourceTree = "<group>"; };
-		8B8312D81A6012A100E1CBFC /* DoctorInsurancesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorInsurancesViewController.h; sourceTree = "<group>"; };
-		8B8312D91A6012A100E1CBFC /* DoctorInsurancesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorInsurancesViewController.m; sourceTree = "<group>"; };
 		8B8312DB1A60190700E1CBFC /* InsuranceTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsuranceTypeCell.h; path = "Custom Cells/InsuranceTypeCell.h"; sourceTree = "<group>"; };
 		8B8312DC1A60190700E1CBFC /* InsuranceTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsuranceTypeCell.m; path = "Custom Cells/InsuranceTypeCell.m"; sourceTree = "<group>"; };
 		8B8312DE1A603CF300E1CBFC /* AddMembershipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddMembershipView.h; path = "Custom VIews/AddMembershipView.h"; sourceTree = "<group>"; };
@@ -292,16 +259,10 @@
 		8B9928931A7FC77C00FC2421 /* FavouriteDoctorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteDoctorsViewController.m; sourceTree = "<group>"; };
 		8BA0DE0319E6DB93007BD6AD /* MyTextfield.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTextfield.h; path = "UI Classes/MyTextfield.h"; sourceTree = "<group>"; };
 		8BA0DE0419E6DB93007BD6AD /* MyTextfield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTextfield.m; path = "UI Classes/MyTextfield.m"; sourceTree = "<group>"; };
-		8BA0DE0619E70481007BD6AD /* DoctorEducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorEducationViewController.h; sourceTree = "<group>"; };
-		8BA0DE0719E70481007BD6AD /* DoctorEducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorEducationViewController.m; sourceTree = "<group>"; };
 		8BA0DE0919E723A0007BD6AD /* Studie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Studie.h; path = Model/Studie.h; sourceTree = "<group>"; };
 		8BA0DE0A19E723A0007BD6AD /* Studie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Studie.m; path = Model/Studie.m; sourceTree = "<group>"; };
 		8BA0DE0C19E7299A007BD6AD /* AddStudieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddStudieView.h; path = "Custom VIews/AddStudieView.h"; sourceTree = "<group>"; };
 		8BA0DE0D19E7299A007BD6AD /* AddStudieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddStudieView.m; path = "Custom VIews/AddStudieView.m"; sourceTree = "<group>"; };
-		8BA2A03A1A5F19B500ECE899 /* InsurancesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsurancesListViewController.h; sourceTree = "<group>"; };
-		8BA2A03B1A5F19B500ECE899 /* InsurancesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsurancesListViewController.m; sourceTree = "<group>"; };
-		8BA2A03D1A5F1F4600ECE899 /* InsuranceTypesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsuranceTypesViewController.h; sourceTree = "<group>"; };
-		8BA2A03E1A5F1F4600ECE899 /* InsuranceTypesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsuranceTypesViewController.m; sourceTree = "<group>"; };
 		8BA2E9E21A71453900A1EDD2 /* AvailableAppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvailableAppointmentsViewController.h; sourceTree = "<group>"; };
 		8BA2E9E31A71453900A1EDD2 /* AvailableAppointmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvailableAppointmentsViewController.m; sourceTree = "<group>"; };
 		8BA2E9E51A719FBC00A1EDD2 /* InviteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteView.h; path = "Custom VIews/InviteView.h"; sourceTree = "<group>"; };
@@ -493,43 +454,10 @@
 				8B6560961A7AC8400074B62C /* AppointmentConfirmationViewController.m */,
 				8B657C1F1A8A4FF600B1F38E /* InsuranceConfirmationViewController.h */,
 				8B657C201A8A4FF600B1F38E /* InsuranceConfirmationViewController.m */,
-			);
-			name = "View Controllers";
-			sourceTree = "<group>";
-		};
-		8B6788D919DF09C400D3AAA5 /* Doctor ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				8B6788DA19DF09DA00D3AAA5 /* DoctorLoginViewController.h */,
-				8B6788DB19DF09DA00D3AAA5 /* DoctorLoginViewController.m */,
 				8B5A7CF819EFFC710094E426 /* ForgotPassViewController.h */,
 				8B5A7CF919EFFC710094E426 /* ForgotPassViewController.m */,
-				8B6788DD19DF0EE100D3AAA5 /* CreateDoctorViewController.h */,
-				8B6788DE19DF0EE100D3AAA5 /* CreateDoctorViewController.m */,
-				8B6788E019DF414C00D3AAA5 /* DoctorHomePageViewController.h */,
-				8B6788E119DF414C00D3AAA5 /* DoctorHomePageViewController.m */,
-				8B7C248119E2D3090063F8D6 /* DoctorInfoViewController.h */,
-				8B7C248219E2D3090063F8D6 /* DoctorInfoViewController.m */,
-				8B4174ED19E423C0007CC189 /* DoctorLocationViewController.h */,
-				8B4174EE19E423C0007CC189 /* DoctorLocationViewController.m */,
-				8B4174F019E451DA007CC189 /* DoctorGalleryViewController.h */,
-				8B4174F119E451DA007CC189 /* DoctorGalleryViewController.m */,
-				8B4174FA19E46A79007CC189 /* GalleryPicDetailViewController.h */,
-				8B4174FB19E46A79007CC189 /* GalleryPicDetailViewController.m */,
-				8BA0DE0619E70481007BD6AD /* DoctorEducationViewController.h */,
-				8BA0DE0719E70481007BD6AD /* DoctorEducationViewController.m */,
-				8B66B67119E8336000E0C116 /* EducationDetailsViewController.h */,
-				8B66B67219E8336000E0C116 /* EducationDetailsViewController.m */,
-				8B5CDEA01A39FC6400C8DCFB /* PracticeListViewController.h */,
-				8B5CDEA11A39FC6400C8DCFB /* PracticeListViewController.m */,
-				8B8312D81A6012A100E1CBFC /* DoctorInsurancesViewController.h */,
-				8B8312D91A6012A100E1CBFC /* DoctorInsurancesViewController.m */,
-				8BA2A03A1A5F19B500ECE899 /* InsurancesListViewController.h */,
-				8BA2A03B1A5F19B500ECE899 /* InsurancesListViewController.m */,
-				8BA2A03D1A5F1F4600ECE899 /* InsuranceTypesViewController.h */,
-				8BA2A03E1A5F1F4600ECE899 /* InsuranceTypesViewController.m */,
 			);
-			name = "Doctor ViewControllers";
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		8B71A43419E589F700420757 /* Custom Views */ = {
@@ -677,7 +605,6 @@
 				8B8058A219DB104E0071A43D /* ServerCommunicator */,
 				8B6788D719DF099B00D3AAA5 /* Main */,
 				8B6788D819DF09B300D3AAA5 /* View Controllers */,
-				8B6788D919DF09C400D3AAA5 /* Doctor ViewControllers */,
 				8B5CC50419DC42360001B0D1 /* Custom Cells */,
 				8BAF892D19D9FB9D0037CEE4 /* Images.xcassets */,
 				8BAF892F19D9FB9D0037CEE4 /* LaunchScreen.xib */,
@@ -827,48 +754,38 @@
 				8B8058A119DAEB9F0071A43D /* CreateAccountViewController.m in Sources */,
 				8B5CC54519DC60E70001B0D1 /* DoctorDetailsViewController.m in Sources */,
 				8B6788D019DEE75600D3AAA5 /* Localidad.m in Sources */,
-				8B66B67319E8336000E0C116 /* EducationDetailsViewController.m in Sources */,
 				8B7C249019E346AE0063F8D6 /* NSDictionary+NullReplacement.m in Sources */,
 				8B6788D619DEF22200D3AAA5 /* SearchByNameViewController.m in Sources */,
 				8B5CDE991A39D7BD00C8DCFB /* Reason.m in Sources */,
 				8B71A44019E5BEB300420757 /* PictureDetailViewController.m in Sources */,
-				8B4174EF19E423C0007CC189 /* DoctorLocationViewController.m in Sources */,
 				8B5CC53F19DC5A780001B0D1 /* UIImage+WebP.m in Sources */,
 				8B71A43319E573BA00420757 /* SearchByLocationViewController.m in Sources */,
 				8B5A7CFA19EFFC710094E426 /* ForgotPassViewController.m in Sources */,
-				8BA2A03F1A5F1F4600ECE899 /* InsuranceTypesViewController.m in Sources */,
 				8B657C211A8A4FF600B1F38E /* InsuranceConfirmationViewController.m in Sources */,
 				8B5CC50319DC41910001B0D1 /* DoctorsListViewController.m in Sources */,
 				8B5CC53C19DC5A780001B0D1 /* UIButton+WebCache.m in Sources */,
 				8B5CC53919DC5A780001B0D1 /* SDWebImageDownloaderOperation.m in Sources */,
 				8B4174F919E45F23007CC189 /* NSString+AddOns.m in Sources */,
 				8B5CDE961A39D6E800C8DCFB /* Practice.m in Sources */,
-				8BA2A03C1A5F19B500ECE899 /* InsurancesListViewController.m in Sources */,
 				8B5A7CFD19F01E4B0094E426 /* NewPasswordView.m in Sources */,
 				8B5CC50B19DC4A200001B0D1 /* RatingView.m in Sources */,
 				8B805A3B1A791696003A7958 /* Location.m in Sources */,
 				8B7C248F19E346AE0063F8D6 /* NSArray+NullReplacement.m in Sources */,
 				8B805A411A793704003A7958 /* AppointmentsParser.m in Sources */,
 				8B5A7D0319F06A240094E426 /* SharedUser.m in Sources */,
-				8B4174FC19E46A79007CC189 /* GalleryPicDetailViewController.m in Sources */,
 				8B5CC53519DC5A780001B0D1 /* SDImageCache.m in Sources */,
 				8B71A43D19E5B97D00420757 /* PicturesViewController.m in Sources */,
 				8B85C4F11A6EC89700190A00 /* AppointmentCell.m in Sources */,
 				8B5CC53419DC5A780001B0D1 /* NSData+ImageContentType.m in Sources */,
 				8B8058AD19DB236C0071A43D /* User.m in Sources */,
-				8B8312DA1A6012A100E1CBFC /* DoctorInsurancesViewController.m in Sources */,
 				8B9928911A7FAE1100FC2421 /* MoreOptionsViewController.m in Sources */,
-				8B6788DF19DF0EE100D3AAA5 /* CreateDoctorViewController.m in Sources */,
-				8B4174F219E451DA007CC189 /* DoctorGalleryViewController.m in Sources */,
 				8B5CC53719DC5A780001B0D1 /* SDWebImageDecoder.m in Sources */,
 				8BA0DE0B19E723A0007BD6AD /* Studie.m in Sources */,
 				8B5CC50019DC389E0001B0D1 /* Doctor.m in Sources */,
-				8B6788E219DF414C00D3AAA5 /* DoctorHomePageViewController.m in Sources */,
 				8B5CC54019DC5A780001B0D1 /* UIImageView+HighlightedWebCache.m in Sources */,
 				8B85C4F41A6EC9DB00190A00 /* AppointmentsListViewController.m in Sources */,
 				8B71A44319E5DA7C00420757 /* DeviceInfo.m in Sources */,
 				8B9928941A7FC77C00FC2421 /* FavouriteDoctorsViewController.m in Sources */,
-				8BA0DE0819E70481007BD6AD /* DoctorEducationViewController.m in Sources */,
 				8B8058A919DB1B910071A43D /* MBProgressHUD.m in Sources */,
 				8B93CA281A3B4FB6002DC144 /* InsurancesTableViewController.m in Sources */,
 				8B85C4E91A6EA3C100190A00 /* ConfigurationViewController.m in Sources */,
@@ -879,13 +796,11 @@
 				8BE5804219DDCCAE00DDE286 /* MyProfileViewController.m in Sources */,
 				8B4174F519E453C3007CC189 /* DoctorGalleryCell.m in Sources */,
 				8B5CDE9C1A39DAD700C8DCFB /* FormListsParser.m in Sources */,
-				8B6788DC19DF09DA00D3AAA5 /* DoctorLoginViewController.m in Sources */,
 				8B5CDEA51A3A031C00C8DCFB /* PracticeListCell.m in Sources */,
 				8B71A43719E58A1500420757 /* DoctorLocationInfoView.m in Sources */,
 				8BA0DE0E19E7299A007BD6AD /* AddStudieView.m in Sources */,
 				8B5CC53619DC5A780001B0D1 /* SDWebImageCompat.m in Sources */,
 				8B5CDE9F1A39F7D700C8DCFB /* Insurance.m in Sources */,
-				8B7C248319E2D3090063F8D6 /* DoctorInfoViewController.m in Sources */,
 				8BA2E9E71A719FBC00A1EDD2 /* InviteView.m in Sources */,
 				8BAF892919D9FB9D0037CEE4 /* LoginViewController.m in Sources */,
 				8B5CC53D19DC5A780001B0D1 /* UIImage+GIF.m in Sources */,
@@ -897,7 +812,6 @@
 				8B5CC53B19DC5A780001B0D1 /* SDWebImagePrefetcher.m in Sources */,
 				8B8058B019DB25E00071A43D /* HomeScreenViewController.m in Sources */,
 				8B93CA2B1A3B581D002DC144 /* InsuranceTypeView.m in Sources */,
-				8B5CDEA21A39FC6400C8DCFB /* PracticeListViewController.m in Sources */,
 				8B5CC53319DC5A780001B0D1 /* MKAnnotationView+WebCache.m in Sources */,
 				8B5CC54119DC5A780001B0D1 /* UIImageView+WebCache.m in Sources */,
 				8B85C4EC1A6EA86C00190A00 /* UserSettings.m in Sources */,
