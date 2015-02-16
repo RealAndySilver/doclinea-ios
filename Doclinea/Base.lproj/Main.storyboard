@@ -109,7 +109,6 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
-            <string>OpenSans</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -3018,37 +3017,14 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yzy-qU-uyn">
                                 <rect key="frame" x="0.0" y="70" width="600" height="531"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMJ-jf-n1V">
-                                <rect key="frame" x="499" y="29" width="32" height="32"/>
-                                <color key="backgroundColor" red="0.13333334029999999" green="0.62352943419999995" blue="0.88235300780000003" alpha="1" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="32" id="F6a-in-gpv"/>
-                                    <constraint firstAttribute="height" constant="32" id="sRj-8Z-BkB"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
-                                <state key="normal" title="+">
-                                    <color key="titleColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="favDoctorButtonPressed:" destination="K9F-NA-9EI" eventType="touchUpInside" id="dsq-aJ-rVF"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="p9w-cR-iAk" firstAttribute="leading" secondItem="m9w-ow-k5q" secondAttribute="leadingMargin" id="6R9-49-Had"/>
                             <constraint firstItem="pR9-yt-8Ji" firstAttribute="top" secondItem="yzy-qU-uyn" secondAttribute="bottom" constant="-1" id="7ZY-aC-Ozh"/>
-                            <constraint firstItem="HRf-0w-f80" firstAttribute="leading" secondItem="IMJ-jf-n1V" secondAttribute="trailing" constant="8" id="9cu-cl-SuU"/>
                             <constraint firstAttribute="centerX" secondItem="p9w-cR-iAk" secondAttribute="centerX" id="CUt-zA-asv"/>
                             <constraint firstAttribute="centerX" secondItem="ZyL-70-WQn" secondAttribute="centerX" id="Fkn-ba-Ngb"/>
                             <constraint firstItem="p9w-cR-iAk" firstAttribute="top" secondItem="ZyL-70-WQn" secondAttribute="bottom" constant="12" id="Fqi-rG-Pyd"/>
-                            <constraint firstItem="IMJ-jf-n1V" firstAttribute="top" secondItem="NaI-Om-vRS" secondAttribute="bottom" constant="9" id="Oz1-lZ-5Pd"/>
                             <constraint firstItem="ZyL-70-WQn" firstAttribute="top" secondItem="NaI-Om-vRS" secondAttribute="bottom" constant="12" id="Swj-YR-450"/>
                             <constraint firstItem="HRf-0w-f80" firstAttribute="trailing" secondItem="m9w-ow-k5q" secondAttribute="trailingMargin" id="TPl-KF-FyL"/>
                             <constraint firstItem="p9w-cR-iAk" firstAttribute="trailing" secondItem="m9w-ow-k5q" secondAttribute="trailingMargin" id="UDQ-tH-fSO"/>

@@ -9,7 +9,7 @@
 
 #import "ServerCommunicator.h"
 #define ENDPOINT @"http://192.241.187.135:1414/api_1.0"
-//#define ENDPOINT @"http://192.168.0.40:1414/api_1.0"
+//#define ENDPOINT @"http://192.168.0.32:1414/api_1.0"
 
 @implementation ServerCommunicator
 @synthesize tag,delegate;

@@ -15,6 +15,7 @@
 #import "User.h"
 #import "NSArray+NullReplacement.h"
 #import "NSDictionary+NullReplacement.h"
+#import "DoctorDetailsViewController.h"
 
 @interface FavouriteDoctorsViewController () <UITableViewDataSource, UITableViewDelegate, ServerCommunicatorDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -105,6 +106,14 @@
         [cell.doctorImageView sd_setImageWithURL:doctor.profilePic placeholderImage:[UIImage imageNamed:@"DoctorFemale"]];
     }
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DoctorDetailsViewController *doctorDetailsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DoctorDetails"];
+    doctorDetailsVC.doctor = self.doctors[indexPath.row];
+    [self.navigationController pushViewController:doctorDetailsVC animated:YES];
 }
 
 #pragma mark - Server Stuff

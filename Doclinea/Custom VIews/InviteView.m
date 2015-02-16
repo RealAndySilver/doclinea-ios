@@ -24,7 +24,7 @@
         
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 20.0, frame.size.width - 40.0, 60.0)];
         titleLabel.numberOfLines = 0;
-        titleLabel.text = @"Invita a un amigo a usar Doclínea";
+        titleLabel.text = @"Invita a un amigo a usar DocLinea";
         titleLabel.textColor = [UIColor darkGrayColor];
         titleLabel.font = [UIFont fontWithName:@"OpenSans" size:15.0];
         titleLabel.textAlignment = NSTextAlignmentCenter;

@@ -143,6 +143,15 @@
         [self.scrollView addSubview:imagesButton];
     }
     
+    UIButton *favoriteButton = [[UIButton alloc] initWithFrame:CGRectMake(self.doctorNameLabel.frame.origin.x, pedirCitaButton.frame.origin.y + pedirCitaButton.frame.size.height + 10.0, 150.0, 35.0)];
+    [favoriteButton setTitle:@"Añadir a Favoritos" forState:UIControlStateNormal];
+    [favoriteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    favoriteButton.layer.cornerRadius = 5.0;
+    favoriteButton.titleLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
+    favoriteButton.backgroundColor = [UIColor colorWithRed:34.0/255.0 green:159.0/255.0 blue:225.0/255.0 alpha:1.0];
+    [favoriteButton addTarget:self action:@selector(favDoctorButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:favoriteButton];
+    
     //Rating View
     self.ratingView = [[RatingView alloc] initWithFrame:CGRectMake(20.0, self.doctorImageView.frame.origin.y + self.doctorImageView.frame.size.height + 4.0, self.doctorImageView.frame.size.width, 20.0) selectedImageName:@"blueStar.png" unSelectedImage:@"grayStar.png" minValue:0 maxValue:5 intervalValue:0.5 stepByStep:NO];
     self.ratingView.userInteractionEnabled = NO;
@@ -150,7 +159,7 @@
     [self.scrollView addSubview:self.ratingView];
     
     //Gray line view
-    UIView *grayLine = [[UIView alloc] initWithFrame:CGRectMake(20.0, self.ratingView.frame.origin.y + self.ratingView.frame.size.height + 20.0, screenBounds.size.width - 40.0, 1.0)];
+    UIView *grayLine = [[UIView alloc] initWithFrame:CGRectMake(20.0, self.ratingView.frame.origin.y + self.ratingView.frame.size.height + 50.0, screenBounds.size.width - 40.0, 1.0)];
     grayLine.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
     [self.scrollView addSubview:grayLine];
     
@@ -174,33 +183,35 @@
     [self.scrollView addSubview:patientsLabel];
     
     //"Educacion: "label
-    UILabel *educationLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, patientsLabel.frame.origin.y + patientsLabel.frame.size.height, 70.0, 30.0)];
+    UILabel *educationLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, patientsLabel.frame.origin.y + patientsLabel.frame.size.height + 10.0, 70.0, 30.0)];
     educationLabel.text = @"Educación: ";
     educationLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
     [self.scrollView addSubview:educationLabel];
     
     //education list label
-    UILabel *practiceLabel = [[UILabel alloc] initWithFrame:CGRectMake(educationLabel.frame.origin.x + educationLabel.frame.size.width, educationLabel.frame.origin.y, screenBounds.size.width - 20.0 - (educationLabel.frame.origin.x + educationLabel.frame.size.width), 30.0)];
+    UILabel *practiceLabel = [[UILabel alloc] initWithFrame:CGRectMake(educationLabel.frame.origin.x + educationLabel.frame.size.width, educationLabel.frame.origin.y - 10.0, screenBounds.size.width - 20.0 - (educationLabel.frame.origin.x + educationLabel.frame.size.width), 50.0)];
     practiceLabel.text = self.doctor.parsedEducationList;
+    practiceLabel.minimumScaleFactor = 0.8;
     practiceLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
     practiceLabel.textColor = [UIColor darkGrayColor];
-    //practiceLabel.numberOfLines = 0;
+    practiceLabel.numberOfLines = 0;
     if ([self.doctor.parsedEducationList length] > 0) {
         //[practiceLabel sizeToFit];
     }
     [self.scrollView addSubview:practiceLabel];
     
     //Clinicas label
-    UILabel *clinicasLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, practiceLabel.frame.origin.y + practiceLabel.frame.size.height, 70.0, 30.0)];
+    UILabel *clinicasLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, practiceLabel.frame.origin.y + practiceLabel.frame.size.height + 10.0, 70.0, 30.0)];
     clinicasLabel.text = @"Clínicas: ";
     clinicasLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
     [self.scrollView addSubview:clinicasLabel];
     
     //Hospital list label
-    UILabel *clinicsListLabel = [[UILabel alloc] initWithFrame:CGRectMake(clinicasLabel.frame.origin.x + clinicasLabel.frame.size.width, clinicasLabel.frame.origin.y, screenBounds.size.width - 20.0 - (clinicasLabel.frame.origin.x + clinicasLabel.frame.size.width), 30.0)];
+    UILabel *clinicsListLabel = [[UILabel alloc] initWithFrame:CGRectMake(clinicasLabel.frame.origin.x + clinicasLabel.frame.size.width, clinicasLabel.frame.origin.y - 10.0, screenBounds.size.width - 20.0 - (clinicasLabel.frame.origin.x + clinicasLabel.frame.size.width), 50.0)];
     clinicsListLabel.text = self.doctor.parsedHospitalList;
     clinicsListLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
     clinicsListLabel.textColor = [UIColor darkGrayColor];
+    clinicsListLabel.minimumScaleFactor = 0.8;
     clinicsListLabel.numberOfLines = 0;
     if ([self.doctor.parsedHospitalList length] > 0) {
         //[clinicsListLabel sizeToFit];
@@ -208,33 +219,36 @@
     [self.scrollView addSubview:clinicsListLabel];
     
     //"Seguros" label
-    UILabel *insuranceLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, clinicsListLabel.frame.origin.y + clinicsListLabel.frame.size.height, 70.0, 30.0)];
+    UILabel *insuranceLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, clinicsListLabel.frame.origin.y + clinicsListLabel.frame.size.height + 10.0, 70.0, 30.0)];
     insuranceLabel.text = @"Seguros: ";
     insuranceLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
     [self.scrollView addSubview:insuranceLabel];
     
     //Insurance list label
-    UILabel *insuranceListLabel = [[UILabel alloc] initWithFrame:CGRectMake(insuranceLabel.frame.origin.x + insuranceLabel.frame.size.width, insuranceLabel.frame.origin.y, screenBounds.size.width - 20.0 - (insuranceLabel.frame.origin.x + insuranceLabel.frame.size.width), 30.0)];
+    UILabel *insuranceListLabel = [[UILabel alloc] initWithFrame:CGRectMake(insuranceLabel.frame.origin.x + insuranceLabel.frame.size.width, insuranceLabel.frame.origin.y - 10.0, screenBounds.size.width - 20.0 - (insuranceLabel.frame.origin.x + insuranceLabel.frame.size.width), 50.0)];
     insuranceListLabel.text = self.doctor.parsedInsurancesList;
     insuranceListLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
     insuranceListLabel.textColor = [UIColor darkGrayColor];
+    insuranceListLabel.minimumScaleFactor = 0.8;
+    insuranceListLabel.numberOfLines = 0;
     if ([self.doctor.parsedInsurancesList length] > 0) {
         //[insuranceListLabel sizeToFit];
     }
     [self.scrollView addSubview:insuranceListLabel];
     
     //"Miembro de" label
-    UILabel *membershipLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, insuranceListLabel.frame.origin.y + insuranceListLabel.frame.size.height, 80.0, 30.0)];
+    UILabel *membershipLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, insuranceListLabel.frame.origin.y + insuranceListLabel.frame.size.height + 10.0, 80.0, 30.0)];
     membershipLabel.text = @"Miembro de: ";
     membershipLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
     [self.scrollView addSubview:membershipLabel];
     
     //Membership list label
-    UILabel *membershipListLabel = [[UILabel alloc] initWithFrame:CGRectMake(membershipLabel.frame.origin.x + membershipLabel.frame.size.width, membershipLabel.frame.origin.y, screenBounds.size.width - 20.0 - (membershipLabel.frame.origin.x + membershipLabel.frame.size.width), 30.0)];
+    UILabel *membershipListLabel = [[UILabel alloc] initWithFrame:CGRectMake(membershipLabel.frame.origin.x + membershipLabel.frame.size.width, membershipLabel.frame.origin.y - 10.0, screenBounds.size.width - 20.0 - (membershipLabel.frame.origin.x + membershipLabel.frame.size.width), 50.0)];
     membershipListLabel.text = self.doctor.parsedProfesionalMembershipList;
     membershipListLabel.tag = 1;
     membershipListLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
     membershipListLabel.textColor = [UIColor darkGrayColor];
+    membershipListLabel.numberOfLines = 0;
     if ([self.doctor.parsedProfesionalMembershipList length] > 0) {
         //[membershipListLabel sizeToFit];
     }
@@ -242,7 +256,7 @@
 }
 
 #pragma mark - Actions 
-- (IBAction)favDoctorButtonPressed:(id)sender {
+- (void)favDoctorButtonPressed:(id)sender {
     [[[UIAlertView alloc] initWithTitle:nil message:@"¿Deseas agregar este doctor a tus favoritos?" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"Agregar", nil] show];
 }
 

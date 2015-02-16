@@ -96,6 +96,7 @@
     serverCommunicator.delegate = self;
     
     //Uncomment this when testing on devices to send the device information to the server
+    
     /*NSDictionary *deviceInfoDic = @{@"type" : [UIDevice currentDevice].model, @"token" : [DeviceInfo sharedInstance].deviceToken, @"name" : [UIDevice currentDevice].name, @"os" : @"iOS"};
     NSData *deviceInfoData = [NSJSONSerialization dataWithJSONObject:deviceInfoDic options:NSJSONWritingPrettyPrinted error:nil];
     NSString *deviceInfoString = [[NSString alloc] initWithData:deviceInfoData encoding:NSUTF8StringEncoding];*/
@@ -157,7 +158,7 @@
 
 -(void)serverError:(NSError *)error {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    
+    NSLog(@"Error: %@", error.localizedDescription);
     //Inform the user that there was an error in the server
     [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Hubo un error al intentar iniciar sesión. Por favor revisa que estés conectado a internet e intenta de nuevo." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 }
