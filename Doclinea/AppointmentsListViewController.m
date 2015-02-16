@@ -77,7 +77,7 @@
     Appointment *appointment = self.takenAppointmentsArray[indexPath.row];
     cell.doctorNameLabel.text = appointment.doctorName;
     cell.reasonLabel.text = appointment.reason;
-    [cell.doctorImageView sd_setImageWithURL:[NSURL URLWithString:appointment.imageURL]];
+    [cell.doctorImageView sd_setImageWithURL:[NSURL URLWithString:appointment.imageURL] placeholderImage:[UIImage imageNamed:@"DoctorMale"]];
     if (appointment.locations.count > 0) {
         cell.locationNameLabel.text = ((Location *)appointment.locations[0]).locationName;
         cell.locationAddressLabel.text = ((Location *)appointment.locations[0]).locationAddress;
@@ -92,7 +92,6 @@
 }
 
 #pragma mark - Server Stuff
-//Appointment/Cancel/id_appointment/user
 
 -(void)cancelappointment {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];

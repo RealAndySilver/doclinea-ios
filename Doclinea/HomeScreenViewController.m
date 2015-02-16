@@ -30,9 +30,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *insuranceTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *citiesTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *specialtiesTextfield;
-//@property (strong, nonatomic) NSArray *specialtiesArray;
 @property (strong, nonatomic) NSArray *citiesNames;
-//@property (strong, nonatomic) NSArray *insurancesNames;
 @property (strong, nonatomic) NSArray *localidadesArray;
 @property (strong, nonatomic) NSArray *practicesArray;
 @property (strong, nonatomic) NSArray *insurancesArray;
@@ -99,21 +97,6 @@ enum {
     }
     return _localidadesArray;
 }
-
-/*-(NSArray *)specialtiesArray {
-    if (!_specialtiesArray) {
-       // _specialtiesArray = @[@{@"name" : @"Pediatra", @"id" : @1}, @{@"name" : @"Fonoaudiólogo", @"id" : @2}, @{@"name" : @"Ginecólogo", @"id" : @3}, @{@"name" : @"Ortopedista", @"id" : @4}, @{@"name" : @"Odontólogo", @"id" : @5}];
-        _specialtiesArray = @[@"Todas", @"Pediatra", @"Fonoaudiólogo", @"Ginecólogo", @"Ortopedista", @"Odontólogo"];
-    }
-    return _specialtiesArray;
-}*/
-
-/*-(NSArray *)insurancesNames {
-    if (!_insurancesNames) {
-        _insurancesNames = @[@"Todas", @"Sura", @"Colpatria", @"Compensar"];
-    }
-    return _insurancesNames;
-}*/
 
 -(NSArray *)citiesNames {
     if (!_citiesNames) {
@@ -256,7 +239,7 @@ enum {
     [self.navigationController pushViewController:doctorsListVC animated:YES];
 }
 
-#pragma mark - Parse Info From Server Stuff 
+#pragma mark - Parse Info From Server
 
 -(void)saveDoctorsUsingArray:(NSArray *)doctorsArray {
     NSMutableArray *doctors = [[NSMutableArray alloc] initWithCapacity:[doctorsArray count]];
@@ -270,14 +253,12 @@ enum {
 }
 
 #pragma mark - Server Stuff 
-//User/Invite
-//email, message, destination_email
 
 -(void)sendInvitationWithEmail:(NSString *)email {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
     serverCommunicator.delegate = self;
-    NSString *parameters = [NSString stringWithFormat:@"email=%@&message=%@&destination_email=%@", self.user.email, @"Hola, te quiero invitar a doclinea", email];
+    NSString *parameters = [NSString stringWithFormat:@"email=%@&message=%@&destination_email=%@", self.user.email, @"Hola, quiero invitarte a DocLinea, una plataforma online para agendar citas médicas al instante!", email];
     [serverCommunicator callServerWithPOSTMethod:@"User/Invite" andParameter:parameters httpMethod:@"POST"];
 }
 
@@ -296,7 +277,6 @@ enum {
     NSString *insuranceString = [[NSString alloc] initWithData:insuranceData encoding:NSUTF8StringEncoding];
     NSLog(@"Insurance sstringggg: %@", insuranceString);
     
-    //NSDictionary *localidadDic = @{@"name": self.localidadTextfield.text, @"lat" : @4.5, @"lon" : @74.5};
     NSDictionary *localidadDic = @{@"name" : self.localidadTextfield.text};
     NSData *localidadData = [NSJSONSerialization dataWithJSONObject:localidadDic options:0 error:nil];
     NSString *localidadString = [[NSString alloc] initWithData:localidadData encoding:NSUTF8StringEncoding];
@@ -500,7 +480,7 @@ enum {
 #pragma mark - Alerts 
 
 -(void)showInvitationView {
-    InviteView *inviteView = [[InviteView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2.0 - 110.0, self.view.bounds.size.height/2.0 - 110.0, 220.0, 220.0)];
+    InviteView *inviteView = [[InviteView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2.0 - 110.0, self.view.bounds.size.height/2.0 - 100.0, 220.0, 200.0)];
     inviteView.delegate = self;
     [inviteView showInView:self.view];
 }

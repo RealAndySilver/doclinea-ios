@@ -209,7 +209,7 @@
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eqx-oM-c3D">
                         <rect key="frame" x="8" y="8" width="85" height="95"/>
-                        <color key="backgroundColor" red="0.82360092470000001" green="0.82360092470000001" blue="0.82360092470000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="95" id="VDy-E6-8C2"/>
                             <constraint firstAttribute="width" constant="85" id="ghX-Rv-ybo"/>

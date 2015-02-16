@@ -5,6 +5,7 @@
 //  Created by Andres Abril on 19/04/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+//  Class that define methods to communicate with the server
 
 #import "ServerCommunicator.h"
 #define ENDPOINT @"http://192.241.187.135:1414/api_1.0"

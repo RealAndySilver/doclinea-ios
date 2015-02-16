@@ -5,6 +5,7 @@
 //  Created by Developer on 29/09/14.
 //  Copyright (c) 2014 iAm Studio. All rights reserved.
 //
+//  Login Screen ViewController
 
 #import "LoginViewController.h"
 #import "ServerCommunicator.h"
@@ -93,6 +94,8 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     ServerCommunicator *serverCommunicator = [[ServerCommunicator alloc] init];
     serverCommunicator.delegate = self;
+    
+    //Uncomment this when testing on devices to send the device information to the server
     /*NSDictionary *deviceInfoDic = @{@"type" : [UIDevice currentDevice].model, @"token" : [DeviceInfo sharedInstance].deviceToken, @"name" : [UIDevice currentDevice].name, @"os" : @"iOS"};
     NSData *deviceInfoData = [NSJSONSerialization dataWithJSONObject:deviceInfoDic options:NSJSONWritingPrettyPrinted error:nil];
     NSString *deviceInfoString = [[NSString alloc] initWithData:deviceInfoData encoding:NSUTF8StringEncoding];*/

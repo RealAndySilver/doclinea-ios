@@ -5,6 +5,7 @@
 //  Created by Developer on 9/10/14.
 //  Copyright (c) 2014 iAm Studio. All rights reserved.
 //
+//  Subclass of UITextfield that hides the textfields menu
 
 #import "MyTextfield.h"
 

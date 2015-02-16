@@ -18,6 +18,8 @@
 
 @implementation InsurancesTableViewController
 
+#pragma mark - Lazy Instantiation
+
 -(NSArray *)insurancesNamesArray {
     if (!_insurancesNamesArray) {
         NSMutableArray *tempArray = [[NSMutableArray alloc] init];
