@@ -12,7 +12,7 @@
 #import "MBProgressHUD.h"
 #import "InsuranceConfirmationViewController.h"
 
-@interface AppointmentConfirmationViewController() <UITextFieldDelegate, ServerCommunicatorDelegate, UIAlertViewDelegate, InsuranceConfirmationDelegate>
+@interface AppointmentConfirmationViewController() <UITextFieldDelegate, ServerCommunicatorDelegate, UIAlertViewDelegate, InsuranceConfirmationDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *insuranceTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *pacientNameTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *pacientNumberTextfield;
@@ -132,17 +132,20 @@
         pacientIsUser = NO;
     }
     
-    NSDictionary *selectedInsuranceDic;
+    NSArray *selectedInsuranceArray;
     if (self.selectedInsuranceIndex == 0) {
         //User selected "Pagaré cita particular"
-        selectedInsuranceDic = @{@"insurance" : @"", @"insurance_type" : @""};
+        selectedInsuranceArray = @[@{@"insurance" : @"", @"insurance_type" : @""}];
     } else {
         //User selected insurance
-        selectedInsuranceDic = @{@"insurance" : self.doctor.insuranceList[self.selectedInsuranceIndex - 1][@"insurance"], @"insurance_type" : self.doctor.insuranceList[self.selectedInsuranceIndex - 1][@"insurance_type"]};
+        selectedInsuranceArray = @[@{@"insurance" : self.doctor.insuranceList[self.selectedInsuranceIndex - 1][@"insurance"], @"insurance_type" : self.doctor.insuranceList[self.selectedInsuranceIndex - 1][@"insurance_type"]}];
     }
-    NSLog(@"Selecte insurance: %@", selectedInsuranceDic);
+    NSData *insuranceData = [NSJSONSerialization dataWithJSONObject:selectedInsuranceArray options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *insuranceString = [[NSString alloc] initWithData:insuranceData encoding:NSUTF8StringEncoding];
     
-    NSString *parameters = [NSString stringWithFormat:@"user_id=%@&user_name=%@&patient_phone=%@&patient_name=%@&patient_is_user=%@&status=%@&reason=%@&insurance=%@", self.user.identifier, self.user.name, self.pacientNumberTextfield.text, pacientName, @(pacientIsUser), @"taken", self.reasonTextView.text, selectedInsuranceDic];
+    NSLog(@"Selecte insurance: %@", selectedInsuranceArray);
+    
+    NSString *parameters = [NSString stringWithFormat:@"user_id=%@&user_name=%@&patient_phone=%@&patient_name=%@&patient_is_user=%@&status=%@&reason=%@&insurance=%@", self.user.identifier, self.user.name, self.pacientNumberTextfield.text, pacientName, @(pacientIsUser), @"taken", self.reasonTextView.text, insuranceString];
     [serverCommunicator callServerWithPOSTMethod:[NSString stringWithFormat:@"Appointment/Take/%@", self.appointment.identifier] andParameter:parameters httpMethod:@"POST"];
     NSLog(@"PARAMETROOOO: %@", parameters);
 }
@@ -182,6 +185,16 @@
     insuranceConfirmVC.doctor = self.doctor;
     insuranceConfirmVC.delegate = self;
     [self.navigationController pushViewController:insuranceConfirmVC animated:YES];
+}
+
+#pragma mark - UITextViewDelegate
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - UITextfieldDelegate

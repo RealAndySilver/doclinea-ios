@@ -225,11 +225,11 @@
     [self.scrollView addSubview:insuranceLabel];
     
     //Insurance list label
-    UILabel *insuranceListLabel = [[UILabel alloc] initWithFrame:CGRectMake(insuranceLabel.frame.origin.x + insuranceLabel.frame.size.width, insuranceLabel.frame.origin.y - 10.0, screenBounds.size.width - 20.0 - (insuranceLabel.frame.origin.x + insuranceLabel.frame.size.width), 50.0)];
+    UILabel *insuranceListLabel = [[UILabel alloc] initWithFrame:CGRectMake(insuranceLabel.frame.origin.x + insuranceLabel.frame.size.width, insuranceLabel.frame.origin.y - 15.0, screenBounds.size.width - 20.0 - (insuranceLabel.frame.origin.x + insuranceLabel.frame.size.width), 60.0)];
     insuranceListLabel.text = self.doctor.parsedInsurancesList;
     insuranceListLabel.font = [UIFont fontWithName:@"OpenSans" size:13.0];
     insuranceListLabel.textColor = [UIColor darkGrayColor];
-    insuranceListLabel.minimumScaleFactor = 0.8;
+    insuranceListLabel.minimumScaleFactor = 0.6;
     insuranceListLabel.numberOfLines = 0;
     if ([self.doctor.parsedInsurancesList length] > 0) {
         //[insuranceListLabel sizeToFit];
